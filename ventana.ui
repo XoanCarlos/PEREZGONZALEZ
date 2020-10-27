@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>651</width>
-    <height>409</height>
+    <width>658</width>
+    <height>389</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,11 +31,14 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(179, 254, 255);
-background-color: qlineargradient(spread:pad, x1:0.46, y1:0.0343636, x2:0.4595, y2:0.835, stop:0 rgba(0, 223, 185, 255), stop:1 rgba(255, 255, 255, 255));</string>
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0.46, y1:0.0343636, x2:0.4595, y2:0.835, stop:0 rgba(0, 223, 185, 255), stop:1 rgba(255, 255, 255, 255));
+color:rgb(56, 56, 56)</string>
     </property>
     <property name="text">
      <string>XESTIÓN CLIENTES</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::RichText</enum>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -186,7 +189,7 @@ background-color: qlineargradient(spread:pad, x1:0.46, y1:0.0343636, x2:0.4595, 
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>651</width>
+     <width>658</width>
      <height>21</height>
     </rect>
    </property>

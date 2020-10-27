@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_venPrincipal(object):
     def setupUi(self, venPrincipal):
         venPrincipal.setObjectName("venPrincipal")
-        venPrincipal.resize(651, 409)
+        venPrincipal.resize(658, 389)
         self.centralwidget = QtWidgets.QWidget(venPrincipal)
         self.centralwidget.setObjectName("centralwidget")
         self.lblXexCli = QtWidgets.QLabel(self.centralwidget)
@@ -24,8 +24,9 @@ class Ui_venPrincipal(object):
         font.setBold(True)
         font.setWeight(75)
         self.lblXexCli.setFont(font)
-        self.lblXexCli.setStyleSheet("background-color: rgb(179, 254, 255);\n"
-"background-color: qlineargradient(spread:pad, x1:0.46, y1:0.0343636, x2:0.4595, y2:0.835, stop:0 rgba(0, 223, 185, 255), stop:1 rgba(255, 255, 255, 255));")
+        self.lblXexCli.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.46, y1:0.0343636, x2:0.4595, y2:0.835, stop:0 rgba(0, 223, 185, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"color:rgb(56, 56, 56)")
+        self.lblXexCli.setTextFormat(QtCore.Qt.RichText)
         self.lblXexCli.setAlignment(QtCore.Qt.AlignCenter)
         self.lblXexCli.setObjectName("lblXexCli")
         self.line = QtWidgets.QFrame(self.centralwidget)
@@ -76,7 +77,7 @@ class Ui_venPrincipal(object):
         self.btnSalir.setObjectName("btnSalir")
         venPrincipal.setCentralWidget(self.centralwidget)
         self.menuBar = QtWidgets.QMenuBar(venPrincipal)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 651, 21))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 658, 21))
         self.menuBar.setObjectName("menuBar")
         self.menuArchivo = QtWidgets.QMenu(self.menuBar)
         self.menuArchivo.setObjectName("menuArchivo")
