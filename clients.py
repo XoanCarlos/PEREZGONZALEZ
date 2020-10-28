@@ -36,7 +36,6 @@ class Clientes():
             print(Clientes.validarDni(dni))
             if Clientes.validarDni(dni):
                 var.ui.lblValidar.setStyleSheet('QLabel {color: green;}')
-                print(dni)
                 var.ui.lblValidar.setText('V')
                 var.ui.editDni.setText(dni.upper())
             else:
