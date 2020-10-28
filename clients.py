@@ -22,6 +22,7 @@ class Clientes():
                     dni  = dni.replace(dni[0],reemp_dig_ext[dni[0]])
                 return len(dni) == len([n for n in dni if n in numeros]) and tabla[int(dni) % 23 ] == dig_control
 
+
         except:
             print('Error módulo validar DNI')
             return None
