@@ -180,6 +180,28 @@ background-color: qlineargradient(spread:pad, x1:0.46, y1:0.0343636, x2:0.4595, 
      <string>Salir</string>
     </property>
    </widget>
+   <widget class="QLabel" name="lblValidar">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>60</y>
+      <width>47</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
