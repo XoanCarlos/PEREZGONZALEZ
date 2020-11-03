@@ -1,5 +1,6 @@
 import var
 
+
 class Clientes():
     '''
     eventos clientes
@@ -74,5 +75,23 @@ class Clientes():
         except Exception as error:
             print('Error: %s' % str(error))
 
-    def cargarFecha(self):
-        print('hola')
+    '''
+    Abrir la ventana calendario
+    '''
+    def abrirCalendar():
+        try:
+            var.dlgcalendar.show()
+        except Exception as error:
+            print('Error: %s ' % str(error))
+
+    '''
+    Este módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked.connect de calendar
+    '''
+
+    def cargarFecha(qDate):
+        try:
+            data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
+            var.ui.editClialta.setText(str(data))
+            var.dlgcalendar.hide()
+        except Exception as error:
+            print('Error cargar fecha: %s ' % str(error))

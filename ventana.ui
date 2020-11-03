@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>677</width>
-    <height>409</height>
+    <width>695</width>
+    <height>363</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -324,7 +324,7 @@ background-color: qlineargradient(spread:pad, x1:0.46, y1:0.0343636, x2:0.4595, 
      <string>Dirección: </string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="editApel_2">
+   <widget class="QLineEdit" name="editDir">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -406,12 +406,12 @@ background-color: qlineargradient(spread:pad, x1:0.46, y1:0.0343636, x2:0.4595, 
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../.designer/backup/img/calendar.png</normaloff>../../.designer/backup/img/calendar.png</iconset>
+      <normaloff>img/calendar.png</normaloff>img/calendar.png</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>24</width>
-      <height>24</height>
+      <width>30</width>
+      <height>30</height>
      </size>
     </property>
    </widget>
@@ -421,7 +421,7 @@ background-color: qlineargradient(spread:pad, x1:0.46, y1:0.0343636, x2:0.4595, 
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>677</width>
+     <width>695</width>
      <height>21</height>
     </rect>
    </property>

@@ -1,7 +1,8 @@
 import sys, var
 
 class Eventos():
-    def Salir(self):
+
+    def Salir(event):
         '''
         Módulo para cerrar el programa
         :return:
@@ -11,7 +12,8 @@ class Eventos():
             if var.avisosalir.exec_():
                 sys.exit()
             else:
-                var.avisosalir.close()
+                var.avisosalir.hide()
+                event.ignore()   #necesario para que ignore X de la ventana
         except Exception as error:
             print('Error %s' % str(error))
 
