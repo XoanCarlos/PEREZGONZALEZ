@@ -73,3 +73,6 @@ class Clientes():
             return prov
         except Exception as error:
             print('Error: %s' % str(error))
+
+    def cargarFecha(self):
+        print('hola')

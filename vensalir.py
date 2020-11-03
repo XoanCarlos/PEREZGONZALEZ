@@ -16,12 +16,12 @@ class Ui_venSalir(object):
         venSalir.setObjectName("venSalir")
         venSalir.resize(376, 150)
         venSalir.setModal(True)
-        self.btnBox = QtWidgets.QDialogButtonBox(venSalir)
-        self.btnBox.setGeometry(QtCore.QRect(120, 90, 161, 32))
-        self.btnBox.setOrientation(QtCore.Qt.Horizontal)
-        self.btnBox.setStandardButtons(QtWidgets.QDialogButtonBox.No|QtWidgets.QDialogButtonBox.Yes)
-        self.btnBox.setCenterButtons(True)
-        self.btnBox.setObjectName("btnBox")
+        self.btnBoxSalir = QtWidgets.QDialogButtonBox(venSalir)
+        self.btnBoxSalir.setGeometry(QtCore.QRect(120, 90, 161, 32))
+        self.btnBoxSalir.setOrientation(QtCore.Qt.Horizontal)
+        self.btnBoxSalir.setStandardButtons(QtWidgets.QDialogButtonBox.No|QtWidgets.QDialogButtonBox.Yes)
+        self.btnBoxSalir.setCenterButtons(True)
+        self.btnBoxSalir.setObjectName("btnBoxSalir")
         self.lblMensalir = QtWidgets.QLabel(venSalir)
         self.lblMensalir.setGeometry(QtCore.QRect(90, 40, 271, 21))
         font = QtGui.QFont()
@@ -39,14 +39,19 @@ class Ui_venSalir(object):
         self.lblImgaviso.setPixmap(QtGui.QPixmap(":/avisosalir/iconoaviso.png"))
         self.lblImgaviso.setScaledContents(True)
         self.lblImgaviso.setObjectName("lblImgaviso")
+        self.label = QtWidgets.QLabel(venSalir)
+        self.label.setGeometry(QtCore.QRect(50, 70, 41, 41))
+        self.label.setText("")
+        self.label.setPixmap(QtGui.QPixmap(":/newPrefix/iconoaviso.png"))
+        self.label.setObjectName("label")
 
         self.retranslateUi(venSalir)
-        self.btnBox.accepted.connect(venSalir.accept)
-        self.btnBox.rejected.connect(venSalir.reject)
+        self.btnBoxSalir.accepted.connect(venSalir.accept)
+        self.btnBoxSalir.rejected.connect(venSalir.reject)
         QtCore.QMetaObject.connectSlotsByName(venSalir)
 
     def retranslateUi(self, venSalir):
         _translate = QtCore.QCoreApplication.translate
         venSalir.setWindowTitle(_translate("venSalir", "Desea Salir?"))
         self.lblMensalir.setText(_translate("venSalir", "¿Está seguro que desea salir de la aplicación?"))
-import avisosalir_rc
+

@@ -7,7 +7,11 @@ class Eventos():
         :return:
         '''
         try:
-            sys.exit()
+            var.avisosalir.show()
+            if var.avisosalir.exec_():
+                sys.exit()
+            else:
+                var.avisosalir.close()
         except Exception as error:
             print('Error %s' % str(error))
 
