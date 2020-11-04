@@ -15,6 +15,7 @@ class Ui_dlgCalendar(object):
     def setupUi(self, dlgCalendar):
         dlgCalendar.setObjectName("dlgCalendar")
         dlgCalendar.resize(327, 195)
+        dlgCalendar.setModal(True)
         self.Calendar = QtWidgets.QCalendarWidget(dlgCalendar)
         self.Calendar.setGeometry(QtCore.QRect(1, 2, 321, 191))
         self.Calendar.setObjectName("Calendar")

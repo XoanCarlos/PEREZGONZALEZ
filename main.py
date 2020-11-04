@@ -1,18 +1,17 @@
 from ventana import *
-from vencalendar import *
 from vensalir import *
+from vencalendar import *
 from datetime import datetime
 import sys, var, events, clients
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
         super(DialogSalir, self).__init__()
-        var.avisosalir = Ui_dlgSalir()
-        var.avisosalir.setupUi(self)
-        var.avisosalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(events.Eventos.Salir)
+        var.dlgsalir = Ui_dlgSalir()
+        var.dlgsalir.setupUi(self)
+        var.dlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(events.Eventos.Salir)
         #var.avisosalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.No).clicked.connect(events.Eventos.Salir)
         #no es neceasario no quiero que haga nada
-
 
 class DialogCalendar(QtWidgets.QDialog):
     def __init__(self):
@@ -25,13 +24,12 @@ class DialogCalendar(QtWidgets.QDialog):
         var.dlgcalendar.Calendar.setSelectedDate((QtCore.QDate(anoactual,mesactual,diaactual)))
         var.dlgcalendar.Calendar.clicked.connect(clients.Clientes.cargarFecha)
 
-
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
         var.ui = Ui_venPrincipal()
         var.ui.setupUi(self)
-        var.avisosalir = DialogSalir()
+        var.dlgsalir = DialogSalir()
         var.dlgcalendar = DialogCalendar()
         #QtWidgets.QAction(self).triggered.connect(self.close)
         #debe cargarse al principio para estar a la escucha

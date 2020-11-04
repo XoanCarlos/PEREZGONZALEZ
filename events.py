@@ -8,11 +8,11 @@ class Eventos():
         :return:
         '''
         try:
-            var.avisosalir.show()
-            if var.avisosalir.exec_():
+            var.dlgsalir.show()
+            if var.dlgsalir.exec_():
                 sys.exit()
             else:
-                var.avisosalir.hide()
+                var.dlgsalir.hide()
                 event.ignore()   #necesario para que ignore X de la ventana
         except Exception as error:
             print('Error %s' % str(error))

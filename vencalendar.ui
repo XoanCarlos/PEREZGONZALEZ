@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Fecha Alta</string>
   </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
   <widget class="QCalendarWidget" name="Calendar">
    <property name="geometry">
     <rect>
