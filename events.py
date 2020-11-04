@@ -1,4 +1,4 @@
-import sys, var
+import sys, var, vensalir
 
 class Eventos():
 
@@ -10,10 +10,21 @@ class Eventos():
         try:
             var.dlgsalir.show()
             if var.dlgsalir.exec_():
+                #print(event)
                 sys.exit()
             else:
                 var.dlgsalir.hide()
-                event.ignore()   #necesario para que ignore X de la ventana
+                event.ignore()
+
+        except Exception as error:
+            print('Error %s' % str(error))
+
+    def closeSalir(event):
+        try:
+            if var.dlgsalir.exec_():
+                print(event)
+                var.dlgsalir.hide()
+               #necesario para que ignore X de la ventana
         except Exception as error:
             print('Error %s' % str(error))
 

@@ -10,7 +10,7 @@ class DialogSalir(QtWidgets.QDialog):
         var.dlgsalir = Ui_dlgSalir()
         var.dlgsalir.setupUi(self)
         var.dlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(events.Eventos.Salir)
-        #var.avisosalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.No).clicked.connect(events.Eventos.Salir)
+        #var.dlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.No).clicked.connect(events.Eventos.closeSalir)
         #no es neceasario no quiero que haga nada
 
 class DialogCalendar(QtWidgets.QDialog):
@@ -31,8 +31,6 @@ class Main(QtWidgets.QMainWindow):
         var.ui.setupUi(self)
         var.dlgsalir = DialogSalir()
         var.dlgcalendar = DialogCalendar()
-        #QtWidgets.QAction(self).triggered.connect(self.close)
-        #debe cargarse al principio para estar a la escucha
 
         '''
         colección de datos
@@ -65,7 +63,9 @@ class Main(QtWidgets.QMainWindow):
         '''
 
     def closeEvent(self, event):
-        events.Eventos.Salir(event)
+        if event:
+            events.Eventos.Salir(event)
+
 
 
 if __name__ == '__main__':
