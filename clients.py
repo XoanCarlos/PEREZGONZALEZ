@@ -65,8 +65,6 @@ class Clientes():
                 var.pay.append('Tarjeta')
             if var.ui.chkTrans.isChecked():
                 var.pay.append('Transferencia')
-
-
         except Exception as error:
             print('Error: %s' % str(error))
 
@@ -127,7 +125,7 @@ class Clientes():
                 cell = QtWidgets.QTableWidgetItem(registro)
                 var.ui.tableCli.setItem(row, column, cell)
                 column +=1
-            Clientes.limpiarCli(client,var.rbtsex,var.chkpago)
+            Clientes.limpiarCli(client, var.rbtsex, var.chkpago)
         except Exception as error:
             print('Error cargar fecha: %s ' % str(error))
 
@@ -141,8 +139,9 @@ class Clientes():
         try:
             for i in range(len(listaeditCli)):
                 listaeditCli[i].setText('')
-            for data in listaRbtsex:
-                data.isChecked(False)
+            var.ui.buttonGroup.setExclusive(False) #necesario para los radiobutton
+            for dato in listaRbtsex:
+                dato.setChecked(False)
             for data in listaChkpay:
                 data.setChecked(False)
             var.ui.cmbProv.setCurrentIndex(0)
