@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets
 import var
-
+from ventana import *
 
 class Clientes():
     '''
@@ -31,7 +31,7 @@ class Clientes():
     def validoDni():
         '''
         muestra mensaje de dni válido
-        :return:
+        :return: none
         '''
         try:
             dni = var.ui.editDni.text()
@@ -65,6 +65,7 @@ class Clientes():
                 var.pay.append('Tarjeta')
             if var.ui.chkTrans.isChecked():
                 var.pay.append('Transferencia')
+
 
         except Exception as error:
             print('Error: %s' % str(error))
@@ -118,8 +119,6 @@ class Clientes():
             for j in var.pay:
                 newcli.append(j)
             newcli.append(var.sex)
-            print(newcli)
-            print(clitab)
             #aquí empieza como trabajar con la TableWidget
             row = 0
             column = 0
@@ -128,10 +127,28 @@ class Clientes():
                 cell = QtWidgets.QTableWidgetItem(registro)
                 var.ui.tableCli.setItem(row, column, cell)
                 column +=1
-
+            Clientes.limpiarCli(client,var.rbtsex,var.chkpago)
         except Exception as error:
             print('Error cargar fecha: %s ' % str(error))
 
+    def limpiarCli(listaeditCli, listaRbtsex, listaChkpay):
+        '''
+        limpia los datos del formulario cliente
+        :param listaRbtsex:
+        :param listaChkpay:
+        :return: none
+        '''
+        try:
+            for i in range(len(listaeditCli)):
+                listaeditCli[i].setText('')
+            for data in listaRbtsex:
+                data.isChecked(False)
+            for data in listaChkpay:
+                data.setChecked(False)
+            var.ui.cmbProv.setCurrentIndex(0)
+            var.ui.lblValidar.setText('')
+        except Exception as error:
+            print('Error cargar fecha: %s ' % str(error))
 
 
 

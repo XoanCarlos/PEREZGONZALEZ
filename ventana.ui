@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1176</width>
-    <height>949</height>
+    <width>1280</width>
+    <height>1665</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -36,6 +36,19 @@
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout_7">
+    <item row="0" column="3" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/logo.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="1">
      <spacer name="horizontalSpacer_4">
       <property name="orientation">
@@ -52,13 +65,13 @@
       </property>
      </spacer>
     </item>
-    <item row="2" column="2">
-     <spacer name="verticalSpacer_2">
+    <item row="0" column="2">
+     <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
       <property name="sizeType">
-       <enum>QSizePolicy::Fixed</enum>
+       <enum>QSizePolicy::Expanding</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>
@@ -68,13 +81,13 @@
       </property>
      </spacer>
     </item>
-    <item row="0" column="2">
-     <spacer name="verticalSpacer">
+    <item row="2" column="2">
+     <spacer name="verticalSpacer_2">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
       <property name="sizeType">
-       <enum>QSizePolicy::Expanding</enum>
+       <enum>QSizePolicy::Fixed</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>
@@ -534,7 +547,7 @@
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../.designer/backup/img/calendar.png</normaloff>../../.designer/backup/img/calendar.png</iconset>
+              <normaloff>img/calendar.png</normaloff>img/calendar.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -715,19 +728,6 @@
       </widget>
      </widget>
     </item>
-    <item row="0" column="3" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/logo.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -735,7 +735,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1176</width>
+     <width>1280</width>
      <height>21</height>
     </rect>
    </property>
