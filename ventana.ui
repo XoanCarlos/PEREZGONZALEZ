@@ -123,7 +123,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="1" column="0">
-         <layout class="QGridLayout" name="gridLayout_5">
+         <layout class="QGridLayout" name="gridFormdatos">
           <item row="0" column="4">
            <widget class="QLineEdit" name="editNome">
             <property name="sizePolicy">
@@ -213,7 +213,7 @@
          </layout>
         </item>
         <item row="2" column="0">
-         <layout class="QGridLayout" name="gridLayout_6">
+         <layout class="QGridLayout" name="gridFormdir">
           <item row="0" column="0">
            <widget class="QLabel" name="lblDir">
             <property name="sizePolicy">
@@ -300,7 +300,7 @@
          </layout>
         </item>
         <item row="3" column="0">
-         <layout class="QGridLayout" name="gridLayout_2">
+         <layout class="QGridLayout" name="gridFormabajo">
           <property name="sizeConstraint">
            <enum>QLayout::SetFixedSize</enum>
           </property>
@@ -337,7 +337,7 @@
              <string>Masculino</string>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
+             <string notr="true">grpbtnSex</string>
             </attribute>
            </widget>
           </item>
@@ -386,14 +386,14 @@
              <string>Femenino</string>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
+             <string notr="true">grpbtnSex</string>
             </attribute>
            </widget>
           </item>
          </layout>
         </item>
         <item row="4" column="0">
-         <layout class="QGridLayout" name="gridLayout_3">
+         <layout class="QGridLayout" name="gridBoton">
           <item row="1" column="0">
            <widget class="Line" name="line_2">
             <property name="orientation">
@@ -513,7 +513,7 @@
          </layout>
         </item>
         <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_4">
+         <layout class="QGridLayout" name="gridFormsup">
           <item row="1" column="11">
            <widget class="QPushButton" name="btnCalendar">
             <property name="sizePolicy">
@@ -780,6 +780,6 @@
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup"/>
+  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>

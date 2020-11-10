@@ -7,4 +7,5 @@ global dlgsalir
 global dlgcalendar
 global sex
 pay = []
+filebd = 'empresa.db'
 

@@ -2,7 +2,7 @@ from ventana import *
 from vensalir import *
 from vencalendar import *
 from datetime import datetime
-import sys, var, events, clients
+import sys, var, events, clients, conexion
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
@@ -53,7 +53,7 @@ class Main(QtWidgets.QMainWindow):
         for i in var.chkpago:
             i.stateChanged.connect(clients.Clientes.selPago)
         var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
-
+        var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         '''
         Llamada a módulos iniciales
         '''
@@ -62,12 +62,11 @@ class Main(QtWidgets.QMainWindow):
         '''
         módulos del principal
         '''
+        conexion.Conexion.db_connect(var.filebd)
 
     def closeEvent(self, event):
         if event:
             events.Eventos.Salir(event)
-
-
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

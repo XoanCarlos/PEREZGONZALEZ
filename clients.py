@@ -139,7 +139,7 @@ class Clientes():
         try:
             for i in range(len(listaeditCli)):
                 listaeditCli[i].setText('')
-            var.ui.buttonGroup.setExclusive(False) #necesario para los radiobutton
+            var.ui.grpbtnSex.setExclusive(False)  #necesario para los radiobutton
             for dato in listaRbtsex:
                 dato.setChecked(False)
             for data in listaChkpay:
@@ -147,7 +147,22 @@ class Clientes():
             var.ui.cmbProv.setCurrentIndex(0)
             var.ui.lblValidar.setText('')
         except Exception as error:
-            print('Error cargar fecha: %s ' % str(error))
+            print('Error limpiar widgets: %s ' % str(error))
+
+    def cargarCli(self):
+        try:
+            fila = var.ui.tableCli.selectedItems()
+            client = [ var.ui.editDni, var.ui.editApel, var.ui.editNome ]
+            if fila:
+                fila = [ dato.text() for dato in fila ]
+            print(fila)
+            i = 0
+            for i, dato in enumerate(client):
+                dato.setText(fila[i])
+
+        except Exception as error:
+            print('Error cargar clientes: %s ' % str(error))
+
 
 
 
