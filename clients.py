@@ -1,5 +1,4 @@
-from PyQt5 import QtWidgets
-import var
+import var, conexion
 from ventana import *
 
 class Clientes():
@@ -59,12 +58,18 @@ class Clientes():
 
     def selPago():
         try:
-            if var.ui.chkEfec.isChecked():
-                var.pay.append('Efectivo')
-            if var.ui.chkTar.isChecked():
-                var.pay.append('Tarjeta')
-            if var.ui.chkTrans.isChecked():
-                var.pay.append('Transferencia')
+            var.pay = []
+            for i, data in enumerate(var.ui.grpbtnPay.buttons()):
+                #agrupamos en QtDesigner los checkbox en un ButtonGroup
+                if data.isChecked() and i == 0:
+                    var.pay.append('Efectivo')
+                if data.isChecked() and i == 1:
+                    var.pay.append('Tarjeta')
+                if data.isChecked() and i == 2:
+                    var.pay.append('Transferencia')
+            #var.pay = set(var.pay)
+            #print (var.pay)
+            return var.pay
         except Exception as error:
             print('Error: %s' % str(error))
 
@@ -105,7 +110,7 @@ class Clientes():
         try:
             newcli = []
             clitab = []  #será lo que carguemos en la tablas
-            client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editDir, var.ui.editClialta ]
+            client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir ]
             k = 0
             for i in client:
                 newcli.append(i.text())  #cargamos los valores que hay en los editline
@@ -113,18 +118,23 @@ class Clientes():
                     clitab.append(i.text())
                     k += 1
             newcli.append(vpro)
-            var.pay = set(var.pay)    #eliminia duplicados
-            for j in var.pay:
-                newcli.append(j)
+            var.pay2 = Clientes.selPago()
             newcli.append(var.sex)
+            newcli.append(var.pay2)
+            if client:
+            #comprobarmos que no esté vacío lo principal
             #aquí empieza como trabajar con la TableWidget
-            row = 0
-            column = 0
-            var.ui.tableCli.insertRow(row)
-            for registro in clitab:
-                cell = QtWidgets.QTableWidgetItem(registro)
-                var.ui.tableCli.setItem(row, column, cell)
-                column +=1
+                row = 0
+                column = 0
+                var.ui.tableCli.insertRow(row)
+                for registro in clitab:
+                    cell = QtWidgets.QTableWidgetItem(registro)
+                    var.ui.tableCli.setItem(row, column, cell)
+                    column +=1
+
+                conexion.Conexion.cargarCli(newcli)
+            else:
+                print('Faltan Datos')
             Clientes.limpiarCli(client, var.rbtsex, var.chkpago)
         except Exception as error:
             print('Error cargar fecha: %s ' % str(error))
@@ -154,7 +164,7 @@ class Clientes():
             fila = var.ui.tableCli.selectedItems()
             client = [ var.ui.editDni, var.ui.editApel, var.ui.editNome ]
             if fila:
-                fila = [ dato.text() for dato in fila ]
+                fila = [dato.text() for dato in fila]
             print(fila)
             i = 0
             for i, dato in enumerate(client):

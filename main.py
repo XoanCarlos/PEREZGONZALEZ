@@ -51,8 +51,9 @@ class Main(QtWidgets.QMainWindow):
         for i in var.rbtsex:
             i.toggled.connect(clients.Clientes.selSexo)
         for i in var.chkpago:
-            i.stateChanged.connect(clients.Clientes.selPago)
+             i.stateChanged.connect(clients.Clientes.selPago)
         var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
+        var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         '''
         Llamada a módulos iniciales
