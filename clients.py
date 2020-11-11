@@ -101,7 +101,7 @@ class Clientes():
         except Exception as error:
             print('Error cargar fecha: %s ' % str(error))
 
-    def showClientes():
+    def showClientes():  #SE EJECUTA CON EL BOTÓN ACEPTAR
         '''
         cargará los clientes en la tabla
         :return: none
@@ -118,9 +118,10 @@ class Clientes():
                     clitab.append(i.text())
                     k += 1
             newcli.append(vpro)
-            var.pay2 = Clientes.selPago()
             newcli.append(var.sex)
+            var.pay2 = Clientes.selPago()
             newcli.append(var.pay2)
+            print(newcli)
             if client:
             #comprobarmos que no esté vacío lo principal
             #aquí empieza como trabajar con la TableWidget
@@ -131,7 +132,6 @@ class Clientes():
                     cell = QtWidgets.QTableWidgetItem(registro)
                     var.ui.tableCli.setItem(row, column, cell)
                     column +=1
-
                 conexion.Conexion.cargarCli(newcli)
             else:
                 print('Faltan Datos')
