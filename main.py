@@ -61,9 +61,11 @@ class Main(QtWidgets.QMainWindow):
         events.Eventos.cargarProv()
 
         '''
-        módulos del principal
+        módulos conexion base datos
         '''
         conexion.Conexion.db_connect(var.filebd)
+        #conexion.Conexion()
+        conexion.Conexion.mostrarClientes(self)
 
     def closeEvent(self, event):
         if event:
