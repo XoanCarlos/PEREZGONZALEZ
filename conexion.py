@@ -58,6 +58,8 @@ class Conexion():
 #     URI_CONNECTION = 'mongodb://' + HOST + ':' + PORT + '/'
 #     var.DATABASE = 'empresa'
 #     try:
+#         var.client = pymongo.MongoClient(URI_CONNECTION)
+#         var.client.server_info()
 #         print('Conexión realizada al servidor %s'  %HOST)
 #     except:
 #         print('Error conexion')

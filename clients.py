@@ -103,7 +103,9 @@ class Clientes():
 
     def showClientes():  #SE EJECUTA CON EL BOTÓN ACEPTAR
         '''
-        cargará los clientes en la tabla
+        cargará los clientes en la tabla y en la base de datos
+        cargará datos cliente en el resto widgets
+        en las búsquedas mostrará los datos del cliente
         :return: none
         '''
         #preparamos el registro
