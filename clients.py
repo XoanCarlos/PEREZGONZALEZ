@@ -47,7 +47,7 @@ class Clientes():
             print('Error módulo escribir valido DNI')
             return None
 
-    def selSexo():
+    def selSexo(self):
         try:
             if var.ui.rbtFem.isChecked():
                 var.sex =  'Mujer'
@@ -56,7 +56,7 @@ class Clientes():
         except Exception as error:
             print('Error: %s' % str(error))
 
-    def selPago():
+    def selPago(self):
         try:
             var.pay = []
             for i, data in enumerate(var.ui.grpbtnPay.buttons()):
@@ -83,7 +83,7 @@ class Clientes():
     '''
     Abrir la ventana calendario
     '''
-    def abrirCalendar():
+    def abrirCalendar(self):
         try:
             var.dlgcalendar.show()
         except Exception as error:
@@ -101,7 +101,7 @@ class Clientes():
         except Exception as error:
             print('Error cargar fecha: %s ' % str(error))
 
-    def showClientes():  #SE EJECUTA CON EL BOTÓN ACEPTAR
+    def altaCliente(self):  #SE EJECUTA CON EL BOTÓN ACEPTAR
         '''
         cargará los clientes en la tabla y en la base de datos
         cargará datos cliente en el resto widgets
@@ -112,7 +112,7 @@ class Clientes():
         try:
             newcli = []
             clitab = []  #será lo que carguemos en la tablas
-            client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir ]
+            client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
             k = 0
             for i in client:
                 newcli.append(i.text())  #cargamos los valores que hay en los editline
@@ -121,9 +121,8 @@ class Clientes():
                     k += 1
             newcli.append(vpro)
             newcli.append(var.sex)
-            var.pay2 = Clientes.selPago()
+            var.pay2 = Clientes.selPago(self)
             newcli.append(var.pay2)
-            print(newcli)
             if client:
             #comprobarmos que no esté vacío lo principal
             #aquí empieza como trabajar con la TableWidget
@@ -134,14 +133,14 @@ class Clientes():
                     cell = QtWidgets.QTableWidgetItem(registro)
                     var.ui.tableCli.setItem(row, column, cell)
                     column +=1
-                conexion.Conexion.cargarCli(newcli)
+                conexion.Conexion.altaCli(newcli)
             else:
                 print('Faltan Datos')
-            Clientes.limpiarCli(client, var.rbtsex, var.chkpago)
+            Clientes.limpiarCli()
         except Exception as error:
-            print('Error cargar fecha: %s ' % str(error))
+            print('Error cargar fecha lo : %s ' % str(error))
 
-    def limpiarCli(listaeditCli, listaRbtsex, listaChkpay):
+    def limpiarCli():
         '''
         limpia los datos del formulario cliente
         :param listaRbtsex:
@@ -149,15 +148,17 @@ class Clientes():
         :return: none
         '''
         try:
-            for i in range(len(listaeditCli)):
-                listaeditCli[i].setText('')
+            client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
+            for i in range(len(client)):
+                client[i].setText('')
             var.ui.grpbtnSex.setExclusive(False)  #necesario para los radiobutton
-            for dato in listaRbtsex:
+            for dato in var.rbtsex:
                 dato.setChecked(False)
-            for data in listaChkpay:
+            for data in var.chkpago:
                 data.setChecked(False)
             var.ui.cmbProv.setCurrentIndex(0)
             var.ui.lblValidar.setText('')
+            var.ui.lblCodcli.setText('')
         except Exception as error:
             print('Error limpiar widgets: %s ' % str(error))
 
@@ -167,10 +168,10 @@ class Clientes():
             client = [ var.ui.editDni, var.ui.editApel, var.ui.editNome ]
             if fila:
                 fila = [dato.text() for dato in fila]
-            print(fila)
             i = 0
             for i, dato in enumerate(client):
                 dato.setText(fila[i])
+            conexion.Conexion.cargarCliente()
 
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
