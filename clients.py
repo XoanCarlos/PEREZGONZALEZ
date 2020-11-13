@@ -110,7 +110,7 @@ class Clientes():
         '''
         #preparamos el registro
         try:
-            newcli = []
+            newcli = [] #contiene todos los datos
             clitab = []  #será lo que carguemos en la tablas
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
             k = 0
@@ -136,15 +136,13 @@ class Clientes():
                 conexion.Conexion.altaCli(newcli)
             else:
                 print('Faltan Datos')
-            Clientes.limpiarCli()
+            #Clientes.limpiarCli()
         except Exception as error:
             print('Error cargar fecha lo : %s ' % str(error))
 
     def limpiarCli():
         '''
         limpia los datos del formulario cliente
-        :param listaRbtsex:
-        :param listaChkpay:
         :return: none
         '''
         try:

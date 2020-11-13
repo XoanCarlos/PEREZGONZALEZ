@@ -27,14 +27,13 @@ class Conexion():
         query.bindValue(':sexo', str(cliente[6]))
         # pagos = ' '.join(cliente[7]) si quiesesemos un texto, pero nos viene mejor meterlo como una lista
         query.bindValue(':formaspago', str(cliente[7]))
-        #  print(pagos)
         if query.exec_():
             print("Inserción Correcta")
-            Conexion.mostrarClientes(self)
+            Conexion.mostrarClientes()
         else:
             print("Error: ", query.lastError().text())
 
-    def cargarCliente():
+    def cargarCliente(self):
         dni = var.ui.editDni.text()
         query = QtSql.QSqlQuery()
         query.prepare('select * from clientes where dni = :dni')
