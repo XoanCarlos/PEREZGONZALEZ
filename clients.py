@@ -59,15 +59,14 @@ class Clientes():
     def selPago():
         try:
             var.pay = []
-            if var.semaforo:
-                for i, data in enumerate(var.ui.grpbtnPay.buttons()):
+            for i, data in enumerate(var.ui.grpbtnPay.buttons()):
                     #agrupamos en QtDesigner los checkbox en un ButtonGroup
-                    if data.isChecked() and i == 0:
-                        var.pay.append('Efectivo')
-                    if data.isChecked() and i == 1:
-                        var.pay.append('Tarjeta')
-                    if data.isChecked() and i == 2:
-                        var.pay.append('Transferencia')
+                if data.isChecked() and i == 0:
+                   var.pay.append('Efectivo')
+                if data.isChecked() and i == 1:
+                   var.pay.append('Tarjeta')
+                if data.isChecked() and i == 2:
+                   var.pay.append('Transferencia')
             #var.pay = set(var.pay)
             print('hola')
             print(var.pay)
@@ -113,7 +112,6 @@ class Clientes():
         '''
         #preparamos el registro
         try:
-            var.semaforo = True
             newcli = [] #contiene todos los datos
             clitab = []  #será lo que carguemos en la tablas
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
@@ -138,7 +136,6 @@ class Clientes():
                     var.ui.tableCli.setItem(row, column, cell)
                     column +=1
                 conexion.Conexion.altaCli(newcli)
-                var.semaforo = False
             else:
                 print('Faltan Datos')
             #Clientes.limpiarCli()
@@ -204,22 +201,18 @@ class Clientes():
         :return:
         '''
         try:
-            var.semaforo = True
             newdata = []
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
             for i in client:
                 newdata.append(i.text())  # cargamos los valores que hay en los editline
             newdata.append(var.ui.cmbProv.currentText())
             newdata.append(var.sex)
-            if var.semaforo:
-                var.pay = Clientes.selPago()
+            var.pay = Clientes.selPago()
             print(var.pay)
             newdata.append(var.pay)
             cod = var.ui.lblCodcli.text()
             conexion.Conexion.modifCli(cod, newdata)
             conexion.Conexion.mostrarClientes(self)
-            Clientes.limpiarCli()
-            var.semaforo = False
 
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
