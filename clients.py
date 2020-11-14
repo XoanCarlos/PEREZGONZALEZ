@@ -3,7 +3,7 @@ from ventana import *
 
 class Clientes():
     '''
-    eventos clientes
+    eventos necesarios formulario clientes
     '''
     def validarDni(dni):
         '''
@@ -56,22 +56,25 @@ class Clientes():
         except Exception as error:
             print('Error: %s' % str(error))
 
-    def selPago(self):
+    def selPago():
         try:
             var.pay = []
-            for i, data in enumerate(var.ui.grpbtnPay.buttons()):
-                #agrupamos en QtDesigner los checkbox en un ButtonGroup
-                if data.isChecked() and i == 0:
-                    var.pay.append('Efectivo')
-                if data.isChecked() and i == 1:
-                    var.pay.append('Tarjeta')
-                if data.isChecked() and i == 2:
-                    var.pay.append('Transferencia')
+            if var.semaforo:
+                for i, data in enumerate(var.ui.grpbtnPay.buttons()):
+                    #agrupamos en QtDesigner los checkbox en un ButtonGroup
+                    if data.isChecked() and i == 0:
+                        var.pay.append('Efectivo')
+                    if data.isChecked() and i == 1:
+                        var.pay.append('Tarjeta')
+                    if data.isChecked() and i == 2:
+                        var.pay.append('Transferencia')
             #var.pay = set(var.pay)
-            #print (var.pay)
+            print('hola')
+            print(var.pay)
             return var.pay
         except Exception as error:
             print('Error: %s' % str(error))
+
 
     def selProv(prov):
         try:
@@ -80,20 +83,20 @@ class Clientes():
         except Exception as error:
             print('Error: %s' % str(error))
 
-    '''
-    Abrir la ventana calendario
-    '''
+
     def abrirCalendar(self):
+        '''
+        Abrir la ventana calendario
+        '''
         try:
             var.dlgcalendar.show()
         except Exception as error:
             print('Error: %s ' % str(error))
 
-    '''
-    Este módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked.connect de calendar
-    '''
-
     def cargarFecha(qDate):
+        ''''
+        Este módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked.connect de calendar
+        '''
         try:
             data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
             var.ui.editClialta.setText(str(data))
@@ -110,6 +113,7 @@ class Clientes():
         '''
         #preparamos el registro
         try:
+            var.semaforo = True
             newcli = [] #contiene todos los datos
             clitab = []  #será lo que carguemos en la tablas
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
@@ -121,7 +125,7 @@ class Clientes():
                     k += 1
             newcli.append(vpro)
             newcli.append(var.sex)
-            var.pay2 = Clientes.selPago(self)
+            var.pay2 = Clientes.selPago()
             newcli.append(var.pay2)
             if client:
             #comprobarmos que no esté vacío lo principal
@@ -134,6 +138,7 @@ class Clientes():
                     var.ui.tableCli.setItem(row, column, cell)
                     column +=1
                 conexion.Conexion.altaCli(newcli)
+                var.semaforo = False
             else:
                 print('Faltan Datos')
             #Clientes.limpiarCli()
@@ -160,7 +165,12 @@ class Clientes():
         except Exception as error:
             print('Error limpiar widgets: %s ' % str(error))
 
-    def cargarCli(self):
+    def cargarCli():
+        '''
+        carga en widgets formulario cliente los datos
+        elegidos en la tabla
+        :return: none
+        '''
         try:
             fila = var.ui.tableCli.selectedItems()
             client = [ var.ui.editDni, var.ui.editApel, var.ui.editNome ]
@@ -170,12 +180,49 @@ class Clientes():
             for i, dato in enumerate(client):
                 dato.setText(fila[i])
             conexion.Conexion.cargarCliente()
+        except Exception as error:
+            print('Error cargar clientes: %s ' % str(error))
+
+    def bajaCliente(self):
+        '''
+        módulos para dar de baja un cliente
+        :return:
+        '''
+        try:
+            dni = var.ui.editDni.text()
+            conexion.Conexion.bajaCli(dni)
+            conexion.Conexion.mostrarClientes(self)
+            Clientes.limpiarCli()
 
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
 
 
+    def modifCliente(self):
+        '''
+        módulos para dar de modificar datos de un cliente
+        :return:
+        '''
+        try:
+            var.semaforo = True
+            newdata = []
+            client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
+            for i in client:
+                newdata.append(i.text())  # cargamos los valores que hay en los editline
+            newdata.append(var.ui.cmbProv.currentText())
+            newdata.append(var.sex)
+            if var.semaforo:
+                var.pay = Clientes.selPago()
+            print(var.pay)
+            newdata.append(var.pay)
+            cod = var.ui.lblCodcli.text()
+            conexion.Conexion.modifCli(cod, newdata)
+            conexion.Conexion.mostrarClientes(self)
+            Clientes.limpiarCli()
+            var.semaforo = False
 
+        except Exception as error:
+            print('Error cargar clientes: %s ' % str(error))
 
 
 

@@ -33,7 +33,7 @@ class Conexion():
         else:
             print("Error: ", query.lastError().text())
 
-    def cargarCliente(self):
+    def cargarCliente():
         dni = var.ui.editDni.text()
         query = QtSql.QSqlQuery()
         query.prepare('select * from clientes where dni = :dni')
@@ -62,7 +62,7 @@ class Conexion():
     def mostrarClientes(self):
         index = 0
         query = QtSql.QSqlQuery()
-        query.prepare('select dni, apellidos, nombre from clientes;')
+        query.prepare('select dni, apellidos, nombre from clientes')
         if query.exec_():
             while query.next():
                 dni = query.value(0)
@@ -75,6 +75,47 @@ class Conexion():
                 index += 1
         else:
             print("Error mostrar clientes: ", query.lastError().text())
+
+    def bajaCli(dni):
+        ''''
+        modulo para eliminar cliente. se llama desde fichero clientes.py
+        :return None
+        '''
+        query = QtSql.QSqlQuery()
+        query.prepare('delete from clientes where dni = :dni')
+        query.bindValue(':dni', dni)
+        if query.exec_():
+            print('Baja cliente')
+            var.ui.lblstatus.setText('Cliente con dni '+ dni + ' dado de baja')
+        else:
+            print("Error mostrar clientes: ", query.lastError().text())
+
+
+    def modifCli(codigo, newdata):
+           ''''
+           modulo para modificar cliente. se llama desde fichero clientes.py
+           :return None
+           '''
+           query = QtSql.QSqlQuery()
+           codigo = int(codigo)
+           query.prepare('update clientes set dni=:dni, apellidos=:apellidos, nombre=:nombre, fechalta=:fechalta, '
+                         'direccion=:direccion, provincia=:provincia, sexo=:sexo, formaspago=:formaspago where codigo=:codigo')
+           query.bindValue(':codigo', int(codigo))
+           query.bindValue(':dni', str(newdata[0]))
+           query.bindValue(':apellidos', str(newdata[1]))
+           query.bindValue(':nombre', str(newdata[2]))
+           query.bindValue(':fechalta', str(newdata[3]))
+           query.bindValue(':direccion', str(newdata[4]))
+           query.bindValue(':provincia', str(newdata[5]))
+           query.bindValue(':sexo', str(newdata[6]))
+           query.bindValue(':formaspago', str(newdata[7]))
+           if query.exec_():
+               print('Cliente modificado')
+               var.ui.lblstatus.setText('Cliente con dni '+ str(newdata[0]) + ' modificado')
+           else:
+               print("Error modificar cliente: ", query.lastError().text())
+
+
 
 # class Conexion():
 #     HOST = 'localhost'

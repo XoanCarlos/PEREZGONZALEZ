@@ -44,29 +44,30 @@ class Main(QtWidgets.QMainWindow):
         '''
         conexion de eventos con los objetos
         estamos conectando el código con la interfaz gráfico
+        botones formulario cliente
         '''
-
         var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
         var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni())
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
         var.ui.btnAltaCli.clicked.connect(clients.Clientes.altaCliente)
         var.ui.btnLimpiarCli.clicked.connect(clients.Clientes.limpiarCli)
+        var.ui.btnBajaCli.clicked.connect(clients.Clientes.bajaCliente)
+        var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         for i in var.rbtsex:
             i.toggled.connect(clients.Clientes.selSexo)
         for i in var.chkpago:
             i.stateChanged.connect(clients.Clientes.selPago)
+
         var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-        '''
-        Llamada a módulos iniciales
-        '''
         events.Eventos.cargarProv()
-
+        var.ui.lblstatus.setText('Bienvenido a 2º DAM')
         '''
         módulos conexion base datos
         '''
+
         conexion.Conexion.db_connect(var.filebd)
         # conexion.Conexion()
         conexion.Conexion.mostrarClientes(self)
@@ -80,4 +81,5 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     window = Main()
     window.showMaximized()
+    var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
     sys.exit(app.exec())
