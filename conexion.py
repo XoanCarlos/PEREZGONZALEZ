@@ -60,15 +60,23 @@ class Conexion():
                     var.chkpago[2].setChecked(True)
 
     def mostrarClientes(self):
+        '''
+        Carga los datos principales del cliente en la tabla
+        se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un cliente
+        :return: None
+        '''
         index = 0
         query = QtSql.QSqlQuery()
         query.prepare('select dni, apellidos, nombre from clientes')
         if query.exec_():
             while query.next():
+                #cojo los valores
                 dni = query.value(0)
                 apellidos = query.value(1)
                 nombre = query.value(2)
-                var.ui.tableCli.setRowCount(index+1)  # crea la fila y a continuación mete los datos
+                # crea la fila
+                var.ui.tableCli.setRowCount(index+1)
+                #voy metiendo los datos en cada celda de la fila
                 var.ui.tableCli.setItem(index,0, QtWidgets.QTableWidgetItem(dni))
                 var.ui.tableCli.setItem(index, 1, QtWidgets.QTableWidgetItem(apellidos))
                 var.ui.tableCli.setItem(index, 2, QtWidgets.QTableWidgetItem(nombre))

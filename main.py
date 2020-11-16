@@ -40,7 +40,6 @@ class Main(QtWidgets.QMainWindow):
         '''
         var.rbtsex = (var.ui.rbtFem, var.ui.rbtMasc)
         var.chkpago = (var.ui.chkEfec, var.ui.chkTar, var.ui.chkTrans)
-
         '''
         conexion de eventos con los objetos
         estamos conectando el código con la interfaz gráfico
