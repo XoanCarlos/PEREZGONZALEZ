@@ -29,6 +29,7 @@ class Conexion():
         query.bindValue(':formaspago', str(cliente[7]))
         if query.exec_():
             print("Inserción Correcta")
+            var.ui.lblstatus.setText('Alta Cliente con dni ' + dni)
             Conexion.mostrarClientes()
         else:
             print("Error: ", query.lastError().text())
@@ -98,7 +99,7 @@ class Conexion():
         query.bindValue(':dni', dni)
         if query.exec_():
             print('Baja cliente')
-            #var.ui.lblstatus.setText('Cliente con dni '+ dni + ' dado de baja')
+            var.ui.lblstatus.setText('Cliente con dni '+ dni + ' dado de baja')
         else:
             print("Error mostrar clientes: ", query.lastError().text())
 

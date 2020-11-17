@@ -39,7 +39,23 @@
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout_7">
-    <item row="0" column="5">
+    <item row="0" column="1">
+     <spacer name="horizontalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Expanding</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="4">
      <spacer name="horizontalSpacer_3">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -50,7 +66,7 @@
       <property name="sizeHint" stdset="0">
        <size>
         <width>40</width>
-        <height>742</height>
+        <height>20</height>
        </size>
       </property>
      </spacer>
@@ -75,22 +91,6 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <spacer name="horizontalSpacer_4">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Expanding</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
     <item row="0" column="2" colspan="2">
      <widget class="QTabWidget" name="tabWidget">
       <property name="enabled">
@@ -105,7 +105,7 @@
       <property name="minimumSize">
        <size>
         <width>1000</width>
-        <height>700</height>
+        <height>750</height>
        </size>
       </property>
       <property name="font">
@@ -853,13 +853,6 @@
         <string>Productos</string>
        </attribute>
       </widget>
-     </widget>
-    </item>
-    <item row="0" column="4">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
      </widget>
     </item>
    </layout>

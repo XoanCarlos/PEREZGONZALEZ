@@ -62,6 +62,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         events.Eventos.cargarProv()
+        var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.lblstatus.setText('Bienvenido a 2º DAM')
         '''
         módulos conexion base datos
@@ -80,5 +81,4 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     window = Main()
     window.showMaximized()
-    var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
     sys.exit(app.exec())
