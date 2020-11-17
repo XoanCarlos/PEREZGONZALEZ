@@ -34,6 +34,10 @@ class Conexion():
             print("Error: ", query.lastError().text())
 
     def cargarCliente():
+        '''
+        Módulo que carga el resto de widgets con los datos del cliente dni
+        :return: None
+        '''
         dni = var.ui.editDni.text()
         query = QtSql.QSqlQuery()
         query.prepare('select * from clientes where dni = :dni')
@@ -94,7 +98,7 @@ class Conexion():
         query.bindValue(':dni', dni)
         if query.exec_():
             print('Baja cliente')
-            var.ui.lblstatus.setText('Cliente con dni '+ dni + ' dado de baja')
+            #var.ui.lblstatus.setText('Cliente con dni '+ dni + ' dado de baja')
         else:
             print("Error mostrar clientes: ", query.lastError().text())
 

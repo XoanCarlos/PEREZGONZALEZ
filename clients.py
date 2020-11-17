@@ -57,6 +57,10 @@ class Clientes():
             print('Error: %s' % str(error))
 
     def selPago():
+        '''
+        chequea que valores de pago han sido activados
+        :return: devuelve una lista de valores
+        '''
         try:
             var.pay = []
             for i, data in enumerate(var.ui.grpbtnPay.buttons()):
@@ -67,9 +71,6 @@ class Clientes():
                    var.pay.append('Tarjeta')
                 if data.isChecked() and i == 2:
                    var.pay.append('Transferencia')
-            #var.pay = set(var.pay)
-            print('hola')
-            print(var.pay)
             return var.pay
         except Exception as error:
             print('Error: %s' % str(error))
@@ -197,7 +198,7 @@ class Clientes():
 
     def modifCliente(self):
         '''
-        módulos para dar de modificar datos de un cliente
+        módulos para modificar datos de un cliente con determinado código
         :return:
         '''
         try:
@@ -208,7 +209,6 @@ class Clientes():
             newdata.append(var.ui.cmbProv.currentText())
             newdata.append(var.sex)
             var.pay = Clientes.selPago()
-            print(var.pay)
             newdata.append(var.pay)
             cod = var.ui.lblCodcli.text()
             conexion.Conexion.modifCli(cod, newdata)
