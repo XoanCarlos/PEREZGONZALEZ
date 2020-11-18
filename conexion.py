@@ -1,11 +1,11 @@
-from PyQt5 import QtWidgets, QtSql
+from PyQt5 import QtSql
 import pymongo, var
 from ventana import *
 
 class Conexion():
     def db_connect(filename):
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
-        db.setDatabaseName(filename)
+        db.setDatabaseName(str(filename))
         if not db.open():
             QtWidgets.QMessageBox.critical(None, 'No se puede abrir la base de datos','No se puede establecer conexion.\n'
                                             'Haz Click para Cancelar.', QtWidgets.QMessageBox.Cancel)
@@ -29,7 +29,7 @@ class Conexion():
         query.bindValue(':formaspago', str(cliente[7]))
         if query.exec_():
             print("Inserción Correcta")
-            var.ui.lblstatus.setText('Alta Cliente con dni ' + dni)
+            var.ui.lblstatus.setText('Alta Cliente con dni ' + str(cliente[0]))
             Conexion.mostrarClientes()
         else:
             print("Error: ", query.lastError().text())
@@ -133,8 +133,8 @@ class Conexion():
         query = QtSql.QSqlQuery()
         codigo = int(codigo)
         print(codigo, newdata)
-        query.prepare('update clientes set dni=:dni, apellidos=:apellidos, nombre=:nombre, fechalta=:fechaAlta,'
-                      'direccion=:direccion, provincia:=provincia, sexo=:sexo, formaspago=:formasPago where codigo=:codigo')
+        query.prepare('update clientes set dni = :dni, apellidos = :apellidos, nombre = :nombre, fechalta = :fechaAlta, '
+                      'direccion = :direccion, provincia = :provincia, sexo = :sexo, formaspago = :formasPago where codigo=:codigo')
         query.bindValue(':codigo', int(codigo))
         query.bindValue(':dni', str(newdata[0]))
         query.bindValue(':apellidos', str(newdata[1]))
@@ -144,6 +144,7 @@ class Conexion():
         query.bindValue(':provincia', str(newdata[5]))
         query.bindValue(':sexo', str(newdata[6]))
         query.bindValue(':formasPago', str(newdata[7]))
+        print(str(newdata[7]))
         if query.exec_():
             print('Cliente modificado')
             #var.ui.lblstatus.setText('Cliente con dni '+str(newdata[0])+' modificado')
