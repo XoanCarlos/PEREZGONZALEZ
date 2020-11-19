@@ -55,6 +55,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
         var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscarCli)
+
         for i in var.rbtsex:
             i.toggled.connect(clients.Clientes.selSexo)
         for i in var.chkpago:

@@ -122,6 +122,7 @@ class Conexion():
            query.bindValue(':provincia', str(newdata[5]))
            query.bindValue(':sexo', str(newdata[6]))
            query.bindValue(':formaspago', str(newdata[7]))
+
            if query.exec_():
                print('Cliente modificado')
                var.ui.lblstatus.setText('Cliente con dni '+ str(newdata[0]) + ' modificado')
