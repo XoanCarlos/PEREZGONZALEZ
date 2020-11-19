@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1150</width>
-    <height>819</height>
+    <height>827</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -627,7 +627,7 @@
            </widget>
           </item>
           <item row="1" column="8">
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="btnReloadCli">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -804,7 +804,7 @@
            </widget>
           </item>
           <item row="1" column="7">
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="btnBuscarCli">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -916,11 +916,11 @@ text-align:center;</string>
  </resources>
  <connections/>
  <buttongroups>
+  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>

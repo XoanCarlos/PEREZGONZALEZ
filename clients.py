@@ -2,14 +2,14 @@ import var, conexion
 from ventana import *
 
 class Clientes():
-    '''
+    """
     eventos necesarios formulario clientes
-    '''
+    """
     def validarDni(dni):
-        '''
+        """
         Código que controla si el dni o nie es correcto
         :return:
-        '''
+        """
         try:
             tabla = 'TRWAGMYFPDXBNJZSQVHLCKE'
             dig_ext = 'XYZ'
@@ -20,18 +20,18 @@ class Clientes():
                 dig_control = dni[8]
                 dni = dni[:8]
                 if dni[0] in dig_ext:
-                    dni  = dni.replace(dni[0],reemp_dig_ext[dni[0]])
-                return len(dni) == len([n for n in dni if n in numeros]) and tabla[int(dni)%23 ] == dig_control
+                    dni  = dni.replace(dni[0], reemp_dig_ext[dni[0]])
+                return len(dni) == len([n for n in dni if n in numeros]) and tabla[int(dni)%23] == dig_control
 
-        except:
-            print('Error módulo validar DNI')
+        except Exception as error:
+            print('Error módulo validar DNI %s' % str(error))
             return None
 
     def validoDni():
-        '''
+        """
         muestra mensaje de dni válido
         :return: none
-        '''
+        """
         try:
             dni = var.ui.editDni.text()
             if Clientes.validarDni(dni):
@@ -59,12 +59,12 @@ class Clientes():
     def selPago():
         '''
         chequea que valores de pago han sido activados
+        agrupamos en QtDesigner los checkbox en un ButtonGroup
         :return: devuelve una lista de valores
         '''
         try:
             var.pay = []
             for i, data in enumerate(var.ui.grpbtnPay.buttons()):
-                    #agrupamos en QtDesigner los checkbox en un ButtonGroup
                 if data.isChecked() and i == 0:
                    var.pay.append('Efectivo')
                 if data.isChecked() and i == 1:
@@ -75,14 +75,12 @@ class Clientes():
         except Exception as error:
             print('Error: %s' % str(error))
 
-
     def selProv(prov):
         try:
             global vpro
             vpro = prov
         except Exception as error:
             print('Error: %s' % str(error))
-
 
     def abrirCalendar(self):
         '''
@@ -182,25 +180,24 @@ class Clientes():
             print('Error cargar clientes: %s ' % str(error))
 
     def bajaCliente(self):
-        '''
+        """
         módulos para dar de baja un cliente
         :return:
-        '''
+        """
         try:
             dni = var.ui.editDni.text()
             conexion.Conexion.bajaCli(dni)
             conexion.Conexion.mostrarClientes(self)
             Clientes.limpiarCli()
-
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
 
 
     def modifCliente(self):
-        '''
-        módulos para modificar datos de un cliente con determinado código
-        :return:
-        '''
+        """Módulos para modificar datos de un cliente con determinado código
+
+        :return: None
+        """
         try:
             newdata = []
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
@@ -217,9 +214,27 @@ class Clientes():
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
 
+    def reloadCli():
+        '''
+        Limpia datos formulario y recarga la tabla de clientes
+        :return: None
+        '''
+        try:
+            Clientes.limpiarCli()
+            conexion.Conexion.mostrarClientes(None)
+        except Exception as error:
+            print('Error recargar clientes: %s ' % str(error))
 
-
-
+    def buscarCli(self):
+        """
+        Busca un Cliente a partir de un dni que escribe el usuario
+        :return: mensaje
+        """
+        try:
+            dni = var.ui.editDni.text()
+            cliente = conexion.Conexion.buscaCli(dni) #se puede hacer sin devolver datos
+        except Exception as error:
+            print('Error recargar clientes: %s ' % str(error))
 
 
 
