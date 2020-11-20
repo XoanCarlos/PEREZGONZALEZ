@@ -220,6 +220,7 @@ class Clientes():
         :return: None
         '''
         try:
+            print(var.ui.spinEdad.value())
             Clientes.limpiarCli()
             conexion.Conexion.mostrarClientes(None)
         except Exception as error:
@@ -231,12 +232,19 @@ class Clientes():
         :return: mensaje
         """
         try:
+            #Clientes.limpiarCli()
             dni = var.ui.editDni.text()
-            cliente = conexion.Conexion.buscaCli(dni) #se puede hacer sin devolver datos
+            conexion.Conexion.buscaCli(dni)
         except Exception as error:
             print('Error recargar clientes: %s ' % str(error))
 
 
+
+    def valoresSpin():
+        try:
+            var.ui.spinEdad.setValue(16)
+        except Exception as error:
+            print('Error valores spin: %s ' % str(error))
 
 
 

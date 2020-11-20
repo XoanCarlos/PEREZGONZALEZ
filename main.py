@@ -27,6 +27,7 @@ class DialogCalendar(QtWidgets.QDialog):
         var.dlgcalendar.Calendar.clicked.connect(clients.Clientes.cargarFecha)
 
 
+
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -55,6 +56,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
         var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscarCli)
+        clients.Clientes.valoresSpin()
 
         for i in var.rbtsex:
             i.toggled.connect(clients.Clientes.selSexo)
@@ -67,6 +69,7 @@ class Main(QtWidgets.QMainWindow):
         events.Eventos.cargarProv()
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.lblstatus.setText('Bienvenido a 2º DAM')
+
         '''
         módulos conexion base datos
         '''

@@ -46,7 +46,7 @@ class Conexion():
         if query.exec_():
             while query.next():
                 var.ui.lblCodcli.setText(str(query.value(0)))
-                var.ui.editClialta.setText(query.value(4))
+                var.ui.editClialta.setText( query.value(4))
                 var.ui.editDir.setText(query.value(5))
                 var.ui.cmbProv.setCurrentText(str(query.value(6)))
                 if str(query.value(7)) == 'Mujer':
@@ -134,10 +134,38 @@ class Conexion():
         select un cliente a partir de su dni.
         :return:
         """
+        index = 0
         query = QtSql.QSqlQuery()
         query.prepare('select * from clientes where dni = :dni')
         query.bindValue(':dni', dni)
+        if query.exec_():
+            while query.next():
+                var.ui.lblCodcli.setText(str(query.value(0)))
+                var.ui.editApel.setText(str(query.value(1)))
+                var.ui.editNome.setText(str(query.value(2)))
+                var.ui.editClialta.setText(query.value(4))
+                var.ui.editDir.setText(query.value(5))
+                var.ui.cmbProv.setCurrentText(str(query.value(6)))
+                if str(query.value(7)) == 'Mujer':
+                    var.ui.rbtFem.setChecked(True)
+                    var.ui.rbtMasc.setChecked(False)
+                else:
+                    var.ui.rbtMasc.setChecked(True)
+                    var.ui.rbtFem.setChecked(False)
+                for data in var.chkpago:
+                    data.setChecked(False)
+                if 'Efectivo' in query.value(8):
+                    var.chkpago[0].setChecked(True)
+                if 'Tarjeta' in query.value(8):
+                    var.chkpago[1].setChecked(True)
+                if 'Transferencia' in query.value(8):
+                    var.chkpago[2].setChecked(True)
 
+                var.ui.tableCli.setRowCount(index + 1)
+                    # voy metiendo los datos en cada celda de la fila
+                var.ui.tableCli.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(1))))
+                var.ui.tableCli.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(2))))
+                var.ui.tableCli.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(3))))
 
 # class Conexion():
 #     HOST = 'localhost'
