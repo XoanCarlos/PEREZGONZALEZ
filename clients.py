@@ -27,7 +27,7 @@ class Clientes():
             print('Error módulo validar DNI %s' % str(error))
             return None
 
-    def validoDni():
+    def validoDni(self):
         """
         muestra mensaje de dni válido
         :return: none
