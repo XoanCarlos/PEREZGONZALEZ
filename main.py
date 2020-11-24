@@ -1,8 +1,11 @@
 from ventana import *
 from vensalir import *
 from vencalendar import *
-from datetime import datetime
+from datetime import datetime, date
 import sys, var, events, clients, conexion
+import locale
+# Idioma "es-ES" (código para el español de España)
+locale.setlocale(locale.LC_ALL, 'es-ES')
 
 
 class DialogSalir(QtWidgets.QDialog):
@@ -75,9 +78,14 @@ class Main(QtWidgets.QMainWindow):
         var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-        events.Eventos.cargarProv()
+        events.Eventos.cargarProv(self)
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
+        var.ui.statusbar.addPermanentWidget(var.ui.lblstatusdate, 2)
+        var.ui.lblstatus.setStyleSheet('QLabel {color: red; font: bold;}')
         var.ui.lblstatus.setText('Bienvenido a 2º DAM')
+        fecha = date.today()
+        var.ui.lblstatusdate.setStyleSheet('QLabel {color: black; font: bold;}')
+        var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
 
         '''
         módulos conexion base datos

@@ -28,7 +28,7 @@ class Eventos():
         except Exception as error:
             print('Error %s' % str(error))
 
-    def cargarProv():
+    def cargarProv(self):
         """
         carga las provincias al iniciar el programa
         :return:
