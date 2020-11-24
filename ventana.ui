@@ -937,6 +937,8 @@
     <property name="title">
      <string>Archivo</string>
     </property>
+    <addaction name="actionAbrir"/>
+    <addaction name="separator"/>
     <addaction name="menubarSalir"/>
    </widget>
    <addaction name="menuArchivo"/>
@@ -979,6 +981,7 @@ text-align:center;</string>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="toolbarAbrirDir"/>
    <addaction name="toolbarBackup"/>
    <addaction name="separator"/>
    <addaction name="toolbarSalir"/>
@@ -1029,19 +1032,41 @@ text-align:center;</string>
     <string>Alt+B</string>
    </property>
   </action>
+  <action name="toolbarAbrirDir">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <activeon>:/newPrefix/abrircarpeta.png</activeon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>abrirDirectorio</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/abrircarpeta.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionAbrir">
+   <property name="text">
+    <string>Abrir...</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="img/logo.qrc"/>
+  <include location="img/abrirdirectorio.qrc"/>
   <include location="img/toolbarsalir.qrc"/>
   <include location="img/toolbarbackup.qrc"/>
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>

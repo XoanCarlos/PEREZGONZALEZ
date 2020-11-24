@@ -26,6 +26,10 @@ class DialogCalendar(QtWidgets.QDialog):
         var.dlgcalendar.Calendar.setSelectedDate((QtCore.QDate(anoactual, mesactual, diaactual)))
         var.dlgcalendar.Calendar.clicked.connect(clients.Clientes.cargarFecha)
 
+class FileDialogAbrir(QtWidgets.QFileDialog):
+    def __init__(self):
+        super(FileDialogAbrir, self).__init__()
+
 
 
 class Main(QtWidgets.QMainWindow):
@@ -35,6 +39,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.setupUi(self)
         var.dlgsalir = DialogSalir()
         var.dlgcalendar = DialogCalendar()
+        var.filedlgabrir = FileDialogAbrir()
 
         '''
         colección de datos
@@ -50,6 +55,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.menubarSalir.triggered.connect(events.Eventos.Salir)
         var.ui.toolbarSalir.triggered.connect(events.Eventos.Salir)
         var.ui.toolbarBackup.triggered.connect(events.Eventos.Backup)
+        var.ui.toolbarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
         var.ui.editDni.editingFinished.connect(clients.Clientes.validoDni)
         #var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni)
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)

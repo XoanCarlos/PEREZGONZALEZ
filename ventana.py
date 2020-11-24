@@ -502,8 +502,19 @@ class Ui_venPrincipal(object):
         icon4.addPixmap(QtGui.QPixmap(":/newPrefix/backup32.png"), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.toolbarBackup.setIcon(icon4)
         self.toolbarBackup.setObjectName("toolbarBackup")
+        self.toolbarAbrirDir = QtWidgets.QAction(venPrincipal)
+        self.toolbarAbrirDir.setCheckable(True)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/newPrefix/abrircarpeta.png"), QtGui.QIcon.Active, QtGui.QIcon.On)
+        self.toolbarAbrirDir.setIcon(icon5)
+        self.toolbarAbrirDir.setObjectName("toolbarAbrirDir")
+        self.actionAbrir = QtWidgets.QAction(venPrincipal)
+        self.actionAbrir.setObjectName("actionAbrir")
+        self.menuArchivo.addAction(self.actionAbrir)
+        self.menuArchivo.addSeparator()
         self.menuArchivo.addAction(self.menubarSalir)
         self.menuBar.addAction(self.menuArchivo.menuAction())
+        self.toolBar.addAction(self.toolbarAbrirDir)
         self.toolBar.addAction(self.toolbarBackup)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.toolbarSalir)
@@ -555,6 +566,10 @@ class Ui_venPrincipal(object):
         self.toolbarBackup.setText(_translate("venPrincipal", "Backup"))
         self.toolbarBackup.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/newPrefix/backup32.png\"/></p></body></html>"))
         self.toolbarBackup.setShortcut(_translate("venPrincipal", "Alt+B"))
+        self.toolbarAbrirDir.setText(_translate("venPrincipal", "abrirDirectorio"))
+        self.toolbarAbrirDir.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/newPrefix/abrircarpeta.png\"/></p></body></html>"))
+        self.actionAbrir.setText(_translate("venPrincipal", "Abrir..."))
+import abrirdirectorio_rc
 import logo_rc
 import toolbarbackup_rc
 import toolbarsalir_rc

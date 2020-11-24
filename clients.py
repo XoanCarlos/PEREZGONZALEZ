@@ -241,9 +241,7 @@ class Clientes():
             dni = var.ui.editDni.text()
             conexion.Conexion.buscaCli(dni)
         except Exception as error:
-            print('Error recargar clientes: %s ' % str(error))
-
-
+            print('Error buscar clientes: %s ' % str(error))
 
     def valoresSpin():
         try:
