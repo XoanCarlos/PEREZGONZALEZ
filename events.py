@@ -40,3 +40,9 @@ class Eventos():
 
         except Exception as error:
             print('Error: %s' % str(error))
+
+    def Backup(self):
+        try:
+            print('hará copia de seguidad de la BBDD')
+        except Exception as error:
+            print('Error: %s' % str(error))

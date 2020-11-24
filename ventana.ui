@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1150</width>
-    <height>833</height>
+    <height>867</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -713,7 +713,7 @@
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>451</width>
+              <width>443</width>
               <height>20</height>
              </size>
             </property>
@@ -979,6 +979,8 @@ text-align:center;</string>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="toolbarBackup"/>
+   <addaction name="separator"/>
    <addaction name="toolbarSalir"/>
   </widget>
   <action name="menubarSalir">
@@ -1008,18 +1010,38 @@ text-align:center;</string>
     <string>Alt+S</string>
    </property>
   </action>
+  <action name="toolbarBackup">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <activeon>:/newPrefix/backup32.png</activeon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Backup</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/backup32.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+B</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="img/logo.qrc"/>
   <include location="img/toolbarsalir.qrc"/>
+  <include location="img/toolbarbackup.qrc"/>
  </resources>
  <connections/>
  <buttongroups>
+  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>

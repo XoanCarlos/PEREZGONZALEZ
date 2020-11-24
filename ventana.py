@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_venPrincipal(object):
     def setupUi(self, venPrincipal):
         venPrincipal.setObjectName("venPrincipal")
-        venPrincipal.resize(1150, 833)
+        venPrincipal.resize(1150, 867)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -358,7 +358,7 @@ class Ui_venPrincipal(object):
         self.btnReloadCli.setIconSize(QtCore.QSize(24, 24))
         self.btnReloadCli.setObjectName("btnReloadCli")
         self.gridFormsup.addWidget(self.btnReloadCli, 1, 8, 1, 1)
-        spacerItem6 = QtWidgets.QSpacerItem(451, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        spacerItem6 = QtWidgets.QSpacerItem(443, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.gridFormsup.addItem(spacerItem6, 1, 11, 1, 1)
         spacerItem7 = QtWidgets.QSpacerItem(18, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.gridFormsup.addItem(spacerItem7, 1, 3, 1, 1)
@@ -496,8 +496,16 @@ class Ui_venPrincipal(object):
         icon3.addPixmap(QtGui.QPixmap("img/iconsalir.png"), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.toolbarSalir.setIcon(icon3)
         self.toolbarSalir.setObjectName("toolbarSalir")
+        self.toolbarBackup = QtWidgets.QAction(venPrincipal)
+        self.toolbarBackup.setCheckable(True)
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/newPrefix/backup32.png"), QtGui.QIcon.Active, QtGui.QIcon.On)
+        self.toolbarBackup.setIcon(icon4)
+        self.toolbarBackup.setObjectName("toolbarBackup")
         self.menuArchivo.addAction(self.menubarSalir)
         self.menuBar.addAction(self.menuArchivo.menuAction())
+        self.toolBar.addAction(self.toolbarBackup)
+        self.toolBar.addSeparator()
         self.toolBar.addAction(self.toolbarSalir)
 
         self.retranslateUi(venPrincipal)
@@ -544,5 +552,9 @@ class Ui_venPrincipal(object):
         self.toolbarSalir.setText(_translate("venPrincipal", "Salir"))
         self.toolbarSalir.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/newPrefix/iconsalir.png\"/></p></body></html>"))
         self.toolbarSalir.setShortcut(_translate("venPrincipal", "Alt+S"))
+        self.toolbarBackup.setText(_translate("venPrincipal", "Backup"))
+        self.toolbarBackup.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/newPrefix/backup32.png\"/></p></body></html>"))
+        self.toolbarBackup.setShortcut(_translate("venPrincipal", "Alt+B"))
 import logo_rc
+import toolbarbackup_rc
 import toolbarsalir_rc
