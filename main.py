@@ -1,5 +1,6 @@
 from ventana import *
 from vensalir import *
+from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
 from vencalendar import *
 from datetime import datetime, date
 import sys, var, events, clients, conexion
@@ -34,6 +35,9 @@ class FileDialogAbrir(QtWidgets.QFileDialog):
         super(FileDialogAbrir, self).__init__()
 
 
+class PrintDialogAbrir(QPrintDialog):
+    def __init__(self):
+        super(PrintDialogAbrir, self).__init__()
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -43,6 +47,7 @@ class Main(QtWidgets.QMainWindow):
         var.dlgsalir = DialogSalir()
         var.dlgcalendar = DialogCalendar()
         var.filedlgabrir = FileDialogAbrir()
+        var.dlgImprimir = PrintDialogAbrir()
 
         '''
         colección de datos

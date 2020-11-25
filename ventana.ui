@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1150</width>
-    <height>867</height>
+    <height>886</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -338,6 +338,38 @@
         </item>
         <item row="2" column="0">
          <layout class="QGridLayout" name="gridFormdir">
+          <item row="0" column="3">
+           <widget class="QLabel" name="lblProv">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Provincia:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="editDir">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 229);</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="lblDir">
             <property name="sizePolicy">
@@ -370,38 +402,6 @@
               <width>30</width>
               <height>0</height>
              </size>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="lblProv">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Provincia:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="editDir">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 229);</string>
             </property>
            </widget>
           </item>
@@ -1017,9 +1017,6 @@ text-align:center;</string>
    </property>
   </action>
   <action name="toolbarSalir">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="icon">
     <iconset>
      <activeon>img/iconsalir.png</activeon>
@@ -1036,11 +1033,9 @@ text-align:center;</string>
    </property>
   </action>
   <action name="toolbarBackup">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="icon">
     <iconset>
+     <activeoff>:/newPrefix/backup32.png</activeoff>
      <activeon>:/newPrefix/backup32.png</activeon>
     </iconset>
    </property>
@@ -1055,9 +1050,6 @@ text-align:center;</string>
    </property>
   </action>
   <action name="toolbarAbrirDir">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="icon">
     <iconset>
      <activeon>:/newPrefix/abrircarpeta.png</activeon>
@@ -1084,11 +1076,11 @@ text-align:center;</string>
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>

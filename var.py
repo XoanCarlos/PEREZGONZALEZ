@@ -5,6 +5,7 @@ global ui
 global dlgsalir
 global dlgcalendar
 global filedlgabrir
+global dlgImprimir
 
 '''
 variables de clientes

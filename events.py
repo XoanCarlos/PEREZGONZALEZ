@@ -1,4 +1,4 @@
-import sys, var, vensalir
+import sys, var
 
 class Eventos():
 
@@ -49,6 +49,8 @@ class Eventos():
 
     def AbrirDir(self):
         try:
+            var.filedlgabrir.setWindowTitle('Abrir Archivo')
+            var.filedlgabrir.setModal(True)
             var.filedlgabrir.show()
         except Exception as error:
             print('Error abrir explorador: %s ' % str(error))
