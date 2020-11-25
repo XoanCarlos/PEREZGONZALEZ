@@ -6,6 +6,8 @@ global dlgsalir
 global dlgcalendar
 global filedlgabrir
 global dlgImprimir
+global dlgaviso
+global lblMensalir
 
 '''
 variables de clientes

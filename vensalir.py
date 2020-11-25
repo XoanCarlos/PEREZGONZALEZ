@@ -9,50 +9,49 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import var
 
 
 class Ui_dlgSalir(object):
     def setupUi(self, dlgSalir):
         dlgSalir.setObjectName("dlgSalir")
+        dlgSalir.setWindowModality(QtCore.Qt.WindowModal)
         dlgSalir.resize(376, 150)
         dlgSalir.setModal(True)
-        self.btnBoxSalir = QtWidgets.QDialogButtonBox(dlgSalir)
-        self.btnBoxSalir.setGeometry(QtCore.QRect(120, 90, 161, 32))
-        self.btnBoxSalir.setOrientation(QtCore.Qt.Horizontal)
-        self.btnBoxSalir.setStandardButtons(QtWidgets.QDialogButtonBox.No|QtWidgets.QDialogButtonBox.Yes)
-        self.btnBoxSalir.setCenterButtons(True)
-        self.btnBoxSalir.setObjectName("btnBoxSalir")
-        self.lblMensalir = QtWidgets.QLabel(dlgSalir)
-        self.lblMensalir.setGeometry(QtCore.QRect(90, 40, 271, 21))
+        var.lblMensalir = QtWidgets.QLabel(dlgSalir)
+        var.lblMensalir.setGeometry(QtCore.QRect(90, 40, 271, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
         font.setWeight(50)
-        self.lblMensalir.setFont(font)
-        self.lblMensalir.setLayoutDirection(QtCore.Qt.RightToLeft)
-        self.lblMensalir.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.lblMensalir.setObjectName("lblMensalir")
-        self.lblImgaviso = QtWidgets.QLabel(dlgSalir)
-        self.lblImgaviso.setGeometry(QtCore.QRect(30, 30, 51, 41))
-        self.lblImgaviso.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.lblImgaviso.setText("")
-        self.lblImgaviso.setPixmap(QtGui.QPixmap(":/avisosalir/iconoaviso.png"))
-        self.lblImgaviso.setScaledContents(True)
-        self.lblImgaviso.setObjectName("lblImgaviso")
+        var.lblMensalir.setFont(font)
+        var.lblMensalir.setLayoutDirection(QtCore.Qt.RightToLeft)
+        var.lblMensalir.setAlignment(QtCore.Qt.AlignCenter)
+        var.lblMensalir.setObjectName("lblMensalir")
         self.label = QtWidgets.QLabel(dlgSalir)
-        self.label.setGeometry(QtCore.QRect(40, 60, 41, 41))
+        self.label.setGeometry(QtCore.QRect(30, 70, 51, 51))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap(":/newPrefix/iconoaviso.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
+        self.btnAceptar = QtWidgets.QPushButton(dlgSalir)
+        self.btnAceptar.setGeometry(QtCore.QRect(120, 90, 75, 23))
+        self.btnAceptar.setObjectName("btnAceptar")
+        self.btnBoxSalir = QtWidgets.QButtonGroup(dlgSalir)
+        self.btnBoxSalir.setObjectName("btnBoxSalir")
+        self.btnBoxSalir.addButton(self.btnAceptar)
+        self.btnCancelar = QtWidgets.QPushButton(dlgSalir)
+        self.btnCancelar.setGeometry(QtCore.QRect(220, 90, 75, 23))
+        self.btnCancelar.setObjectName("btnCancelar")
+        self.btnBoxSalir.addButton(self.btnCancelar)
 
         self.retranslateUi(dlgSalir)
-        self.btnBoxSalir.accepted.connect(dlgSalir.accept)
-        self.btnBoxSalir.rejected.connect(dlgSalir.reject)
         QtCore.QMetaObject.connectSlotsByName(dlgSalir)
 
     def retranslateUi(self, dlgSalir):
         _translate = QtCore.QCoreApplication.translate
-        dlgSalir.setWindowTitle(_translate("dlgSalir", "Salir"))
-        self.lblMensalir.setText(_translate("dlgSalir", "¿Está seguro que desea salir de la aplicación?"))
+        dlgSalir.setWindowTitle(_translate("dlgSalir", "Aviso"))
+        var.lblMensalir.setText(_translate("dlgSalir", "¿Está seguro que desea salir de la aplicación?"))
+        self.btnAceptar.setText(_translate("dlgSalir", "Aceptar"))
+        self.btnCancelar.setText(_translate("dlgSalir", "Cancelar"))
 import avisosalir_rc
