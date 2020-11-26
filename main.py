@@ -39,7 +39,6 @@ class PrintDialogAbrir(QtPrintSupport.QPrintDialog):
     def __init__(self):
         super(PrintDialogAbrir, self).__init__()
 
-
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()

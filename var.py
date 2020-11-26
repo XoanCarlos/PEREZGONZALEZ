@@ -8,6 +8,9 @@ global filedlgabrir
 global dlgImprimir
 global dlgaviso
 global lblMensalir
+global alta
+global baja
+global salir
 
 '''
 variables de clientes

@@ -10,7 +10,7 @@ class Eventos():
         try:
             var.lblMensalir.setText('Desea Salir de Xestión')
             var.dlgsalir.show()
-            if var.dlgsalir.exec_():
+            if var.dlgsalir.exec_() and var.salir:
                 #print(event)
                 sys.exit()
             else:
@@ -63,8 +63,12 @@ class Eventos():
 
     def AbrirAviso(men):
         try:
-            var.lblMensalir.setText(men)
-            var.dlgsalir.show()
+            if var.dlgsalir.exec_() and var.salir:
+                pass
+            else:
+                var.lblMensalir.setText(men)
+                var.dlgsalir.show()
+
         except Exception as error:
             print('Error abrir ventana aviso: %s ' % str(error))
 

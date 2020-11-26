@@ -11,7 +11,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import var
 
-
 class Ui_dlgSalir(object):
     def setupUi(self, dlgSalir):
         dlgSalir.setObjectName("dlgSalir")
