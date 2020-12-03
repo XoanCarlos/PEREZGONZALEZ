@@ -8,7 +8,7 @@ class Eventos():
         :return:
         '''
         try:
-            var.lblMensalir.setText('Desea Salir de Xestión')
+            #var.lblMensalir.setText('Desea Salir de Xestión')
             var.dlgsalir.show()
             if var.dlgsalir.exec_():
                 #print(event)
