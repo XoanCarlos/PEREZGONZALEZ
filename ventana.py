@@ -470,6 +470,9 @@ class Ui_venPrincipal(object):
         self.tabWidget.addTab(self.panelFac, "")
         self.panelPro = QtWidgets.QWidget()
         self.panelPro.setObjectName("panelPro")
+        self.label_2 = QtWidgets.QLabel(self.panelPro)
+        self.label_2.setGeometry(QtCore.QRect(310, 240, 351, 101))
+        self.label_2.setObjectName("label_2")
         self.tabWidget.addTab(self.panelPro, "")
         self.gridLayout_7.addWidget(self.tabWidget, 1, 2, 1, 2)
         venPrincipal.setCentralWidget(self.centralwidget)
@@ -557,7 +560,7 @@ class Ui_venPrincipal(object):
         self.toolBar.addAction(self.toolbarSalir)
 
         self.retranslateUi(venPrincipal)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(venPrincipal)
 
     def retranslateUi(self, venPrincipal):
@@ -593,6 +596,7 @@ class Ui_venPrincipal(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.panelCli), _translate("venPrincipal", "Clientes"))
         self.label.setText(_translate("venPrincipal", "PANEL DE FACTURACIÓN"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.panelFac), _translate("venPrincipal", "Facturación"))
+        self.label_2.setText(_translate("venPrincipal", "PANEL DE Productos"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.panelPro), _translate("venPrincipal", "Productos"))
         self.menuArchivo.setTitle(_translate("venPrincipal", "Archivo"))
         self.menuInformes.setTitle(_translate("venPrincipal", "Informes"))

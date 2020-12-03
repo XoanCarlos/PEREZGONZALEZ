@@ -941,6 +941,19 @@
        <attribute name="title">
         <string>Productos</string>
        </attribute>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>240</y>
+          <width>351</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>PANEL DE Productos</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
