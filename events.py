@@ -1,5 +1,5 @@
 import sys, var
-from vensalir import *
+from venavisos import *
 class Eventos():
 
     def Salir(event):
@@ -72,5 +72,21 @@ class Eventos():
         except Exception as error:
             print('Error abrir ventana aviso: %s ' % str(error))
 
+    def Confirmar():
+        try:
+            if var.dlgaviso.exec_:
+                acepto = True
+            else:
+                acepto = False
+            return acepto
+        except Exception as error:
+            print('Error botón confirma: %s ' % str(error))
+
+
+    def Anular():
+        try:
+            var.dlgaviso.hide()
+        except Exception as error:
+            print('Error botón confirma: %s ' % str(error))
     # def aceptar():
     #     print('aceptar')

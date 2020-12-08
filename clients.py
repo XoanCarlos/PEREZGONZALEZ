@@ -1,6 +1,5 @@
 import var, conexion, events, clients
-from ventana import *
-import vensalir
+from venavisos import *
 
 class Clientes():
     """
@@ -192,11 +191,17 @@ class Clientes():
         """
         try:
             dni = var.ui.editDni.text()
-            conexion.Conexion.bajaCli(dni)
-            conexion.Conexion.mostrarClientes(self)
-            Clientes.limpiarCli()
+            var.dlgaviso.show()
+            acepto = events.Eventos.Confirmar()
+            if acepto:
+                conexion.Conexion.bajaCli(dni)
+                conexion.Conexion.mostrarClientes(self)
+                Clientes.limpiarCli()
+                var.dlgaviso.hide()
+            else:
+                var.dlgaviso.hide()
         except Exception as error:
-            print('Error cargar clientes: %s ' % str(error))
+            print('Error ventana clientes: %s ' % str(error))
 
 
     def modifCliente(self):

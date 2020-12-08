@@ -1,6 +1,7 @@
+from PyQt5 import QtWidgets, QtGui, QtCore, QtPrintSupport
 from ventana import *
 from vensalir import *
-from PyQt5 import QtWidgets, QtGui, QtCore, QtPrintSupport
+from venavisos import *
 from vencalendar import *
 from datetime import datetime, date
 import sys, var, events, clients, conexion, printer
@@ -8,6 +9,13 @@ import locale
 # Idioma "es-ES" (código para el español de España)
 locale.setlocale(locale.LC_ALL, 'es-ES')
 
+class DialogAvisos(QtWidgets.QDialog):
+    def __init__(self):
+        super(DialogAvisos, self).__init__()
+        var.dlgaviso = Ui_dlgAvisos()
+        var.dlgaviso.setupUi(self)
+        var.dlgaviso.btnAceptaviso.clicked.connect(events.Eventos.Confirmar)
+        var.dlgaviso.btnCancelaviso.clicked.connect(events.Eventos.Anular)
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
@@ -15,7 +23,7 @@ class DialogSalir(QtWidgets.QDialog):
         var.dlgsalir = Ui_dlgSalir()
         var.dlgsalir.setupUi(self)
         var.dlgsalir.btnAceptar.clicked.connect(events.Eventos.Salir)
-        var.dlgsalir.btnCancelar.clicked.connect((events.Eventos.closeSalir))
+        var.dlgsalir.btnCancelar.clicked.connect(events.Eventos.closeSalir)
         #var.dlgsalir.btnBoxSalir(var.dlgsalir.btnAceptar).clicked.connect(events.Eventos.Salir)
 
 class DialogCalendar(QtWidgets.QDialog):
@@ -48,7 +56,7 @@ class Main(QtWidgets.QMainWindow):
         var.dlgcalendar = DialogCalendar()
         var.filedlgabrir = FileDialogAbrir()
         var.dlgImprimir = PrintDialogAbrir()
-#        var.dlgaviso = AvisoDialog()
+        var.dlgaviso = DialogAvisos()
 
         '''
         colección de datos
