@@ -10,7 +10,8 @@ global alta
 global baja
 global salir
 global dlgaviso
-global lblAvisos
+global lblMensaviso
+global cliente
 
 '''
 variables de clientes

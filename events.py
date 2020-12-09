@@ -67,19 +67,18 @@ class Eventos():
 
     def AbrirAviso(men):
         try:
-            if var.dlgsalir.exec_() and var.salir:
-                pass
-            else:
-                var.lblMensalir.setText(men)
-                var.dlgsalir.show()
-
+            var.lblMensalir.setText(men)
+            var.dlgaviso.show()
         except Exception as error:
             print('Error abrir ventana aviso: %s ' % str(error))
 
     def Confirmar():
         try:
-            clients.Clientes.bajaCliente()
-            var.dlgaviso.hide()
+            if var.cliente:
+                clients.Clientes.bajaCliente()
+                var.dlgaviso.hide()
+                var.cliente = False
+                print(var.cliente)
         except Exception as error:
             print('Error botón confirma: %s ' % str(error))
 
@@ -89,8 +88,10 @@ class Eventos():
         except Exception as error:
             print('Error botón anula: %s ' % str(error))
 
-    def mostrarAviso():
+    def mostrarAvisocli():
         try:
+            var.cliente = True
+            var.lblMensaviso.setText('¿Desea eliminar el cliente?')
             var.dlgaviso.show()
         except Exception as error:
             print('Error mostrar aviso: %s ' % str(error))
