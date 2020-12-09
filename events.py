@@ -1,6 +1,6 @@
-import sys, var
-from venavisos import *
+import sys, var, clients
 class Eventos():
+
 
     def Salir(event):
         '''
@@ -74,19 +74,19 @@ class Eventos():
 
     def Confirmar():
         try:
-            if var.dlgaviso.exec_:
-                acepto = True
-            else:
-                acepto = False
-            return acepto
+            clients.Clientes.bajaCliente()
+            var.dlgaviso.hide()
         except Exception as error:
             print('Error botón confirma: %s ' % str(error))
-
 
     def Anular():
         try:
             var.dlgaviso.hide()
         except Exception as error:
-            print('Error botón confirma: %s ' % str(error))
-    # def aceptar():
-    #     print('aceptar')
+            print('Error botón anula: %s ' % str(error))
+
+    def mostrarAviso():
+        try:
+            var.dlgaviso.show()
+        except Exception as error:
+            print('Error mostrar aviso: %s ' % str(error))

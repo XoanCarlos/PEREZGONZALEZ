@@ -184,24 +184,19 @@ class Clientes():
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
 
-    def bajaCliente(self):
+    def bajaCliente():
         """
         módulos para dar de baja un cliente
         :return:
         """
         try:
             dni = var.ui.editDni.text()
-            var.dlgaviso.show()
-            acepto = events.Eventos.Confirmar()
-            if acepto:
-                conexion.Conexion.bajaCli(dni)
-                conexion.Conexion.mostrarClientes(self)
-                Clientes.limpiarCli()
-                var.dlgaviso.hide()
-            else:
-                var.dlgaviso.hide()
+            conexion.Conexion.bajaCli(dni)
+            conexion.Conexion.mostrarClientes(None)
+            Clientes.limpiarCli()
+            var.dlgaviso.hide()
         except Exception as error:
-            print('Error ventana clientes: %s ' % str(error))
+            print('Error ventana baja cliente: %s ' % str(error))
 
 
     def modifCliente(self):
