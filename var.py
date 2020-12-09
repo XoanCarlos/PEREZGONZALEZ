@@ -9,8 +9,8 @@ global dlgImprimir
 global alta
 global baja
 global salir
-global lblMensalir
 global dlgaviso
+global lblAvisos
 
 '''
 variables de clientes

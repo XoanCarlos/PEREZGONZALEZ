@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import var
 
 
 class Ui_dlgAvisos(object):
@@ -16,12 +17,12 @@ class Ui_dlgAvisos(object):
         dlgAvisos.setObjectName("dlgAvisos")
         dlgAvisos.setWindowModality(QtCore.Qt.WindowModal)
         dlgAvisos.resize(400, 209)
-        self.lblAvisos = QtWidgets.QLabel(dlgAvisos)
-        self.lblAvisos.setGeometry(QtCore.QRect(170, 20, 61, 61))
-        self.lblAvisos.setText("")
-        self.lblAvisos.setPixmap(QtGui.QPixmap(":/newPrefix/aviso.png"))
-        self.lblAvisos.setScaledContents(True)
-        self.lblAvisos.setObjectName("lblAvisos")
+        var.lblAvisos = QtWidgets.QLabel(dlgAvisos)
+        var.lblAvisos.setGeometry(QtCore.QRect(170, 20, 61, 61))
+        var.lblAvisos.setText("")
+        var.lblAvisos.setPixmap(QtGui.QPixmap(":/newPrefix/aviso.png"))
+        var.lblAvisos.setScaledContents(True)
+        var.lblAvisos.setObjectName("lblAvisos")
         self.btnAceptaviso = QtWidgets.QPushButton(dlgAvisos)
         self.btnAceptaviso.setGeometry(QtCore.QRect(110, 160, 75, 23))
         self.btnAceptaviso.setObjectName("btnAceptaviso")
