@@ -1,4 +1,6 @@
 import sys, var, clients
+from datetime import datetime
+import zipfile, os
 class Eventos():
 
 
@@ -41,9 +43,11 @@ class Eventos():
         except Exception as error:
             print('Error: %s' % str(error))
 
-    def Backup(self):
+    def Backup():
         try:
-            print('hará copia de seguidad de la BBDD')
+            fecha = datetime.now()
+            fichzip = zipfile.ZipFile('_backup.zip','w')
+            fichzip.write(var.filebd, os.path.basename(var.filebd), zipfile.ZIP_DEFLATED)
         except Exception as error:
             print('Error: %s' % str(error))
 
