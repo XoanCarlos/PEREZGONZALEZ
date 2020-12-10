@@ -195,6 +195,7 @@ class Clientes():
             conexion.Conexion.bajaCli(dni)
             Clientes.limpiarCli()
             var.dlgaviso.hide()
+            conexion.Conexion.mostrarClientes(None)
         except Exception as error:
             print('Error ventana baja cliente: %s ' % str(error))
 

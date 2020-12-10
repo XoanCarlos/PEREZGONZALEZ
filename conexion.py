@@ -104,10 +104,10 @@ class Conexion():
         if query.exec_():
             print('Baja cliente')
             var.ui.lblstatus.setText('Cliente con dni '+ dni + ' dado de baja')
-            Conexion.mostrarClientes(None)
+
         else:
             print("Error mostrar clientes: ", query.lastError().text())
-
+        Conexion.mostrarClientes(None)
 
     def modifCli(codigo, newdata):
            ''''
