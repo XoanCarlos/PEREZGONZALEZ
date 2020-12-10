@@ -1,4 +1,4 @@
-import sys, var, clients
+import sys, var, clients, conexion
 from datetime import datetime
 import zipfile, os
 class Eventos():
@@ -78,7 +78,7 @@ class Eventos():
                 clients.Clientes.bajaCliente()
                 var.dlgaviso.hide()
                 var.cliente = False
-                print(var.cliente)
+                conexion.Conexion.mostrarClientes(None)
         except Exception as error:
             print('Error botón confirma: %s ' % str(error))
 

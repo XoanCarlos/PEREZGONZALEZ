@@ -11,7 +11,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import var
 
-
 class Ui_dlgAvisos(object):
     def setupUi(self, dlgAvisos):
         dlgAvisos.setObjectName("dlgAvisos")

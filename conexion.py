@@ -72,6 +72,8 @@ class Conexion():
         se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un cliente
         :return: None
         '''
+        # while var.ui.tableCli.rowCount() > 0:
+        #     var.ui.tableCli.removeRow(0)
         index = 0
         query = QtSql.QSqlQuery()
         query.prepare('select dni, apellidos, nombre from clientes')
@@ -102,6 +104,7 @@ class Conexion():
         if query.exec_():
             print('Baja cliente')
             var.ui.lblstatus.setText('Cliente con dni '+ dni + ' dado de baja')
+            Conexion.mostrarClientes(None)
         else:
             print("Error mostrar clientes: ", query.lastError().text())
 
