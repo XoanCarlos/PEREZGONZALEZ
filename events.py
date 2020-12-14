@@ -1,4 +1,4 @@
-import sys, var, clients, conexion
+import sys, var, clients, conexion, main
 from datetime import datetime
 import zipfile, os
 class Eventos():
@@ -45,9 +45,14 @@ class Eventos():
 
     def Backup():
         try:
-            fecha = datetime.now()
-            fichzip = zipfile.ZipFile('_backup.zip','w')
+            fecha = datetime.today()
+            fecha = fecha.strftime('%Y.%m.%d.%H.%M.%S')
+            var.copia = (str(fecha) + '_backup.zip')
+            fichzip = zipfile.ZipFile(var.copia,'w')
             fichzip.write(var.filebd, os.path.basename(var.filebd), zipfile.ZIP_DEFLATED)
+            fichzip.close()
+            var.filedlgsave = main.FileDialogGuardar()
+            Eventos.mostrarAvisobackup()
         except Exception as error:
             print('Error: %s' % str(error))
 
@@ -79,6 +84,9 @@ class Eventos():
                 var.dlgaviso.hide()
                 var.cliente = False
                 conexion.Conexion.mostrarClientes(None)
+            if var.backup:
+                var.backup = False
+                var.dlgaviso.hide()
         except Exception as error:
             print('Error botón confirma: %s ' % str(error))
 
@@ -91,7 +99,17 @@ class Eventos():
     def mostrarAvisocli():
         try:
             var.cliente = True
+            var.backup = False
             var.lblMensaviso.setText('¿Desea eliminar el cliente?')
+            var.dlgaviso.show()
+        except Exception as error:
+            print('Error mostrar aviso: %s ' % str(error))
+
+    def mostrarAvisobackup():
+        try:
+            var.cliente = False
+            var.backup = True
+            var.lblMensaviso.setText('Copia de Seguridad Creada')
             var.dlgaviso.show()
         except Exception as error:
             print('Error mostrar aviso: %s ' % str(error))

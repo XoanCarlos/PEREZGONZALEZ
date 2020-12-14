@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, QtGui, QtCore, QtPrintSupport
+from PyQt5 import QtPrintSupport
 from ventana import *
 from vensalir import *
 from venavisos import *
@@ -40,8 +40,16 @@ class DialogCalendar(QtWidgets.QDialog):
 class FileDialogAbrir(QtWidgets.QFileDialog):
     def __init__(self):
         super(FileDialogAbrir, self).__init__()
-        self.setWindowTitle('Abrir Archivo')
+        self.setWindowTitle('Archivos')
         self.setModal(True)
+
+class FileDialogGuardar(QtWidgets.QFileDialog):
+    def __init__(self):
+        super(FileDialogGuardar, self).__init__()
+        self.setWindowTitle('Guardar Archivo')
+        self.setModal(True)
+        option = QtWidgets.QFileDialog.Options()
+        file = QtWidgets.QFileDialog.getSaveFileName(self, 'Guardar Copia', var.copia , 'All Files (*)', options=option)
 
 class PrintDialogAbrir(QtPrintSupport.QPrintDialog):
     def __init__(self):
@@ -58,6 +66,7 @@ class Main(QtWidgets.QMainWindow):
         var.dlgImprimir = PrintDialogAbrir()
         var.dlgaviso = DialogAvisos()
         events.Eventos()
+
 
         '''
         colección de datos
