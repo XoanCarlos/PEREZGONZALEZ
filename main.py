@@ -49,7 +49,7 @@ class FileDialogGuardar(QtWidgets.QFileDialog):
         self.setWindowTitle('Guardar Archivo')
         self.setModal(True)
         option = QtWidgets.QFileDialog.Options()
-        file = QtWidgets.QFileDialog.getSaveFileName(self, 'Guardar Copia', var.copia , 'All Files (*)', options=option)
+        file = QtWidgets.QFileDialog.getSaveFileName(self, 'Guardar Copia', var.copia , '.zip', options=option)
 
 class PrintDialogAbrir(QtPrintSupport.QPrintDialog):
     def __init__(self):

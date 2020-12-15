@@ -1,8 +1,18 @@
 import sys, var, clients, conexion, main
 from datetime import datetime
-import zipfile, os
-class Eventos():
+from PyQt5 import QtWidgets
+import zipfile, os, shutil
 
+
+class FileDialogGuardar(QtWidgets.QFileDialog):
+    def __init__(self):
+        super(FileDialogGuardar, self).__init__()
+        self.setWindowTitle('Guardar Archivo')
+        self.setModal(True)
+
+
+
+class Eventos():
 
     def Salir(event):
         '''
@@ -48,11 +58,16 @@ class Eventos():
             fecha = datetime.today()
             fecha = fecha.strftime('%Y.%m.%d.%H.%M.%S')
             var.copia = (str(fecha) + '_backup.zip')
-            fichzip = zipfile.ZipFile(var.copia,'w')
-            fichzip.write(var.filebd, os.path.basename(var.filebd), zipfile.ZIP_DEFLATED)
-            fichzip.close()
-            var.filedlgsave = main.FileDialogGuardar()
-            Eventos.mostrarAvisobackup()
+            var.filedlgsave = FileDialogGuardar()
+            option = QtWidgets.QFileDialog.Options()
+            QtWidgets.QFileDialog.getSaveFileName(None,'Guardar Copia', var.copia, '.zip', options=option)
+            if var.filedlgsave.Accepted:
+                directorio = var.filedlgsave.getExistingDirectory()
+                fichzip = zipfile.ZipFile(var.copia, 'w')
+                fichzip.write(var.filebd, os.path.basename(var.filebd), zipfile.ZIP_DEFLATED)
+                fichzip.close()
+                var.ui.lblstatus.setText('BASE DE DATOS CREADA')
+            shutil.move(str(var.copia), str(directorio))
         except Exception as error:
             print('Error: %s' % str(error))
 
@@ -105,11 +120,11 @@ class Eventos():
         except Exception as error:
             print('Error mostrar aviso: %s ' % str(error))
 
-    def mostrarAvisobackup():
-        try:
-            var.cliente = False
-            var.backup = True
-            var.lblMensaviso.setText('Copia de Seguridad Creada')
-            var.dlgaviso.show()
-        except Exception as error:
-            print('Error mostrar aviso: %s ' % str(error))
+    # def mostrarAvisobackup():
+    #     try:
+    #         var.cliente = False
+    #         var.backup = True
+    #         var.lblMensaviso.setText('Copia de Seguridad Creada')
+    #         var.dlgaviso.show()
+    #     except Exception as error:
+    #         print('Error mostrar aviso: %s ' % str(error))
