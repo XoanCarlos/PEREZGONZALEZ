@@ -1,14 +1,8 @@
 import sys, var, clients, conexion, main
 from datetime import datetime
-from PyQt5 import QtWidgets
 import zipfile, os, shutil
+from PyQt5 import QtWidgets
 
-
-class FileDialogGuardar(QtWidgets.QFileDialog):
-    def __init__(self):
-        super(FileDialogGuardar, self).__init__()
-        self.setWindowTitle('Guardar Archivo')
-        self.setModal(True)
 
 
 
@@ -58,16 +52,14 @@ class Eventos():
             fecha = datetime.today()
             fecha = fecha.strftime('%Y.%m.%d.%H.%M.%S')
             var.copia = (str(fecha) + '_backup.zip')
-            var.filedlgsave = FileDialogGuardar()
             option = QtWidgets.QFileDialog.Options()
-            QtWidgets.QFileDialog.getSaveFileName(None,'Guardar Copia', var.copia, '.zip', options=option)
-            if var.filedlgsave.Accepted:
-                directorio = var.filedlgsave.getExistingDirectory()
+            directorio, filename = var.filedlgabrir.getSaveFileName(None,'Guardar Copia',var.copia,'.zip',options=option)
+            if var.filedlgabrir.Accepted and filename != '':
                 fichzip = zipfile.ZipFile(var.copia, 'w')
                 fichzip.write(var.filebd, os.path.basename(var.filebd), zipfile.ZIP_DEFLATED)
                 fichzip.close()
-                var.ui.lblstatus.setText('BASE DE DATOS CREADA')
-            shutil.move(str(var.copia), str(directorio))
+                var.ui.lblstatus.setText('COPIA DE SEGURIDAD DE BASE DE DATOS CREADA')
+                shutil.move(str(var.copia), str(directorio))
         except Exception as error:
             print('Error: %s' % str(error))
 
