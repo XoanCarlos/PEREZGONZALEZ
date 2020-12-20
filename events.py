@@ -1,10 +1,6 @@
-import sys, var, clients, conexion, main
+import sys, var, clients, conexion, zipfile, os, shutil
 from datetime import datetime
-import zipfile, os, shutil
 from PyQt5 import QtWidgets
-
-
-
 
 class Eventos():
 
@@ -14,10 +10,8 @@ class Eventos():
         :return:
         '''
         try:
-            #var.lblMensalir.setText('Desea Salir de Xestión')
             var.dlgsalir.show()
             if var.dlgsalir.exec_():
-                #print(event)
                 sys.exit()
             else:
                 var.dlgsalir.hide()
@@ -43,7 +37,6 @@ class Eventos():
             prov = ['','A Coruña', 'Lugo', 'Ourense', 'Pontevedra', 'Vigo']
             for i in prov:
                 var.ui.cmbProv.addItem(i)
-
         except Exception as error:
             print('Error: %s' % str(error))
 
