@@ -4,7 +4,7 @@ from vensalir import *
 from venavisos import *
 from vencalendar import *
 from datetime import datetime, date
-import sys, var, events, clients, conexion, printer
+import sys, var, events, clients, conexion, printer, products
 import locale
 # Idioma "es-ES" (código para el español de España)
 locale.setlocale(locale.LC_ALL, 'es-ES')
@@ -72,6 +72,7 @@ class Main(QtWidgets.QMainWindow):
         botones formulario cliente
         '''
         var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
+        var.ui.btnSalirpro.clicked.connect(events.Eventos.Salir)
         var.ui.menubarSalir.triggered.connect(events.Eventos.Salir)
         var.ui.toolbarSalir.triggered.connect(events.Eventos.Salir)
         var.ui.toolbarBackup.triggered.connect(events.Eventos.Backup)
@@ -82,6 +83,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
         var.ui.btnAltaCli.clicked.connect(clients.Clientes.altaCliente)
         var.ui.btnLimpiarCli.clicked.connect(clients.Clientes.limpiarCli)
+        var.ui.btnLimpiarPro.clicked.connect(products.Products.limpiarPro)
         var.ui.btnBajaCli.clicked.connect(events.Eventos.mostrarAvisocli)
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
