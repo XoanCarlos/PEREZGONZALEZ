@@ -82,6 +82,7 @@ class Main(QtWidgets.QMainWindow):
         #var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni)
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
         var.ui.btnAltaCli.clicked.connect(clients.Clientes.altaCliente)
+        var.ui.btnAltaPro.clicked.connect(products.Products.altaProducto)
         var.ui.btnLimpiarCli.clicked.connect(clients.Clientes.limpiarCli)
         var.ui.btnLimpiarPro.clicked.connect(products.Products.limpiarPro)
         var.ui.btnBajaCli.clicked.connect(events.Eventos.mostrarAvisocli)

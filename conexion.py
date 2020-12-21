@@ -173,6 +173,27 @@ class Conexion():
                 var.ui.tableCli.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(2))))
                 var.ui.tableCli.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(3))))
 
+
+    '''
+    Xestión Productos
+    '''
+
+    def altaProducto(producto):
+        '''
+        Cargamos producto en tabla artículos
+        :return: None
+        '''
+        query = QtSql.QSqlQuery()
+        query.prepare(
+            'insert into productos (producto, precio, stock)'
+            'VALUES (:producto, :precio, :stock)')
+        query.bindValue(':producto', str(producto[0]))
+        producto[1] = producto[1].replace(',','.')
+        query.bindValue(':precio', round(float(producto[1]),2))
+        query.bindValue(':stock', int(producto[2]))
+        if query.exec_():
+            var.ui.lblstatus.setText('Alta Producto ' + str(producto[0]))
+
 # class Conexion():
 #     HOST = 'localhost'
 #     PORT = '27017'

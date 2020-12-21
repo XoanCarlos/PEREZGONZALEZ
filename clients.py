@@ -145,7 +145,7 @@ class Clientes():
             conexion.Conexion.mostrarClientes(None)
             Clientes.limpiarCli()
         except Exception as error:
-            print('Error cargar fecha lo : %s ' % str(error))
+            print('Error cargar cliente : %s ' % str(error))
 
     def limpiarCli():
         '''
