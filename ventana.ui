@@ -993,7 +993,7 @@
          <enum>Qt::DotLine</enum>
         </property>
         <attribute name="horizontalHeaderDefaultSectionSize">
-         <number>280</number>
+         <number>250</number>
         </attribute>
         <attribute name="horizontalHeaderMinimumSectionSize">
          <number>20</number>
@@ -1049,7 +1049,7 @@
          <rect>
           <x>78</x>
           <y>540</y>
-          <width>821</width>
+          <width>899</width>
           <height>25</height>
          </rect>
         </property>
@@ -1122,7 +1122,7 @@
           </widget>
          </item>
          <item row="0" column="2">
-          <widget class="QPushButton" name="btnPro">
+          <widget class="QPushButton" name="btnBajaPro">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -1149,7 +1149,7 @@
          <enum>Qt::Horizontal</enum>
         </property>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>240</x>
@@ -1292,7 +1292,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>240</x>
@@ -1348,7 +1348,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>420</x>
@@ -1610,11 +1610,11 @@ text-align:center;</string>
  </resources>
  <connections/>
  <buttongroups>
+  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>
