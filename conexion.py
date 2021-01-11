@@ -389,6 +389,16 @@ class Conexion():
         else:
             print("Error alta venta: ", query.lastError().text())
 
+    def anulaVenta(codVenta):
+        print(codVenta)
+        query = QtSql.QSqlQuery()
+        query.prepare('delete from ventas where codventa = :codVenta')
+        query.bindValue(':codVenta', int(codVenta))
+        if query.exec_():
+            var.ui.lblstatus.setText('Venta Anulada')
+        else:
+            print("Error baja venta: ", query.lastError().text())
+
     def listadoVentasfac(codfac):
         """
 

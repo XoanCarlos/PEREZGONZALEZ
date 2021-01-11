@@ -55,7 +55,7 @@ class Ventas:
             var.ui.editDatafac.setText(str(fila[1]))
             conexion.Conexion.cargarFac(str(codf))
         except Exception as error:
-            print('Error cargar Facctura: %s ' % str(error))
+            print('Error cargar Factura: %s ' % str(error))
 
     def prepararTablaventas(index):
         '''
@@ -114,3 +114,16 @@ class Ventas:
             conexion.Conexion.cargarCmbventa()
         except Exception as error:
             print('Error proceso mostrar ventas por factura: %s' %str(error))
+
+
+    def anularVenta(self):
+        try:
+            fila = var.ui.tabVenta.selectedItems()
+            if fila:
+                fila = [dato.text() for dato in fila]
+            codventa = fila[0]
+            conexion.Conexion.anulaVenta(codventa)
+            Ventas.mostrarVentasfac()
+
+        except Exception as error:
+            print('Error proceso anular venta de una factura: %s' % str(error))

@@ -95,6 +95,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnReloadfac.clicked.connect(conexion.Conexion.mostrarFacturas)
         var.ui.btnCalendarfac.clicked.connect(ventas.Ventas.abrirCalendar)
         var.ui.btnAceptarventa.clicked.connect(ventas.Ventas.procesoVenta)
+        var.ui.btnAnularventa.clicked.connect(ventas.Ventas.anularVenta)
         clients.Clientes.valoresSpin()
 
         for i in var.rbtsex:
@@ -110,7 +111,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tabFac.clicked.connect(ventas.Ventas.cargarFact)
         var.ui.tabFac.clicked.connect(ventas.Ventas.mostrarVentasfac)
         var.ui.tabFac.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-        #var.ui.tabFac.clicked.connect(products.Products.cargarProd)
+#        var.ui.tabVenta.clicked.connect()
+        var.ui.tabVenta.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         events.Eventos.cargarProv(self)
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatusdate, 2)
