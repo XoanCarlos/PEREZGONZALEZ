@@ -4,7 +4,7 @@ from vensalir import *
 from venavisos import *
 from vencalendar import *
 from datetime import datetime, date
-import sys, var, events, clients, conexion, printer, products
+import sys, var, events, clients, conexion, printer, products, ventas
 import locale
 # Idioma "es-ES" (código para el español de España)
 locale.setlocale(locale.LC_ALL, 'es-ES')
@@ -36,13 +36,13 @@ class DialogCalendar(QtWidgets.QDialog):
         anoactual = datetime.now().year
         var.dlgcalendar.Calendar.setSelectedDate((QtCore.QDate(anoactual, mesactual, diaactual)))
         var.dlgcalendar.Calendar.clicked.connect(clients.Clientes.cargarFecha)
+        var.dlgcalendar.Calendar.clicked.connect(ventas.Ventas.cargarFechafac)
 
 class FileDialogAbrir(QtWidgets.QFileDialog):
     def __init__(self):
         super(FileDialogAbrir, self).__init__()
         self.setWindowTitle('Archivos')
         self.setModal(True)
-
 
 class PrintDialogAbrir(QtPrintSupport.QPrintDialog):
     def __init__(self):
@@ -59,7 +59,6 @@ class Main(QtWidgets.QMainWindow):
         var.dlgImprimir = PrintDialogAbrir()
         var.dlgaviso = DialogAvisos()
         events.Eventos()
-
 
         '''
         colección de datos
@@ -91,6 +90,11 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBajaPro.clicked.connect(products.Products.bajaProd)
         var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
         var.ui.btnBuscarCli.clicked.connect(clients.Clientes.buscarCli)
+        var.ui.btnFac.clicked.connect(ventas.Ventas.altaFactura)
+        var.ui.btnBuscafac.clicked.connect(conexion.Conexion.mostrarFacturascli)
+        var.ui.btnReloadfac.clicked.connect(conexion.Conexion.mostrarFacturas)
+        var.ui.btnCalendarfac.clicked.connect(ventas.Ventas.abrirCalendar)
+        var.ui.btnAceptarventa.clicked.connect(ventas.Ventas.procesoVenta)
         clients.Clientes.valoresSpin()
 
         for i in var.rbtsex:
@@ -103,6 +107,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         var.ui.tableProd.clicked.connect(products.Products.cargarProd)
         var.ui.tableProd.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        var.ui.tabFac.clicked.connect(ventas.Ventas.cargarFact)
+        var.ui.tabFac.clicked.connect(ventas.Ventas.mostrarVentasfac)
+        var.ui.tabFac.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        #var.ui.tabFac.clicked.connect(products.Products.cargarProd)
         events.Eventos.cargarProv(self)
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatusdate, 2)
@@ -124,6 +132,10 @@ class Main(QtWidgets.QMainWindow):
         # conexion.Conexion()
         conexion.Conexion.mostrarClientes(self)
         conexion.Conexion.mostrarProducts()
+        conexion.Conexion.mostrarFacturas(self)
+        #ventas.Ventas.prepararTablaventas(0)
+        #conexion.Conexion.cargarCmbventa()
+        var.ui.tabWidget.setCurrentIndex(0)
 
     def closeEvent(self, event):
         if event:

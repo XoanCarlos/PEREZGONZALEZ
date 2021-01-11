@@ -1,5 +1,7 @@
-import var, conexion, events, clients
+import conexion, clients
 from venavisos import *
+import var
+import events
 
 class Clientes():
     """
@@ -99,9 +101,10 @@ class Clientes():
         Este módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked.connect de calendar
         '''
         try:
-            data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
-            var.ui.editClialta.setText(str(data))
-            var.dlgcalendar.hide()
+            if var.ui.tabWidget.currentIndex() == 0:
+                data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
+                var.ui.editClialta.setText(str(data))
+                var.dlgcalendar.hide()
         except Exception as error:
             print('Error cargar fecha: %s ' % str(error))
 
@@ -181,6 +184,10 @@ class Clientes():
             i = 0
             for i, dato in enumerate(client):
                 dato.setText(fila[i])
+                if i == 0:
+                    var.ui.editDniclifac.setText(fila[0])
+                if i == 1:
+                    var.ui.editApelclifac.setText(fila[1])
             conexion.Conexion.cargarCliente()
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
