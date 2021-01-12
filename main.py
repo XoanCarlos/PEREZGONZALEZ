@@ -127,6 +127,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         var.ui.menubarReportCli.triggered.connect(printer.Printer.reportCli)
         var.ui.menubarReportPro.triggered.connect(printer.Printer.reportPro)
+
         '''
         módulos conexion base datos
         '''

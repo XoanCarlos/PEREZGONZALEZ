@@ -357,7 +357,8 @@ class Conexion():
         var.ui.editDniclifac.setText(str(dni))
         var.ui.editApelclifac.setText(str(apel))
 
-    def cargarCmbventa():
+    def cargarCmbventa(cmbventa):
+        var.cmbventa = QtWidgets.QComboBox()
         var.cmbventa.clear()
         query = QtSql.QSqlQuery()
         var.cmbventa.addItem('')
@@ -369,7 +370,7 @@ class Conexion():
     def obtenCodPrec(articulo):
         dato = []
         query = QtSql.QSqlQuery()
-        var.cmbventa.addItem('')
+        #var.cmbventa.addItem('')
         query.prepare('select codigo, precio from productos where producto = :articulo')
         query.bindValue(':articulo', str(articulo))
         if query.exec_():
@@ -379,13 +380,24 @@ class Conexion():
 
     def altaVenta(venta):
         query = QtSql.QSqlQuery()
-        query.prepare('insert into ventas (codfacventa, codarticventa, cantidad) VALUES (:codfacventa, :codarticventa,'
-                      ' :cantidad)')
+        query.prepare('insert into ventas (codfacventa, codarticventa, cantidad, precio) VALUES (:codfacventa, :codarticventa,'
+                      ' :cantidad, :precio )')
         query.bindValue(':codfacventa', str(venta[0]))
         query.bindValue(':codarticventa', str(venta[1]))
-        query.bindValue(':cantidad', str(venta[2]))
+        query.bindValue(':cantidad', str(venta[3]))
+        query.bindValue(':precio', str(venta[4]))
+        row = int(ventas[5])
         if query.exec_():
             var.ui.lblstatus.setText('Venta Realizada')
+            var.ui.tabVenta.setItem(row, 1, QtWidgets.QTableWidgetItem(str(venta[2])))
+            var.ui.tabVenta.setItem(row, 2, QtWidgets.QTableWidgetItem(str(venta[3])))
+            var.ui.tabVenta.setItem(row, 3, QtWidgets.QTableWidgetItem(str(venta[4])))
+            var.ui.tabVenta.setItem(row, 4, QtWidgets.QTableWidgetItem(str(venta[5])))
+            row = row + 1
+            var.ui.tabVenta.insertRow(row)
+            var.ui.tabVenta.setCellWidget(row, 1, var.cmbventa)
+            var.ui.tabVenta.scrollToBottom()
+            Conexion.cargarCmbventa(var.cmbventa)
         else:
             print("Error alta venta: ", query.lastError().text())
 
@@ -439,7 +451,8 @@ class Conexion():
                             var.ui.tabVenta.setItem(index, 1, QtWidgets.QTableWidgetItem(str(articulo)))
                     var.ui.tabVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(str(cantidad)))
                     subtotal = round(float(cantidad) * float(precio), 2)
-                    var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(str(subtotal)))
+                    var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(str(precio)))
+                    var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(str(subtotal)))
                     index += 1
                     var.subfac = round(float(subtotal) + float(var.subfac), 2)
             if int(index) > 0:

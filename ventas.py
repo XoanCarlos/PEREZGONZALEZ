@@ -65,11 +65,13 @@ class Ventas:
         '''
         try:
             var.cmbventa = QtWidgets.QComboBox()
+            conexion.Conexion.cargarCmbventa(var.cmbventa)
             var.ui.tabVenta.setRowCount(index + 1)
             var.ui.tabVenta.setItem(index, 0, QtWidgets.QTableWidgetItem())
             var.ui.tabVenta.setCellWidget(index, 1, var.cmbventa)
             var.ui.tabVenta.setItem(index, 2, QtWidgets.QTableWidgetItem())
             var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem())
+
 
         except Exception as error:
             print('Error Preparar tabla de ventas: %s ' % str(error))
@@ -79,19 +81,15 @@ class Ventas:
         try:
             row = var.ui.tabVenta.currentRow()
             codfac = var.ui.lblNumFac.text()
-            articulo = var.cmbventa.currentText()
+            articulo = str(var.cmbventa.currentText())
+            print(articulo)
             cantidad = var.ui.tabVenta.item(row, 2).text()
             cantidad = cantidad.replace(',', '.')
             dato = conexion.Conexion.obtenCodPrec(articulo)
+            print(dato)
             subtotal = round(float(cantidad)*float(dato[1]), 2)
-            var.ui.tabVenta.setItem(row, 3,QtWidgets.QTableWidgetItem(str(subtotal)))
-            venta = [codfac, dato[0], cantidad]
-            var.ui.tabVenta.setItem(row, 1, QtWidgets.QTableWidgetItem(str(articulo)))
-            row = row + 1
-            var.ui.tabVenta.insertRow(row)
-            var.ui.tabVenta.setCellWidget(row, 1, var.cmbventa)
-            var.ui.tabVenta.scrollToBottom()
-            conexion.Conexion.cargarCmbventa()
+            precio = dato[1].replace(',', '.')
+            venta = [codfac, dato[0], articulo, cantidad, precio, subtotal, row]
             #sleep(1)
             if codfac != '' and articulo != '' and cantidad != '':
                 conexion.Conexion.altaVenta(venta)
@@ -109,9 +107,11 @@ class Ventas:
 
     def mostrarVentasfac():
         try:
+            var.cmbventa = QtWidgets.QComboBox()
+            conexion.Conexion.cargarCmbventa(var.cmbventa)
             codfac = var.ui.lblNumFac.text()
             conexion.Conexion.listadoVentasfac(codfac)
-            conexion.Conexion.cargarCmbventa()
+            conexion.Conexion.cargarCmbventa(var.cmbventa)
         except Exception as error:
             print('Error proceso mostrar ventas por factura: %s' %str(error))
 
@@ -121,7 +121,7 @@ class Ventas:
             fila = var.ui.tabVenta.selectedItems()
             if fila:
                 fila = [dato.text() for dato in fila]
-            codventa = fila[0]
+            codventa = str(fila[0])
             conexion.Conexion.anulaVenta(codventa)
             Ventas.mostrarVentasfac()
 
