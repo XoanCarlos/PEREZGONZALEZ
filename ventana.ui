@@ -1944,8 +1944,8 @@
      <string>Informes</string>
     </property>
     <addaction name="menubarReportCli"/>
+    <addaction name="menubarReportPro"/>
     <addaction name="actionImprimir_Factura"/>
-    <addaction name="actionListado_Productos"/>
    </widget>
    <widget class="QMenu" name="menuAcerca_de">
     <property name="title">
@@ -2095,7 +2095,7 @@ text-align:center;</string>
     <string>Imprimir Factura</string>
    </property>
   </action>
-  <action name="actionListado_Productos">
+  <action name="menubarReportPro">
    <property name="text">
     <string>Listado Productos</string>
    </property>
@@ -2110,11 +2110,11 @@ text-align:center;</string>
  </resources>
  <connections/>
  <buttongroups>
+  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>

@@ -1039,15 +1039,15 @@ class Ui_venPrincipal(object):
         self.menubarReportCli.setObjectName("menubarReportCli")
         self.actionImprimir_Factura = QtWidgets.QAction(venPrincipal)
         self.actionImprimir_Factura.setObjectName("actionImprimir_Factura")
-        self.actionListado_Productos = QtWidgets.QAction(venPrincipal)
-        self.actionListado_Productos.setObjectName("actionListado_Productos")
+        self.menubarReportPro = QtWidgets.QAction(venPrincipal)
+        self.menubarReportPro.setObjectName("menubarReportPro")
         self.menuArchivo.addAction(self.actionAbrir)
         self.menuArchivo.addAction(self.actionImprimer)
         self.menuArchivo.addSeparator()
         self.menuArchivo.addAction(self.menubarSalir)
         self.menuInformes.addAction(self.menubarReportCli)
+        self.menuInformes.addAction(self.menubarReportPro)
         self.menuInformes.addAction(self.actionImprimir_Factura)
-        self.menuInformes.addAction(self.actionListado_Productos)
         self.menuBar.addAction(self.menuArchivo.menuAction())
         self.menuBar.addAction(self.menuInformes.menuAction())
         self.menuBar.addAction(self.menuAcerca_de.menuAction())
@@ -1154,7 +1154,7 @@ class Ui_venPrincipal(object):
         self.actionImprimer.setText(_translate("venPrincipal", "Imprimir"))
         self.menubarReportCli.setText(_translate("venPrincipal", "Listado Clientes"))
         self.actionImprimir_Factura.setText(_translate("venPrincipal", "Imprimir Factura"))
-        self.actionListado_Productos.setText(_translate("venPrincipal", "Listado Productos"))
+        self.menubarReportPro.setText(_translate("venPrincipal", "Listado Productos"))
 import abrirdirectorio_rc
 import logo_rc
 import toolbarbackup_rc
