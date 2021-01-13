@@ -358,7 +358,7 @@ class Conexion():
         var.ui.editApelclifac.setText(str(apel))
 
     def cargarCmbventa(cmbventa):
-        var.cmbventa = QtWidgets.QComboBox()
+        #var.cmbventa = QtWidgets.QComboBox()
         var.cmbventa.clear()
         query = QtSql.QSqlQuery()
         var.cmbventa.addItem('')
@@ -366,11 +366,12 @@ class Conexion():
         if query.exec_():
             while query.next():
                 var.cmbventa.addItem(str(query.value(1)))
+        articulo = var.cmbventa.currentText()
+        return articulo
 
     def obtenCodPrec(articulo):
         dato = []
         query = QtSql.QSqlQuery()
-        #var.cmbventa.addItem('')
         query.prepare('select codigo, precio from productos where producto = :articulo')
         query.bindValue(':articulo', str(articulo))
         if query.exec_():
@@ -386,7 +387,7 @@ class Conexion():
         query.bindValue(':codarticventa', str(venta[1]))
         query.bindValue(':cantidad', str(venta[3]))
         query.bindValue(':precio', str(venta[4]))
-        row = int(ventas[5])
+        row = int(ventas[6])
         if query.exec_():
             var.ui.lblstatus.setText('Venta Realizada')
             var.ui.tabVenta.setItem(row, 1, QtWidgets.QTableWidgetItem(str(venta[2])))
@@ -455,7 +456,8 @@ class Conexion():
                     var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(str(subtotal)))
                     index += 1
                     var.subfac = round(float(subtotal) + float(var.subfac), 2)
-            if int(index) > 0:
+                ventas.Ventas.prepararTablaventas(index)
+            if int(index) == 0:
                 ventas.Ventas.prepararTablaventas(index)
             var.ui.lblSubtotal.setText(str(var.subfac))
             var.iva = round(float(var.subfac) * 0.21, 2)

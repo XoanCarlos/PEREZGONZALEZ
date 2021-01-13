@@ -16,10 +16,10 @@ class Printer:
             var.rep.setFont('Helvetica', size=10)
             var.rep.line(45, 820, 525, 820)
             var.rep.line(45, 745, 525, 745)
-            textcif = 'A0000000H'
+            textcif = 'CIF: A0000000H'
             textnom = 'IMPORTACIÓN Y EXPORTACIÓN TEIS, S.L.'
             textdir = 'Avenida Galicia, 101 - Vigo'
-            texttlfo = '886 12 04 64'
+            texttlfo = 'Tlfo: 886 12 04 64'
             var.rep.drawString(50, 805, textcif)
             var.rep.drawString(50, 790, textnom)
             var.rep.drawString(50, 775, textdir)
@@ -77,14 +77,14 @@ class Printer:
                          Printer.cabecera(self)
                          Printer.pie(textlistado)
                          Printer.cabeceracli(self)
-                         i = 50
+                         i = 55
                          j = 690
                      var.rep.setFont('Helvetica', size=10)
                      var.rep.drawString(i, j, str(query.value(0)))
                      var.rep.drawString(i+30, j, str(query.value(1)))
                      var.rep.drawString(i+130, j, str(query.value(2)))
-                     var.rep.drawString(i+280, j, str(query.value(3)))
-                     var.rep.drawRightString(i+470, j, str(query.value(4)))
+                     var.rep.drawString(i+275, j, str(query.value(3)))
+                     var.rep.drawRightString(i+465, j, str(query.value(4)))
                      j=j-25
 
             var.rep.save()
@@ -103,7 +103,7 @@ class Printer:
             textlistado = 'LISTADO DE PRODUCTOS'
             var.rep.drawString(255, 735, textlistado)
             var.rep.line(45, 730, 525, 730)
-            itempro = ['Código', 'NOMBRE', 'PRECIO', 'STOCK']
+            itempro = ['Código', 'NOMBRE', 'PRECIO (€)', 'STOCK']
             var.rep.drawString(45, 710, itempro[0])
             var.rep.drawString(170, 710, itempro[1])
             var.rep.drawString(350, 710, itempro[2])
@@ -119,29 +119,27 @@ class Printer:
             Printer.cabecera(self)
             Printer.cabecerapro(self)
             Printer.pie(textlistado)
-            # query = QtSql.QSqlQuery()
-            # query.prepare('select codigo, dni, apellidos, nombre, fechalta from clientes order by apellidos, nombre')
-            # var.rep.setFont('Helvetica', size=10)
-            # if query.exec_():
-            #     i = 50  # valores del eje X
-            #     j = 690  # valores del eje Y
-            #     while query.next():
-            #         if j <= 80:
-            #             var.rep.drawString(440, 70, 'Página siguiente...')
-            #             var.rep.showPage()
-            #             Printer.cabecera(self)
-            #             Printer.pie(textlistado)
-            #             Printer.cabeceracli(self)
-            #             i = 50
-            #             j = 690
-            #         var.rep.setFont('Helvetica', size=10)
-            #         var.rep.drawString(i, j, str(query.value(0)))
-            #         var.rep.drawString(i + 30, j, str(query.value(1)))
-            #         var.rep.drawString(i + 130, j, str(query.value(2)))
-            #         var.rep.drawString(i + 280, j, str(query.value(3)))
-            #         var.rep.drawRightString(i + 470, j, str(query.value(4)))
-            #         j = j - 25
-
+            query = QtSql.QSqlQuery()
+            query.prepare('select codigo, producto, precio, stock from productos order by producto')
+            var.rep.setFont('Helvetica', size=10)
+            if query.exec_():
+                 i = 50  # valores del eje X
+                 j = 690  # valores del eje Y
+                 while query.next():
+                     if j <= 80:
+                         var.rep.drawString(440, 70, 'Página siguiente...')
+                         var.rep.showPage()
+                         Printer.cabecera(self)
+                         Printer.pie(textlistado)
+                         Printer.cabecerapro(self)
+                         i = 50
+                         j = 690
+                     var.rep.setFont('Helvetica', size=10)
+                     var.rep.drawString(i, j, str(query.value(0)))
+                     var.rep.drawString(i + 100, j, str(query.value(1)))
+                     var.rep.drawRightString(i + 325, j, str(query.value(2)))
+                     var.rep.drawRightString(i + 450, j, str(query.value(3)))
+                     j = j - 25
             var.rep.save()
             rootPath = ".\\informes"
             cont = 0

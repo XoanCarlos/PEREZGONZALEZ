@@ -48,6 +48,11 @@ class PrintDialogAbrir(QtPrintSupport.QPrintDialog):
     def __init__(self):
         super(PrintDialogAbrir, self).__init__()
 
+class CmbVenta(QtWidgets.QComboBox):
+    def __init__(self):
+        super(CmbVenta, self).__init__()
+        var.cmbventa = QtWidgets.QComboBox()
+
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -58,6 +63,7 @@ class Main(QtWidgets.QMainWindow):
         var.filedlgabrir = FileDialogAbrir()
         var.dlgImprimir = PrintDialogAbrir()
         var.dlgaviso = DialogAvisos()
+        var.cmbventa = QtWidgets.QComboBox()
         events.Eventos()
 
         '''
@@ -137,6 +143,7 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.mostrarClientes(self)
         conexion.Conexion.mostrarProducts()
         conexion.Conexion.mostrarFacturas(self)
+        var.cmbventa = QtWidgets.QComboBox()
         #ventas.Ventas.prepararTablaventas(0)
         #conexion.Conexion.cargarCmbventa()
         var.ui.tabWidget.setCurrentIndex(0)

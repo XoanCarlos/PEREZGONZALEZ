@@ -76,13 +76,11 @@ class Ventas:
         except Exception as error:
             print('Error Preparar tabla de ventas: %s ' % str(error))
 
-
     def procesoVenta(self):
         try:
             row = var.ui.tabVenta.currentRow()
             codfac = var.ui.lblNumFac.text()
-            articulo = str(var.cmbventa.currentText())
-            print(articulo)
+            articulo = var.cmbventa.currentText()
             cantidad = var.ui.tabVenta.item(row, 2).text()
             cantidad = cantidad.replace(',', '.')
             dato = conexion.Conexion.obtenCodPrec(articulo)
@@ -90,6 +88,7 @@ class Ventas:
             subtotal = round(float(cantidad)*float(dato[1]), 2)
             precio = dato[1].replace(',', '.')
             venta = [codfac, dato[0], articulo, cantidad, precio, subtotal, row]
+            print(venta)
             #sleep(1)
             if codfac != '' and articulo != '' and cantidad != '':
                 conexion.Conexion.altaVenta(venta)
@@ -108,7 +107,7 @@ class Ventas:
     def mostrarVentasfac():
         try:
             var.cmbventa = QtWidgets.QComboBox()
-            conexion.Conexion.cargarCmbventa(var.cmbventa)
+            #var.ui.tabVenta.clear()
             codfac = var.ui.lblNumFac.text()
             conexion.Conexion.listadoVentasfac(codfac)
             conexion.Conexion.cargarCmbventa(var.cmbventa)
