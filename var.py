@@ -31,6 +31,7 @@ global chkpago
 global sex
 pay = []
 pay2 = []
+venta = []
 
 '''
 variables base de datos

@@ -71,27 +71,32 @@ class Ventas:
             var.ui.tabVenta.setCellWidget(index, 1, var.cmbventa)
             var.ui.tabVenta.setItem(index, 2, QtWidgets.QTableWidgetItem())
             var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem())
-
+            var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem())
 
         except Exception as error:
             print('Error Preparar tabla de ventas: %s ' % str(error))
 
     def procesoVenta(self):
         try:
-            row = var.ui.tabVenta.currentRow()
+            var.venta = []
             codfac = var.ui.lblNumFac.text()
+            var.venta.append(int(codfac))
             articulo = var.cmbventa.currentText()
+            dato = conexion.Conexion.obtenCodPrec(articulo)
+            var.venta.append(int(dato[0]))
+            var.venta.append(articulo)
+            row = var.ui.tabVenta.currentRow()
             cantidad = var.ui.tabVenta.item(row, 2).text()
             cantidad = cantidad.replace(',', '.')
-            dato = conexion.Conexion.obtenCodPrec(articulo)
-            print(dato)
-            subtotal = round(float(cantidad)*float(dato[1]), 2)
+            var.venta.append(int(cantidad))
             precio = dato[1].replace(',', '.')
-            venta = [codfac, dato[0], articulo, cantidad, precio, subtotal, row]
-            print(venta)
+            var.venta.append(round(float(precio),2))
+            subtotal = round(float(cantidad)*float(dato[1]), 2)
+            var.venta.append(subtotal)
+            var.venta.append(row)
             #sleep(1)
             if codfac != '' and articulo != '' and cantidad != '':
-                conexion.Conexion.altaVenta(venta)
+                conexion.Conexion.altaVenta()
                 var.subfac = round(float(subtotal) + float(var.subfac),2)
                 var.ui.lblSubtotal.setText(str(var.subfac))
                 var.iva = round(float(var.subfac) * 0.21, 2)
@@ -120,7 +125,7 @@ class Ventas:
             fila = var.ui.tabVenta.selectedItems()
             if fila:
                 fila = [dato.text() for dato in fila]
-            codventa = str(fila[0])
+            codventa = int(fila[0])
             conexion.Conexion.anulaVenta(codventa)
             Ventas.mostrarVentasfac()
 

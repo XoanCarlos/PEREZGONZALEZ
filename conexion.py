@@ -379,21 +379,21 @@ class Conexion():
                 dato = [str(query.value(0)), str(query.value(1))]
         return dato
 
-    def altaVenta(venta):
+    def altaVenta():
         query = QtSql.QSqlQuery()
         query.prepare('insert into ventas (codfacventa, codarticventa, cantidad, precio) VALUES (:codfacventa, :codarticventa,'
                       ' :cantidad, :precio )')
-        query.bindValue(':codfacventa', str(venta[0]))
-        query.bindValue(':codarticventa', str(venta[1]))
-        query.bindValue(':cantidad', str(venta[3]))
-        query.bindValue(':precio', str(venta[4]))
-        row = int(ventas[6])
+        query.bindValue(':codfacventa', int(var.venta[0]))
+        query.bindValue(':codarticventa', int(var.venta[1]))
+        query.bindValue(':cantidad', int(var.venta[3]))
+        query.bindValue(':precio', float(var.venta[4]))
+        row = var.ui.tabVenta.currentRow()
         if query.exec_():
             var.ui.lblstatus.setText('Venta Realizada')
-            var.ui.tabVenta.setItem(row, 1, QtWidgets.QTableWidgetItem(str(venta[2])))
-            var.ui.tabVenta.setItem(row, 2, QtWidgets.QTableWidgetItem(str(venta[3])))
-            var.ui.tabVenta.setItem(row, 3, QtWidgets.QTableWidgetItem(str(venta[4])))
-            var.ui.tabVenta.setItem(row, 4, QtWidgets.QTableWidgetItem(str(venta[5])))
+            var.ui.tabVenta.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[2])))
+            var.ui.tabVenta.setItem(row, 2, QtWidgets.QTableWidgetItem(str(var.venta[3])))
+            var.ui.tabVenta.setItem(row, 3, QtWidgets.QTableWidgetItem(str(var.venta[4])))
+            var.ui.tabVenta.setItem(row, 4, QtWidgets.QTableWidgetItem(str(var.venta[5])))
             row = row + 1
             var.ui.tabVenta.insertRow(row)
             var.ui.tabVenta.setCellWidget(row, 1, var.cmbventa)
@@ -406,7 +406,7 @@ class Conexion():
         print(codVenta)
         query = QtSql.QSqlQuery()
         query.prepare('delete from ventas where codventa = :codVenta')
-        query.bindValue(':codVenta', int(codVenta))
+        query.bindValue(':codVenta', codVenta)
         if query.exec_():
             var.ui.lblstatus.setText('Venta Anulada')
         else:
