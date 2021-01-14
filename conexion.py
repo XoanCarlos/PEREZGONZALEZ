@@ -403,7 +403,6 @@ class Conexion():
             print("Error alta venta: ", query.lastError().text())
 
     def anulaVenta(codVenta):
-        print(codVenta)
         query = QtSql.QSqlQuery()
         query.prepare('delete from ventas where codventa = :codVenta')
         query.bindValue(':codVenta', codVenta)

@@ -42,7 +42,7 @@ class Products():
                 print('Faltan Datos')
             #conexion.Conexion.mostrarClientes(None)
             Products.limpiarPro(producto)
-            conexion.Conexion.cargarCmbventa()
+            conexion.Conexion.cargarCmbventa(var.cmbventa)
         except Exception as error:
             print('Error cargar producto : %s ' % str(error))
 
@@ -81,9 +81,8 @@ class Products():
             for i, dato in enumerate(prod):
                 dato.setText(fila[i])
             conexion.Conexion.cargarProd(cod)
-
         except Exception as error:
-            print('Error cargar clientes: %s ' % str(error))
+            print('Error cargar productos en productos: %s ' % str(error))
 
     def bajaProd(self):
         """
