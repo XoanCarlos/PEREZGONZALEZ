@@ -13,6 +13,9 @@ class Ventas:
             if dni != '' and fecha != '':
                 conexion.Conexion.altaFac(dni, fecha, apel)
             conexion.Conexion.mostrarFacturas(self)
+            conexion.Conexion.cargarFac2(self)
+            Ventas.prepararTablaventas(0)
+
         except Exception as error:
             print('Error alta factura %s' % str(error))
             return None
@@ -72,12 +75,12 @@ class Ventas:
             var.ui.tabVenta.setItem(index, 2, QtWidgets.QTableWidgetItem())
             var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem())
             var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem())
-
         except Exception as error:
             print('Error Preparar tabla de ventas: %s ' % str(error))
 
     def procesoVenta(self):
         try:
+            var.subfac = 0.00
             var.venta = []
             codfac = var.ui.lblNumFac.text()
             var.venta.append(int(codfac))
@@ -103,6 +106,7 @@ class Ventas:
                 var.ui.lblIva.setText(str(var.iva))
                 var.fac = round(float(var.iva) + float(var.subfac), 2)
                 var.ui.lblTotal.setText(str(var.fac))
+                Ventas.mostrarVentasfac()
             else:
                var.ui.lblstatus.setText('Faltan Datos de la Factura')
 
@@ -112,7 +116,6 @@ class Ventas:
     def mostrarVentasfac():
         try:
             var.cmbventa = QtWidgets.QComboBox()
-            #var.ui.tabVenta.clear()
             codfac = var.ui.lblNumFac.text()
             conexion.Conexion.listadoVentasfac(codfac)
             conexion.Conexion.cargarCmbventa(var.cmbventa)

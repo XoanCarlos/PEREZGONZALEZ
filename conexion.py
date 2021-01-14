@@ -1,5 +1,5 @@
 from PyQt5 import QtSql
-import pymongo, var, ventas
+import pymongo, var, ventas, ventana
 from ventana import *
 
 
@@ -299,7 +299,7 @@ class Conexion():
     def mostrarFacturas(self):
         index = 0
         query = QtSql.QSqlQuery()
-        query.prepare('select codfac, fecha from facturas order by fecha desc')
+        query.prepare('select codfac, fecha from facturas order by codfac desc')
         if query.exec_():
             while query.next():
                 # cojo los valores
@@ -312,6 +312,8 @@ class Conexion():
                 var.ui.tabFac.setItem(index, 1, QtWidgets.QTableWidgetItem(str(fecha)))
                 index += 1
             Conexion.limpiarFac(self)
+            var.ui.tabFac.selectRow(0)
+            var.ui.tabFac.setFocus()
         else:
             print("Error mostrar facturas: ", query.lastError().text())
 
@@ -353,9 +355,18 @@ class Conexion():
             while query.next():
                 dni = query.value(0)
                 apel = query.value(1)
-
         var.ui.editDniclifac.setText(str(dni))
         var.ui.editApelclifac.setText(str(apel))
+
+    def cargarFac2(self):
+        query = QtSql.QSqlQuery()
+        query.prepare('select codfac, dni, fecha, apellidos from facturas ORDER BY codfac DESC LIMIT 1')
+        if query.exec_():
+            while query.next():
+                var.ui.lblNumFac.setText(str(query.value(0)))
+                var.ui.editDniclifac.setText(str(query.value(1)))
+                var.ui.editDatafac.setText(str(query.value(2)))
+                var.ui.editApelclifac.setText(str(query.value(3)))
 
     def cargarCmbventa(cmbventa):
         #var.cmbventa = QtWidgets.QComboBox()
@@ -429,13 +440,14 @@ class Conexion():
 
         """
         try:
-            index = 0
+
             var.subfac = 0.00
             query = QtSql.QSqlQuery()
             query1 = QtSql.QSqlQuery()
             query.prepare('select codventa, codarticventa, cantidad from ventas where codfacventa = :codfac')
             query.bindValue(':codfac', int(codfac))
             if query.exec_():
+                index = 0
                 while query.next():
                     codventa = query.value(0)
                     codarticventa = query.value(1)
@@ -449,15 +461,23 @@ class Conexion():
                             articulo = query1.value(0)
                             precio = query1.value(1)
                             var.ui.tabVenta.setItem(index, 1, QtWidgets.QTableWidgetItem(str(articulo)))
-                    var.ui.tabVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(str(cantidad)))
-                    subtotal = round(float(cantidad) * float(precio), 2)
-                    var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(str(precio)))
-                    var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(str(subtotal)))
+                            var.ui.tabVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(str(cantidad)))
+                            subtotal = round(float(cantidad) * float(precio), 2)
+                            var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(str(precio)))
+                            var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(str(subtotal)))
                     index += 1
                     var.subfac = round(float(subtotal) + float(var.subfac), 2)
+
+                #ventas.Ven tas.prepararTablaventas(index)
+            if int(index) > 0:
                 ventas.Ventas.prepararTablaventas(index)
-            if int(index) == 0:
-                ventas.Ventas.prepararTablaventas(index)
+                print(index)
+            else:
+                print(index)
+                var.ui.tabVenta.setRowCount(0)
+                ventas.Ventas.prepararTablaventas(0)
+
+
             var.ui.lblSubtotal.setText(str(var.subfac))
             var.iva = round(float(var.subfac) * 0.21, 2)
             var.ui.lblIva.setText(str(var.iva))
