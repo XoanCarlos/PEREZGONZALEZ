@@ -100,8 +100,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBuscafac.clicked.connect(conexion.Conexion.mostrarFacturascli)
         var.ui.btnReloadfac.clicked.connect(conexion.Conexion.mostrarFacturas)
         var.ui.btnCalendarfac.clicked.connect(ventas.Ventas.abrirCalendar)
+        var.ui.btnFacdel.clicked.connect(ventas.Ventas.borrarFactura)
         var.ui.btnAceptarventa.clicked.connect(ventas.Ventas.procesoVenta)
         var.ui.btnAnularventa.clicked.connect(ventas.Ventas.anularVenta)
+
         clients.Clientes.valoresSpin()
 
         for i in var.rbtsex:

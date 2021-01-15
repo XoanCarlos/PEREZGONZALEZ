@@ -78,6 +78,13 @@ class Ventas:
         except Exception as error:
             print('Error Preparar tabla de ventas: %s ' % str(error))
 
+    def borrarFactura(self):
+        try:
+            codfac = var.ui.lblNumFac.text()
+            conexion.Conexion.borraFac(codfac)
+        except Exception as error:
+            print('Error Borrar Factura en Cascada: %s ' % str(error))
+
     def procesoVenta(self):
         try:
             var.subfac = 0.00
@@ -121,6 +128,7 @@ class Ventas:
             conexion.Conexion.cargarCmbventa(var.cmbventa)
         except Exception as error:
             print('Error proceso mostrar ventas por factura: %s' %str(error))
+
 
 
     def anularVenta(self):

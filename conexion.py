@@ -369,7 +369,6 @@ class Conexion():
                 var.ui.editApelclifac.setText(str(query.value(3)))
 
     def cargarCmbventa(cmbventa):
-        #var.cmbventa = QtWidgets.QComboBox()
         var.cmbventa.clear()
         query = QtSql.QSqlQuery()
         var.cmbventa.addItem('')
@@ -377,8 +376,8 @@ class Conexion():
         if query.exec_():
             while query.next():
                 var.cmbventa.addItem(str(query.value(1)))
-        articulo = var.cmbventa.currentText()
-        return articulo
+        # articulo = var.cmbventa.currentText()
+        # return articulo
 
     def obtenCodPrec(articulo):
         dato = []
@@ -421,6 +420,23 @@ class Conexion():
             var.ui.lblstatus.setText('Venta Anulada')
         else:
             print("Error baja venta: ", query.lastError().text())
+
+    def borraFac(codfac):
+        query = QtSql.QSqlQuery()
+        query.prepare('delete from facturas where codfac = :codfac')
+        query.bindValue(':codfac', int(codfac))
+        if query.exec_():
+            var.ui.lblstatus.setText('Factura Anulada')
+        else:
+            print("Error anular factura en borrafac: ", query.lastError().text())
+        # query1 = QtSql.QSqlQuery()
+        # query1.prepare('delete from ventas where codfacventa = :codfac')
+        # query1.bindValue(':codfacventa', int(codfac))
+        # if query1.exec_():
+        #     var.ui.lblstatus.setText('Factura Anulada')
+        # else:
+        #     print("Error anular factura en borrafac: ", query.lastError().text())
+
 
     def listadoVentasfac(codfac):
         """
