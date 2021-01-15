@@ -293,7 +293,6 @@ class Conexion():
         query1.prepare('select max(codfac) from facturas')
         if query1.exec_():
             while query1.next():
-                print(query1.value(0))
                 var.ui.lblNumFac.setText(str(query1.value(0)))
 
     def mostrarFacturas(self):
@@ -302,20 +301,19 @@ class Conexion():
         query.prepare('select codfac, fecha from facturas order by codfac desc')
         if query.exec_():
             while query.next():
-                # cojo los valores
-                codfac = query.value(0)
-                fecha = query.value(1)
                 # crea la fila
                 var.ui.tabFac.setRowCount(index + 1)
                 # voy metiendo los datos en cada celda de la fila
-                var.ui.tabFac.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codfac)))
-                var.ui.tabFac.setItem(index, 1, QtWidgets.QTableWidgetItem(str(fecha)))
+                var.ui.tabFac.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(0))))
+                var.ui.tabFac.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(1))))
                 index += 1
             Conexion.limpiarFac(self)
             var.ui.tabFac.selectRow(0)
             var.ui.tabFac.setFocus()
         else:
             print("Error mostrar facturas: ", query.lastError().text())
+        if index == 0:
+            var.ui.tabFac.clearContents()
 
     def mostrarFacturascli(self):
         index = 0
@@ -353,10 +351,8 @@ class Conexion():
         query.bindValue(':codfac', int(cod))
         if query.exec_():
             while query.next():
-                dni = query.value(0)
-                apel = query.value(1)
-        var.ui.editDniclifac.setText(str(dni))
-        var.ui.editApelclifac.setText(str(apel))
+                var.ui.editDniclifac.setText(str(query.value(0)))
+                var.ui.editApelclifac.setText(str(query.value(1)))
 
     def cargarFac2(self):
         query = QtSql.QSqlQuery()
@@ -421,14 +417,22 @@ class Conexion():
         else:
             print("Error baja venta: ", query.lastError().text())
 
-    def borraFac(codfac):
+    def borraFac(self,codfac):
         query = QtSql.QSqlQuery()
         query.prepare('delete from facturas where codfac = :codfac')
         query.bindValue(':codfac', int(codfac))
         if query.exec_():
             var.ui.lblstatus.setText('Factura Anulada')
+            Conexion.mostrarFacturas(self)
         else:
             print("Error anular factura en borrafac: ", query.lastError().text())
+
+        query1 = QtSql.QSqlQuery()
+        query1.prepare('delete from ventas where codfacventa = :codfac')
+        query1.bindValue(':codfac', int(codfac))
+        if query1.exec_():
+            var.ui.lblstatus.setText('Factura Anulada')
+
         # query1 = QtSql.QSqlQuery()
         # query1.prepare('delete from ventas where codfacventa = :codfac')
         # query1.bindValue(':codfacventa', int(codfac))
@@ -483,17 +487,13 @@ class Conexion():
                             var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(str(subtotal)))
                     index += 1
                     var.subfac = round(float(subtotal) + float(var.subfac), 2)
-
                 #ventas.Ven tas.prepararTablaventas(index)
             if int(index) > 0:
                 ventas.Ventas.prepararTablaventas(index)
-                print(index)
             else:
                 print(index)
                 var.ui.tabVenta.setRowCount(0)
                 ventas.Ventas.prepararTablaventas(0)
-
-
             var.ui.lblSubtotal.setText(str(var.subfac))
             var.iva = round(float(var.subfac) * 0.21, 2)
             var.ui.lblIva.setText(str(var.iva))

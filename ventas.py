@@ -81,7 +81,8 @@ class Ventas:
     def borrarFactura(self):
         try:
             codfac = var.ui.lblNumFac.text()
-            conexion.Conexion.borraFac(codfac)
+            conexion.Conexion.borraFac(self, codfac)
+            Ventas.prepararTablaventas(0)
         except Exception as error:
             print('Error Borrar Factura en Cascada: %s ' % str(error))
 
@@ -128,8 +129,6 @@ class Ventas:
             conexion.Conexion.cargarCmbventa(var.cmbventa)
         except Exception as error:
             print('Error proceso mostrar ventas por factura: %s' %str(error))
-
-
 
     def anularVenta(self):
         try:
