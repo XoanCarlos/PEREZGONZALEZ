@@ -53,10 +53,9 @@ class Ventas:
             fila = var.ui.tabFac.selectedItems()
             if fila:
                 fila = [dato.text() for dato in fila]
-            codf = fila[0]
-            var.ui.lblNumFac.setText(str(codf))
+            var.ui.lblNumFac.setText(str(fila[0]))
             var.ui.editDatafac.setText(str(fila[1]))
-            conexion.Conexion.cargarFac(str(codf))
+            conexion.Conexion.cargarFac(str(fila[0]))
         except Exception as error:
             print('Error cargar Factura: %s ' % str(error))
 
@@ -124,9 +123,10 @@ class Ventas:
     def mostrarVentasfac():
         try:
             var.cmbventa = QtWidgets.QComboBox()
+            conexion.Conexion.cargarCmbventa(var.cmbventa)
             codfac = var.ui.lblNumFac.text()
             conexion.Conexion.listadoVentasfac(codfac)
-            conexion.Conexion.cargarCmbventa(var.cmbventa)
+
         except Exception as error:
             print('Error proceso mostrar ventas por factura: %s' %str(error))
 

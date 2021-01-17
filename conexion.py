@@ -372,8 +372,6 @@ class Conexion():
         if query.exec_():
             while query.next():
                 var.cmbventa.addItem(str(query.value(1)))
-        # articulo = var.cmbventa.currentText()
-        # return articulo
 
     def obtenCodPrec(articulo):
         dato = []
@@ -433,14 +431,11 @@ class Conexion():
         if query1.exec_():
             var.ui.lblstatus.setText('Factura Anulada')
 
-        # query1 = QtSql.QSqlQuery()
-        # query1.prepare('delete from ventas where codfacventa = :codfac')
-        # query1.bindValue(':codfacventa', int(codfac))
-        # if query1.exec_():
-        #     var.ui.lblstatus.setText('Factura Anulada')
-        # else:
-        #     print("Error anular factura en borrafac: ", query.lastError().text())
-
+        else:
+            print("Error anular factura en borrafac: ", query.lastError().text())
+        var.ui.lblSubtotal.setText('0.00')
+        var.ui.lblIva.setText('0.00')
+        var.ui.lblTotal.setText('0.00')
 
     def listadoVentasfac(codfac):
         """
@@ -460,7 +455,7 @@ class Conexion():
 
         """
         try:
-
+            var.ui.tabVenta.clearContents()
             var.subfac = 0.00
             query = QtSql.QSqlQuery()
             query1 = QtSql.QSqlQuery()

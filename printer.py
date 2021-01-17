@@ -3,7 +3,7 @@ from reportlab.lib.pagesizes import A4
 from PyQt5 import QtSql
 import os
 from datetime import datetime
-import var
+import var, ventana
 
 
 class Printer:
@@ -150,3 +150,54 @@ class Printer:
 
         except Exception as error:
             print('Error reporcli %s' % str(error))
+
+    def cabecerafac(codfac):
+        try:
+            var.rep.setFont('Helvetica-Bold', size=11)
+            var.rep.drawString(55, 725, 'Cliente: ')
+            var.rep.setFont('Helvetica', size=10)
+            var.rep.drawString(50, 650, 'Factura nº : %s' % str(codfac))
+            var.rep.line(45, 665, 525, 665)
+            var.rep.line(45, 640, 525, 640)
+            var.rep.setFont('Helvetica', size=10)
+            query = QtSql.QSqlQuery()
+            query.prepare('select dni, fecha from facturas where codfac = :codfac')
+            query.bindValue(':codfac', int(codfac))
+            if query.exec_():
+                while query.next():
+                    dni = str(query.value(0))
+                    var.rep.drawString(55, 710, 'DNI: %s' % str(query.value(0)))
+                    var.rep.drawString(420, 650, 'Fecha: %s' % str(query.value(1)))
+            query1 = QtSql.QSqlQuery()
+            query1.prepare('select apellidos, nombre, direccion, provincia, formaspago from clientes where dni = :dni')
+            query1.bindValue(':dni', str(dni))
+            if query1.exec_():
+                while query1.next():
+                    var.rep.drawString(55,695, str(query1.value(0)) + ', ' + str(query1.value(1)))
+                    var.rep.drawString(300,695, 'Formas de Pago: ')
+                    var.rep.drawString(55,680, str(query1.value(2)) + ' - ' + str(query1.value(3)))
+                    var.rep.drawString(300, 680, query1.value(4))
+
+        except Exception as error:
+            print('Error cabecfac %s' % str(error))
+
+    def reportFac(self):
+        try:
+            textlistado = 'FACTURA'
+            var.rep = canvas.Canvas('informes/factura.pdf', pagesize=A4)
+            Printer.cabecera(self)
+            Printer.pie(textlistado)
+            codfac = var.ui.lblNumFac.text()
+            Printer.cabecerafac(codfac)
+
+            var.rep.save()
+            rootPath = ".\\informes"
+            cont = 0
+            for file in os.listdir(rootPath):
+                if file.endswith('factura.pdf'):
+                    os.startfile("%s/%s" % (rootPath, file))
+                cont = cont + 1
+
+        except Exception as error:
+            print('Error reporfac %s' % str(error))
+
