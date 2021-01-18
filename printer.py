@@ -1,7 +1,7 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from PyQt5 import QtSql
-import os
+import os, re, string
 from datetime import datetime
 import var, ventana
 
@@ -150,7 +150,9 @@ class Printer:
 
         except Exception as error:
             print('Error reporcli %s' % str(error))
-
+    '''
+    Módulos Maquetación Factura
+    '''
     def cabecerafac(codfac):
         try:
             var.rep.setFont('Helvetica-Bold', size=11)
@@ -174,9 +176,9 @@ class Printer:
             if query1.exec_():
                 while query1.next():
                     var.rep.drawString(55,695, str(query1.value(0)) + ', ' + str(query1.value(1)))
-                    var.rep.drawString(300,695, 'Formas de Pago: ')
                     var.rep.drawString(55,680, str(query1.value(2)) + ' - ' + str(query1.value(3)))
-                    var.rep.drawString(300, 680, query1.value(4))
+                    var.rep.drawString(300, 695, 'Formas de Pago: ')
+                    var.rep.drawString(300, 680, re.sub(r'(\[)(\])', ' ', str(query.value(4))))
 
         except Exception as error:
             print('Error cabecfac %s' % str(error))
