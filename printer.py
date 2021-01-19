@@ -185,6 +185,10 @@ class Printer:
             var.rep.drawString(275, 630, temven[2])
             var.rep.drawString(360, 630,  temven[3])
             var.rep.drawString(470, 630,  temven[4])
+            var.rep.setFont('Helvetica-Bold', size=12)
+            var.rep.drawRightString(500, 160, 'Subtotal:   ' + str(var.ui.lblSubtotal.text()) + ' €')
+            var.rep.drawRightString(500, 140, 'IVA:     ' + str(var.ui.lblIva.text()) + ' €')
+            var.rep.drawRightString(500, 115, 'Total Factura: ' + str(var.ui.lblTotal.text()) + ' €')
         except Exception as error:
             print('Error cabecfac %s' % str(error))
 
