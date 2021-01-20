@@ -430,7 +430,6 @@ class Conexion():
         query1.bindValue(':codfac', int(codfac))
         if query1.exec_():
             var.ui.lblstatus.setText('Factura Anulada')
-
         else:
             print("Error anular factura en borrafac: ", query.lastError().text())
         var.ui.lblSubtotal.setText('0.00')
