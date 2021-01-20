@@ -478,8 +478,8 @@ class Conexion():
                             var.ui.tabVenta.setItem(index, 1, QtWidgets.QTableWidgetItem(str(articulo)))
                             var.ui.tabVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(str(cantidad)))
                             subtotal = round(float(cantidad) * float(precio), 2)
-                            var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(str(precio)))
-                            var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(str(subtotal)))
+                            var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(precio))))
+                            var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(subtotal))))
                     index += 1
                     var.subfac = round(float(subtotal) + float(var.subfac), 2)
                 #ventas.Ven tas.prepararTablaventas(index)
@@ -489,11 +489,11 @@ class Conexion():
                 print(index)
                 var.ui.tabVenta.setRowCount(0)
                 ventas.Ventas.prepararTablaventas(0)
-            var.ui.lblSubtotal.setText(str(var.subfac))
+            var.ui.lblSubtotal.setText("{0:.2f}".format(float(var.subfac)))
             var.iva = round(float(var.subfac) * 0.21, 2)
-            var.ui.lblIva.setText(str(var.iva))
+            var.ui.lblIva.setText("{0:.2f}".format(float(var.iva)))
             var.fac = round(float(var.iva) + float(var.subfac), 2)
-            var.ui.lblTotal.setText(str(var.fac))
+            var.ui.lblTotal.setText("{0:.2f}".format(float(var.fac)))
         except Exception as error:
             print('Error Listado de la tabla de ventas: %s ' % str(error))
 

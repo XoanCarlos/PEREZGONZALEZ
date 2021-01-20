@@ -176,7 +176,7 @@ class Printer:
                     var.rep.drawString(55,695, str(query1.value(0)) + ', ' + str(query1.value(1)))
                     var.rep.drawString(300,695, 'Formas de Pago: ')
                     var.rep.drawString(55,680, str(query1.value(2)) + ' - ' + str(query1.value(3)))
-                    var.rep.drawString(300, 680, query1.value(4))
+                    var.rep.drawString(300, 680, str(query1.value(4).strip('[]').replace('\'','').replace(',',' -')))  #\ caracter escape indica que lo siguiente tiene un significado especial
             var.rep.line(45, 625, 525, 625)
             var.rep.setFont('Helvetica-Bold', size=10)
             temven = ['CodVenta', 'Artículo', 'Cantidad', 'Precio-Unidad(€)', 'Subtotal(€)']
@@ -185,6 +185,10 @@ class Printer:
             var.rep.drawString(275, 630, temven[2])
             var.rep.drawString(360, 630,  temven[3])
             var.rep.drawString(470, 630,  temven[4])
+            var.rep.setFont('Helvetica-Bold', size=12)
+            var.rep.drawRightString(500, 160, 'Subtotal:   ' + "{0:.2f}".format(float(var.ui.lblSubtotal.text())) + ' €')
+            var.rep.drawRightString(500, 140, 'IVA:     ' + "{0:.2f}".format(float(var.ui.lblIva.text())) + ' €')
+            var.rep.drawRightString(500, 115, 'Total Factura: ' + "{0:.2f}".format(float(var.ui.lblTotal.text())) + ' €')
         except Exception as error:
             print('Error cabecfac %s' % str(error))
 
@@ -215,9 +219,9 @@ class Printer:
                     var.rep.drawString(i, j, str(query.value(0)))
                     var.rep.drawString(i + 90, j, str(query.value(1)))
                     var.rep.drawRightString(i + 245, j, str(query.value(2)))
-                    var.rep.drawRightString(i + 355, j, str(query.value(3)))
+                    var.rep.drawRightString(i + 355, j, "{0:.2f}".format(float(query.value(3))))
                     subtotal = round(float(query.value(2)) * float(query.value(3)),2)
-                    var.rep.drawRightString(i+450, j, str(subtotal) + ' €')
+                    var.rep.drawRightString(i+450, j, "{0:.2f}".format(float(subtotal)) + ' €')
                     j = j - 20
 
             var.rep.save()
