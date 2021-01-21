@@ -27,7 +27,7 @@ class Products():
         try:
             newpro = []
             #protab = []  #será lo que carguemos en la tablas
-            producto = [var.ui.editArtic, var.ui.editPrec, var.ui.editStock ]
+            producto = [var.ui.editArtic, var.ui.editPrec, var.ui.editStock]
             k = 0
             for i in producto:
                 newpro.append(i.text())  #cargamos los valores que hay en los editline
@@ -73,7 +73,7 @@ class Products():
         '''
         try:
             fila = var.ui.tableProd.selectedItems()
-            prod = [ var.ui.editArtic, var.ui.editPrec, var.ui.editStock ]
+            prod = [var.ui.editArtic, var.ui.editPrec, var.ui.editStock]
             if fila:
                 fila = [dato.text() for dato in fila]
             i = 1

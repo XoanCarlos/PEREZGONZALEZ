@@ -1,7 +1,7 @@
 import var
 import conexion
-from PyQt5 import QtWidgets, QtCore
-from time import sleep
+from PyQt5 import QtWidgets
+
 
 class Ventas:
 
@@ -100,14 +100,14 @@ class Ventas:
             cantidad = cantidad.replace(',', '.')
             var.venta.append(int(cantidad))
             precio = dato[1].replace(',', '.')
-            var.venta.append(round(float(precio),2))
+            var.venta.append(round(float(precio), 2))
             subtotal = round(float(cantidad)*float(dato[1]), 2)
             var.venta.append(subtotal)
             var.venta.append(row)
             #sleep(1)
             if codfac != '' and articulo != '' and cantidad != '':
                 conexion.Conexion.altaVenta()
-                var.subfac = round(float(subtotal) + float(var.subfac),2)
+                var.subfac = round(float(subtotal) + float(var.subfac), 2)
                 var.ui.lblSubtotal.setText(str(var.subfac))
                 var.iva = round(float(var.subfac) * 0.21, 2)
                 var.ui.lblIva.setText(str(var.iva))

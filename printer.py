@@ -3,7 +3,7 @@ from reportlab.lib.pagesizes import A4
 from PyQt5 import QtSql
 import os
 from datetime import datetime
-import var, ventana
+import var
 
 
 class Printer:
@@ -72,7 +72,7 @@ class Printer:
                 j = 690 #valores del eje Y
                 while query.next():
                      if j <= 80:
-                         var.rep.drawString(440,70,'Página siguiente...')
+                         var.rep.drawString(440, 70, 'Página siguiente...')
                          var.rep.showPage()
                          Printer.cabecera(self)
                          Printer.pie(textlistado)
@@ -81,10 +81,10 @@ class Printer:
                          j = 690
                      var.rep.setFont('Helvetica', size=10)
                      var.rep.drawString(i, j, str(query.value(0)))
-                     var.rep.drawString(i+30, j, str(query.value(1)))
-                     var.rep.drawString(i+130, j, str(query.value(2)))
-                     var.rep.drawString(i+275, j, str(query.value(3)))
-                     var.rep.drawRightString(i+465, j, str(query.value(4)))
+                     var.rep.drawString(i + 30, j, str(query.value(1)))
+                     var.rep.drawString(i + 130, j, str(query.value(2)))
+                     var.rep.drawString(i + 275, j, str(query.value(3)))
+                     var.rep.drawRightString(i + 465, j, str(query.value(4)))
                      j=j-25
 
             var.rep.save()
@@ -173,22 +173,24 @@ class Printer:
             query1.bindValue(':dni', str(dni))
             if query1.exec_():
                 while query1.next():
-                    var.rep.drawString(55,695, str(query1.value(0)) + ', ' + str(query1.value(1)))
-                    var.rep.drawString(300,695, 'Formas de Pago: ')
-                    var.rep.drawString(55,680, str(query1.value(2)) + ' - ' + str(query1.value(3)))
-                    var.rep.drawString(300, 680, str(query1.value(4).strip('[]').replace('\'','').replace(',',' -')))  #\ caracter escape indica que lo siguiente tiene un significado especial
+                    var.rep.drawString(55, 695, str(query1.value(0)) + ', ' + str(query1.value(1)))
+                    var.rep.drawString(300, 695, 'Formas de Pago: ')
+                    var.rep.drawString(55, 680, str(query1.value(2)) + ' - ' + str(query1.value(3)))
+                    var.rep.drawString(300, 680, str(query1.value(4).strip('[]').replace('\'', '').replace(',', ' -')))  #\ caracter escape indica que lo siguiente tiene un significado especial
             var.rep.line(45, 625, 525, 625)
             var.rep.setFont('Helvetica-Bold', size=10)
             temven = ['CodVenta', 'Artículo', 'Cantidad', 'Precio-Unidad(€)', 'Subtotal(€)']
             var.rep.drawString(50, 630, temven[0])
             var.rep.drawString(140, 630, temven[1])
             var.rep.drawString(275, 630, temven[2])
-            var.rep.drawString(360, 630,  temven[3])
-            var.rep.drawString(470, 630,  temven[4])
+            var.rep.drawString(360, 630, temven[3])
+            var.rep.drawString(470, 630, temven[4])
             var.rep.setFont('Helvetica-Bold', size=12)
-            var.rep.drawRightString(500, 160, 'Subtotal:   ' + "{0:.2f}".format(float(var.ui.lblSubtotal.text())) + ' €')
+            var.rep.drawRightString(500, 160, 'Subtotal:   ' + "{0:.2f}".format(float(
+                var.ui.lblSubtotal.text())) + ' €')
             var.rep.drawRightString(500, 140, 'IVA:     ' + "{0:.2f}".format(float(var.ui.lblIva.text())) + ' €')
-            var.rep.drawRightString(500, 115, 'Total Factura: ' + "{0:.2f}".format(float(var.ui.lblTotal.text())) + ' €')
+            var.rep.drawRightString(500, 115, 'Total Factura: ' + "{0:.2f}".format(float(
+                var.ui.lblTotal.text())) + ' €')
         except Exception as error:
             print('Error cabecfac %s' % str(error))
 
@@ -221,7 +223,7 @@ class Printer:
                     var.rep.drawRightString(i + 245, j, str(query.value(2)))
                     var.rep.drawRightString(i + 355, j, "{0:.2f}".format(float(query.value(3))))
                     subtotal = round(float(query.value(2)) * float(query.value(3)),2)
-                    var.rep.drawRightString(i+450, j, "{0:.2f}".format(float(subtotal)) + ' €')
+                    var.rep.drawRightString(i + 450, j, "{0:.2f}".format(float(subtotal)) + ' €')
                     j = j - 20
 
             var.rep.save()

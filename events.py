@@ -46,7 +46,7 @@ class Eventos():
             fecha = fecha.strftime('%Y.%m.%d.%H.%M.%S')
             var.copia = (str(fecha) + '_backup.zip')
             option = QtWidgets.QFileDialog.Options()
-            directorio, filename = var.filedlgabrir.getSaveFileName(None,'Guardar Copia',var.copia,'.zip',options=option)
+            directorio, filename = var.filedlgabrir.getSaveFileName(None, 'Guardar Copia', var.copia, '.zip', options=option)
             if var.filedlgabrir.Accepted and filename != '':
                 fichzip = zipfile.ZipFile(var.copia, 'w')
                 fichzip.write(var.filebd, os.path.basename(var.filebd), zipfile.ZIP_DEFLATED)

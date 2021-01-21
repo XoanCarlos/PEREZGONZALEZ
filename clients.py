@@ -1,7 +1,7 @@
 import conexion, clients
 from venavisos import *
 import var
-import events
+
 
 class Clientes():
     """
@@ -55,7 +55,7 @@ class Clientes():
     def selSexo(self):
         try:
             if var.ui.rbtFem.isChecked():
-                var.sex =  'Mujer'
+                var.sex = 'Mujer'
             if var.ui.rbtMasc.isChecked():
                 var.sex = 'Hombre'
         except Exception as error:
@@ -178,7 +178,7 @@ class Clientes():
         '''
         try:
             fila = var.ui.tableCli.selectedItems()
-            client = [ var.ui.editDni, var.ui.editApel, var.ui.editNome ]
+            client = [var.ui.editDni, var.ui.editApel, var.ui.editNome]
             if fila:
                 fila = [dato.text() for dato in fila]
             i = 0
