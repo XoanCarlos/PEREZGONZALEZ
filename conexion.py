@@ -1,4 +1,4 @@
-from PyQt5 import QtSql
+from PyQt5 import QtSql, QtCore
 import var, ventas
 from ventana import *
 
@@ -222,7 +222,7 @@ class Conexion():
                 # voy metiendo los datos en cada celda de la fila
                 var.ui.tableProd.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
                 var.ui.tableProd.setItem(index, 1, QtWidgets.QTableWidgetItem(producto))
-                var.ui.tableProd.setItem(index, 2, QtWidgets.QTableWidgetItem(str(precio)))
+                var.ui.tableProd.setItem(index, 2, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(precio))+ ' €'))
                 index += 1
         else:
             print("Error mostrar clientes: ", query.lastError().text())
@@ -477,8 +477,8 @@ class Conexion():
                             var.ui.tabVenta.setItem(index, 1, QtWidgets.QTableWidgetItem(str(articulo)))
                             var.ui.tabVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(str(cantidad)))
                             subtotal = round(float(cantidad) * float(precio), 2)
-                            var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(precio))))
-                            var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(subtotal))))
+                            var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(precio)) + ' €'))
+                            var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(subtotal))+ ' €'))
                     index += 1
                     var.subfac = round(float(subtotal) + float(var.subfac), 2)
                 #ventas.Ven tas.prepararTablaventas(index)
