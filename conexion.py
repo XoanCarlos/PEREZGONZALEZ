@@ -41,7 +41,7 @@ class Conexion():
         else:
             print("Error: ", query.lastError().text())
 
-    def cargarCliente():
+    def cargarCliente(self):
         '''
         Módulo que carga el resto de widgets con los datos del cliente dni
         :return: None

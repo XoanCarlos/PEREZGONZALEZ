@@ -108,8 +108,9 @@ class Clientes():
         except Exception as error:
             print('Error cargar fecha: %s ' % str(error))
 
-    def altaCliente(self):  #SE EJECUTA CON EL BOTÓN ACEPTAR
+    def altaCliente(self):
         '''
+        SE EJECUTA CON EL BOTÓN ACEPTAR
         cargará los clientes en la tabla y en la base de datos
         cargará datos cliente en el resto widgets
         en las búsquedas mostrará los datos del cliente
@@ -128,7 +129,7 @@ class Clientes():
                     k += 1
             newcli.append(vpro)
             newcli.append(var.sex)
-            var.pay2 = Clientes.selPago()
+            var.pay2 = Clientes.selPago
             newcli.append(var.pay2)
             edad = var.ui.spinEdad.value()
             newcli.append(edad)
@@ -170,12 +171,12 @@ class Clientes():
         except Exception as error:
             print('Error limpiar widgets: %s ' % str(error))
 
-    def cargarCli():
-        '''
+    def cargarCli(self):
+        """
         carga en widgets formulario cliente los datos
         elegidos en la tabla
         :return: none
-        '''
+        """
         try:
             fila = var.ui.tableCli.selectedItems()
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome]
@@ -188,7 +189,7 @@ class Clientes():
                     var.ui.editDniclifac.setText(fila[0])
                 if i == 1:
                     var.ui.editApelclifac.setText(fila[1])
-            conexion.Conexion.cargarCliente()
+            conexion.Conexion.cargarCliente(self)
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
 
@@ -208,8 +209,7 @@ class Clientes():
 
     def modifCliente(self):
         """Módulos para modificar datos de un cliente con determinado código
-
-        :return: None
+           :return: None
         """
         try:
             newdata = []
@@ -218,7 +218,7 @@ class Clientes():
                 newdata.append(i.text())  # cargamos los valores que hay en los editline
             newdata.append(var.ui.cmbProv.currentText())
             newdata.append(var.sex)
-            var.pay = Clientes.selPago()
+            var.pay = Clientes.selPago
             newdata.append(var.pay)
             edad = var.ui.spinEdad.value()
             newdata.append(edad)
