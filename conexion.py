@@ -440,6 +440,7 @@ class Conexion():
         """
 
         Módulo que lista las ventas contenidaa en una factura
+
         :param codfac: valor factura a la que se incluirán las líneas de venta
         :type codfac: int
 
