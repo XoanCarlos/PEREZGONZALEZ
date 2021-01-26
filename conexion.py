@@ -476,7 +476,6 @@ class Conexion():
                     if query1.exec_():
                         while query1.next():
                             articulo = query1.value(0)
-                            print(articulo)
                             precio = query1.value(1)
                             var.ui.tabVenta.setItem(index, 1, QtWidgets.QTableWidgetItem(str(articulo)))
                             var.ui.tabVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(str(cantidad)))
