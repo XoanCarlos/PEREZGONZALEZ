@@ -103,10 +103,10 @@ class Printer:
             textlistado = 'LISTADO DE PRODUCTOS'
             var.rep.drawString(255, 735, textlistado)
             var.rep.line(45, 730, 525, 730)
-            itempro = ['Código', 'NOMBRE', 'PRECIO (€)', 'STOCK']
+            itempro = ['Código', 'NOMBRE', 'PRECIO (€/kg)', 'STOCK (kg)']
             var.rep.drawString(45, 710, itempro[0])
             var.rep.drawString(170, 710, itempro[1])
-            var.rep.drawString(350, 710, itempro[2])
+            var.rep.drawString(340, 710, itempro[2])
             var.rep.drawString(475, 710, itempro[3])
             var.rep.line(45, 703, 525, 703)
         except Exception as error:
@@ -137,7 +137,7 @@ class Printer:
                      var.rep.setFont('Helvetica', size=10)
                      var.rep.drawString(i, j, str(query.value(0)))
                      var.rep.drawString(i + 100, j, str(query.value(1)))
-                     var.rep.drawRightString(i + 325, j, str(query.value(2)))
+                     var.rep.drawRightString(i + 325, j, str(query.value(2))+ ' €')
                      var.rep.drawRightString(i + 450, j, str(query.value(3)))
                      j = j - 25
             var.rep.save()
@@ -219,7 +219,8 @@ class Printer:
                         j = 600
                     var.rep.setFont('Helvetica', size=10)
                     var.rep.drawString(i, j, str(query.value(0)))
-                    var.rep.drawString(i + 90, j, str(query.value(1)))
+                    articulo = Printer.artLinVenta(str(query.value(1)))
+                    var.rep.drawString(i + 85, j, str(articulo))
                     var.rep.drawRightString(i + 245, j, str(query.value(2)))
                     var.rep.drawRightString(i + 355, j, "{0:.2f}".format(float(query.value(3))))
                     subtotal = round(float(query.value(2)) * float(query.value(3)),2)
@@ -237,3 +238,15 @@ class Printer:
         except Exception as error:
             print('Error reporfac %s' % str(error))
 
+    def artLinVenta(codigo):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('select producto from productos where codigo = :codigo')
+            query.bindValue(':codigo', int(codigo))
+            if query.exec_():
+                while query.next():
+                    articulo = query.value(0)
+            return articulo
+
+        except Exception as error:
+            print('Error artículo según código:  %s ' % str(error))

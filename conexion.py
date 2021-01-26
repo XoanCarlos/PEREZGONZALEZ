@@ -223,6 +223,8 @@ class Conexion():
                 var.ui.tableProd.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codigo)))
                 var.ui.tableProd.setItem(index, 1, QtWidgets.QTableWidgetItem(producto))
                 var.ui.tableProd.setItem(index, 2, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(precio))+ ' €'))
+                var.ui.tableProd.item(index, 0).setTextAlignment(QtCore.Qt.AlignCenter)
+                var.ui.tableProd.item(index, 2).setTextAlignment(QtCore.Qt.AlignRight)
                 index += 1
         else:
             print("Error mostrar clientes: ", query.lastError().text())
@@ -474,12 +476,18 @@ class Conexion():
                     if query1.exec_():
                         while query1.next():
                             articulo = query1.value(0)
+                            print(articulo)
                             precio = query1.value(1)
                             var.ui.tabVenta.setItem(index, 1, QtWidgets.QTableWidgetItem(str(articulo)))
                             var.ui.tabVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(str(cantidad)))
                             subtotal = round(float(cantidad) * float(precio), 2)
                             var.ui.tabVenta.setItem(index, 3, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(precio)) + ' €'))
                             var.ui.tabVenta.setItem(index, 4, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(subtotal))+ ' €'))
+                            var.ui.tabVenta.item(index,0).setTextAlignment(QtCore.Qt.AlignCenter)
+                            var.ui.tabVenta.item(index, 2).setTextAlignment(QtCore.Qt.AlignCenter)
+                            var.ui.tabVenta.item(index, 3).setTextAlignment(QtCore.Qt.AlignCenter)
+                            var.ui.tabVenta.item(index, 4).setTextAlignment(QtCore.Qt.AlignRight)
+
                     index += 1
                     var.subfac = round(float(subtotal) + float(var.subfac), 2)
                 #ventas.Ven tas.prepararTablaventas(index)
@@ -496,6 +504,16 @@ class Conexion():
             var.ui.lblTotal.setText("{0:.2f}".format(float(var.fac)))
         except Exception as error:
             print('Error Listado de la tabla de ventas: %s ' % str(error))
+
+
+    # def artFact(articulo):
+    #     try:
+    #
+    #
+    #     except Exception as error:
+    #         print('Error artículo según código:  %s ' % str(error))
+
+
 
 # class Conexion():
 #     HOST = 'localhost'

@@ -1,4 +1,4 @@
-from PyQt5 import QtPrintSupport
+from PyQt5 import QtPrintSupport, QtCore
 from ventana import *
 from vensalir import *
 from venavisos import *
