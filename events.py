@@ -105,6 +105,24 @@ class Eventos():
         except Exception as error:
             print('Error mostrar aviso: %s ' % str(error))
 
+    def restaurarBD(self):
+        try:
+            option = QtWidgets.QFileDialog.Options()
+            filename = var.filedlgabrir.getOpenFileName(None, 'Restaurar Copia de Seguridade','','*.zip;;All Files', options= option)
+            if var.filedlgabrir.Accepted and filename != '':
+                file = filename[0]
+                with zipfile.ZipFile(str(file),'r') as bbdd:
+                    bbdd.extractall(pwd=None)
+                bbdd.close()
+            conexion.Conexion.db_connect(var.filebd)
+            conexion.Conexion.mostrarClientes(self)
+            conexion.Conexion.mostrarProducts(self)
+            conexion.Conexion.mostrarFacturas(self)
+            var.ui.lblstatus.setText('COPIA DE SEGURIDAD RESTAURDA')
+        except Exception as error:
+            print('Error restaurar base de datos: %s '  % str(error))
+
+
     # def mostrarAvisobackup():
     #     try:
     #         var.cliente = False
