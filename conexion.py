@@ -198,9 +198,9 @@ class Conexion():
         query.bindValue(':stock', int(producto[2]))
         if query.exec_():
             var.ui.lblstatus.setText('Alta Producto ' + str(producto[0]))
-        Conexion.mostrarProducts()
+        Conexion.mostrarProducts(self)
 
-    def mostrarProducts():
+    def mostrarProducts(self):
         '''
         Carga los datos principales del productos la tabla
         se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un producto
@@ -256,7 +256,7 @@ class Conexion():
             var.ui.lblstatus.setText('Producto de còdigo ' + cod + ' dado de baja')
         else:
             print("Error baja producto: ", query.lastError().text())
-        Conexion.mostrarProducts()
+        Conexion.mostrarProducts(self)
 
     def modificarPro(cod, newdata):
         ''''

@@ -1045,6 +1045,11 @@ class Ui_venPrincipal(object):
         self.menubarReportFac.setObjectName("menubarReportFac")
         self.menubarReportPro = QtWidgets.QAction(venPrincipal)
         self.menubarReportPro.setObjectName("menubarReportPro")
+        self.toolbarRestaurarBBDD = QtWidgets.QAction(venPrincipal)
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap("img/restaurarbd.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.toolbarRestaurarBBDD.setIcon(icon9)
+        self.toolbarRestaurarBBDD.setObjectName("toolbarRestaurarBBDD")
         self.menuArchivo.addAction(self.actionAbrir)
         self.menuArchivo.addAction(self.actionImprimer)
         self.menuArchivo.addSeparator()
@@ -1058,6 +1063,7 @@ class Ui_venPrincipal(object):
         self.toolBar.addAction(self.toolbarAbrirDir)
         self.toolBar.addAction(self.toolbarPrinter)
         self.toolBar.addAction(self.toolbarBackup)
+        self.toolBar.addAction(self.toolbarRestaurarBBDD)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.toolbarSalir)
 
@@ -1161,7 +1167,10 @@ class Ui_venPrincipal(object):
         self.menubarReportCli.setText(_translate("venPrincipal", "Listado Clientes"))
         self.menubarReportFac.setText(_translate("venPrincipal", "Imprimir Factura"))
         self.menubarReportPro.setText(_translate("venPrincipal", "Listado Productos"))
+        self.toolbarRestaurarBBDD.setText(_translate("venPrincipal", "Restaurar BBDD"))
+        self.toolbarRestaurarBBDD.setToolTip(_translate("venPrincipal", "<html><head/><body><p><img src=\":/newPrefix/restaurarbd.png\"/></p></body></html>"))
 import abrirdirectorio_rc
+import icorestaurabd_rc
 import logo_rc
 import toolbarbackup_rc
 import toolbarprinter_rc

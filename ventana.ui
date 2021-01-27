@@ -2007,6 +2007,7 @@ text-align:center;</string>
    <addaction name="toolbarAbrirDir"/>
    <addaction name="toolbarPrinter"/>
    <addaction name="toolbarBackup"/>
+   <addaction name="toolbarRestaurarBBDD"/>
    <addaction name="separator"/>
    <addaction name="toolbarSalir"/>
   </widget>
@@ -2110,9 +2111,22 @@ text-align:center;</string>
     <string>Listado Productos</string>
    </property>
   </action>
+  <action name="toolbarRestaurarBBDD">
+   <property name="icon">
+    <iconset>
+     <normaloff>img/restaurarbd.png</normaloff>img/restaurarbd.png</iconset>
+   </property>
+   <property name="text">
+    <string>Restaurar BBDD</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/restaurarbd.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="img/logo.qrc"/>
+  <include location="img/icorestaurabd.qrc"/>
   <include location="img/abrirdirectorio.qrc"/>
   <include location="img/toolbarprinter.qrc"/>
   <include location="img/toolbarsalir.qrc"/>
@@ -2120,11 +2134,11 @@ text-align:center;</string>
  </resources>
  <connections/>
  <buttongroups>
+  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>
