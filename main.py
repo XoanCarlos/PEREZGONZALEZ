@@ -120,6 +120,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tabFac.clicked.connect(ventas.Ventas.cargarFact)
         var.ui.tabFac.clicked.connect(ventas.Ventas.mostrarVentasfac)
         var.ui.tabFac.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+
         var.ui.tabVenta.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         events.Eventos.cargarProv(self)
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
