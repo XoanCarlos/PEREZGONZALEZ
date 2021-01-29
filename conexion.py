@@ -198,7 +198,7 @@ class Conexion():
         query.bindValue(':stock', int(producto[2]))
         if query.exec_():
             var.ui.lblstatus.setText('Alta Producto ' + str(producto[0]))
-        Conexion.mostrarProducts(self)
+        Conexion.mostrarProducts()
 
     def mostrarProducts(self):
         '''
@@ -227,7 +227,7 @@ class Conexion():
                 var.ui.tableProd.item(index, 2).setTextAlignment(QtCore.Qt.AlignRight)
                 index += 1
         else:
-            print("Error mostrar clientes: ", query.lastError().text())
+            print("Error mostrar productos: ", query.lastError().text())
 
     def cargarProd(cod):
         '''
@@ -256,7 +256,7 @@ class Conexion():
             var.ui.lblstatus.setText('Producto de còdigo ' + cod + ' dado de baja')
         else:
             print("Error baja producto: ", query.lastError().text())
-        Conexion.mostrarProducts(self)
+        Conexion.mostrarProducts()
 
     def modificarPro(cod, newdata):
         ''''

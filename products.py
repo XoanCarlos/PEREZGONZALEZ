@@ -44,7 +44,7 @@ class Products():
             Products.limpiarPro(producto)
             conexion.Conexion.cargarCmbventa(var.cmbventa)
         except Exception as error:
-            print('Error cargar producto : %s ' % str(error))
+            print('Error cargar producto en alta : %s ' % str(error))
 
 
     def modifPro(self):
@@ -59,7 +59,7 @@ class Products():
                 newdata.append(i.text())  # cargamos los valores que hay en los editline
             cod = var.ui.lblCodPro.text()
             conexion.Conexion.modificarPro(cod, newdata)
-            conexion.Conexion.mostrarProducts()
+            conexion.Conexion.mostrarProducts(self)
             conexion.Conexion.cargarCmbventa()
 
         except Exception as error:
@@ -94,7 +94,7 @@ class Products():
             conexion.Conexion.bajaPro(cod)
             Products.limpiarPro(self)
             var.dlgaviso.hide()
-            conexion.Conexion.mostrarProducts()
+            conexion.Conexion.mostrarProducts(self)
             conexion.Conexion.cargarCmbventa()
         except Exception as error:
             print('Error ventana baja producto: %s ' % str(error))
