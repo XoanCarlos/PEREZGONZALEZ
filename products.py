@@ -27,7 +27,7 @@ class Products():
         try:
             newpro = []
             #protab = []  #será lo que carguemos en la tablas
-            producto = [var.ui.editArtic, var.ui.editPrec, var.ui.editStock ]
+            producto = [var.ui.editArtic, var.ui.editPrec, var.ui.editStock]
             k = 0
             for i in producto:
                 newpro.append(i.text())  #cargamos los valores que hay en los editline
@@ -42,8 +42,9 @@ class Products():
                 print('Faltan Datos')
             #conexion.Conexion.mostrarClientes(None)
             Products.limpiarPro(producto)
+            conexion.Conexion.cargarCmbventa(var.cmbventa)
         except Exception as error:
-            print('Error cargar producto : %s ' % str(error))
+            print('Error cargar producto en alta : %s ' % str(error))
 
 
     def modifPro(self):
@@ -58,7 +59,8 @@ class Products():
                 newdata.append(i.text())  # cargamos los valores que hay en los editline
             cod = var.ui.lblCodPro.text()
             conexion.Conexion.modificarPro(cod, newdata)
-            conexion.Conexion.mostrarProducts()
+            conexion.Conexion.mostrarProducts(self)
+            conexion.Conexion.cargarCmbventa()
 
         except Exception as error:
             print('Error modificar producto: %s ' % str(error))
@@ -71,7 +73,7 @@ class Products():
         '''
         try:
             fila = var.ui.tableProd.selectedItems()
-            prod = [ var.ui.editArtic, var.ui.editPrec, var.ui.editStock ]
+            prod = [var.ui.editArtic, var.ui.editPrec, var.ui.editStock]
             if fila:
                 fila = [dato.text() for dato in fila]
             i = 1
@@ -80,7 +82,7 @@ class Products():
                 dato.setText(fila[i])
             conexion.Conexion.cargarProd(cod)
         except Exception as error:
-            print('Error cargar clientes: %s ' % str(error))
+            print('Error cargar productos en productos: %s ' % str(error))
 
     def bajaProd(self):
         """
@@ -92,6 +94,7 @@ class Products():
             conexion.Conexion.bajaPro(cod)
             Products.limpiarPro(self)
             var.dlgaviso.hide()
-            conexion.Conexion.mostrarProducts()
+            conexion.Conexion.mostrarProducts(self)
+            conexion.Conexion.cargarCmbventa()
         except Exception as error:
             print('Error ventana baja producto: %s ' % str(error))

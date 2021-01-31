@@ -46,7 +46,7 @@ class Eventos():
             fecha = fecha.strftime('%Y.%m.%d.%H.%M.%S')
             var.copia = (str(fecha) + '_backup.zip')
             option = QtWidgets.QFileDialog.Options()
-            directorio, filename = var.filedlgabrir.getSaveFileName(None,'Guardar Copia',var.copia,'.zip',options=option)
+            directorio, filename = var.filedlgabrir.getSaveFileName(None, 'Guardar Copia', var.copia, '.zip', options=option)
             if var.filedlgabrir.Accepted and filename != '':
                 fichzip = zipfile.ZipFile(var.copia, 'w')
                 fichzip.write(var.filebd, os.path.basename(var.filebd), zipfile.ZIP_DEFLATED)
@@ -104,6 +104,24 @@ class Eventos():
             var.dlgaviso.show()
         except Exception as error:
             print('Error mostrar aviso: %s ' % str(error))
+
+    def restaurarBD(self):
+        try:
+            option = QtWidgets.QFileDialog.Options()
+            filename = var.filedlgabrir.getOpenFileName(None, 'Restaurar Copia de Seguridade','','*.zip;;All Files', options= option)
+            if var.filedlgabrir.Accepted and filename != '':
+                file = filename[0]
+                with zipfile.ZipFile(str(file),'r') as bbdd:
+                    bbdd.extractall(pwd=None)
+                bbdd.close()
+            conexion.Conexion.db_connect(var.filebd)
+            conexion.Conexion.mostrarClientes(self)
+            conexion.Conexion.mostrarProducts(self)
+            conexion.Conexion.mostrarFacturas(self)
+            var.ui.lblstatus.setText('COPIA DE SEGURIDAD RESTAURDA')
+        except Exception as error:
+            print('Error restaurar base de datos: %s '  % str(error))
+
 
     # def mostrarAvisobackup():
     #     try:

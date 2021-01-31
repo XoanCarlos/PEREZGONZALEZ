@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import var
+
 
 class Ui_dlgAvisos(object):
     def setupUi(self, dlgAvisos):
@@ -32,15 +32,16 @@ class Ui_dlgAvisos(object):
         self.btnCancelaviso.setGeometry(QtCore.QRect(210, 160, 75, 23))
         self.btnCancelaviso.setObjectName("btnCancelaviso")
         self.btnboxAceptCancel.addButton(self.btnCancelaviso)
-        var.lblMensaviso = QtWidgets.QLabel(dlgAvisos)
-        var.lblMensaviso.setGeometry(QtCore.QRect(90, 100, 221, 20))
+        self.lblMensaviso = QtWidgets.QLabel(dlgAvisos)
+        self.lblMensaviso.setGeometry(QtCore.QRect(90, 100, 221, 20))
         font = QtGui.QFont()
         font.setPointSize(9)
         font.setBold(True)
         font.setWeight(75)
-        var.lblMensaviso.setFont(font)
-        var.lblMensaviso.setAlignment(QtCore.Qt.AlignCenter)
-        var.lblMensaviso.setObjectName("lblMensaviso")
+        self.lblMensaviso.setFont(font)
+        self.lblMensaviso.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblMensaviso.setObjectName("lblMensaviso")
+
         self.retranslateUi(dlgAvisos)
         QtCore.QMetaObject.connectSlotsByName(dlgAvisos)
 
@@ -49,5 +50,5 @@ class Ui_dlgAvisos(object):
         dlgAvisos.setWindowTitle(_translate("dlgAvisos", "Aviso"))
         self.btnAceptaviso.setText(_translate("dlgAvisos", "Aceptar"))
         self.btnCancelaviso.setText(_translate("dlgAvisos", "Cancelar"))
-        var.lblMensaviso.setText(_translate("dlgAvisos", "¿Esta seguro que desea eliminar?"))
+        self.lblMensaviso.setText(_translate("dlgAvisos", "¿Esta seguro que desea elimiinar?"))
 import avisos_rc
