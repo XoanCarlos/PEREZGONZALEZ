@@ -74,6 +74,7 @@ class Conexion():
 
     def mostrarClientes(self):
         '''
+
         Carga los datos principales del cliente en la tabla
         se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un cliente
         :return: None
