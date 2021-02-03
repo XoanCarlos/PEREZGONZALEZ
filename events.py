@@ -6,8 +6,13 @@ class Eventos():
 
     def Salir(event):
         '''
+
         Módulo para cerrar el programa
-        :return:
+
+        :return: None
+
+        Muestra ventana de aviso
+
         '''
         try:
             var.dlgsalir.show()
@@ -21,6 +26,17 @@ class Eventos():
             print('Error %s' % str(error))
 
     def closeSalir(event):
+        '''
+
+        Módulo que cierra las ventana
+
+        :param: event que es el evento de la ventana
+        :type: None
+        :return: None
+        :rtype: None
+
+        '''
+
         try:
             if var.dlgsalir.exec_():
                 var.dlgsalir.hide()
@@ -30,8 +46,13 @@ class Eventos():
 
     def cargarProv(self):
         """
-        carga las provincias al iniciar el programa
-        :return:
+
+        Módulo que se ejecuta al principio para cargar las provincias. En versión posterior cargaremos
+        y municipios desde la BBDD.
+
+        :return: None
+        :rtype: None
+
         """
         try:
             prov = ['','A Coruña', 'Lugo', 'Ourense', 'Pontevedra', 'Vigo']
@@ -41,6 +62,17 @@ class Eventos():
             print('Error: %s' % str(error))
 
     def Backup():
+        '''
+
+        Módulo que realizar el backup de la BBDD
+
+        :return: None
+        :rtype: None
+
+        Utiliza la librería zipfile, añade la fecha y hora de la copia al nombre de esta y tras realizar la copia
+        la mueve al directorio deseado por el cliente. Para ello abre una ventana de diálogo
+
+        '''
         try:
             fecha = datetime.today()
             fecha = fecha.strftime('%Y.%m.%d.%H.%M.%S')
@@ -57,12 +89,28 @@ class Eventos():
             print('Error: %s' % str(error))
 
     def AbrirDir(self):
+        '''
+
+        Módulo que abre una ventana de diálogo
+
+        :return: None
+        :rtype: None
+
+        '''
         try:
             var.filedlgabrir.show()
         except Exception as error:
             print('Error abrir explorador: %s ' % str(error))
 
     def AbrirPrinter(self):
+        '''
+
+        Módulo que abre la ventana de diálogo de la impresora
+
+        :return: None
+        :rtype: None
+
+        '''
         try:
             var.dlgImprimir.setWindowTitle('Imprimir')
             var.dlgImprimir.setModal(True)
@@ -71,6 +119,16 @@ class Eventos():
             print('Error abrir imprimr: %s ' % str(error))
 
     def AbrirAviso(men):
+        '''
+
+        Módulo que abre ventana de aviso
+
+        :param: men Mensaje de aviso
+        :type: string
+        :return: None
+        :rtype: None
+
+        '''
         try:
             var.lblMensalir.setText(men)
             var.dlgaviso.show()
@@ -78,6 +136,14 @@ class Eventos():
             print('Error abrir ventana aviso: %s ' % str(error))
 
     def Confirmar():
+        '''
+
+        Ventana de confirmación
+
+        :return: None
+        :rtype: None
+
+        '''
         try:
             if var.cliente:
                 clients.Clientes.bajaCliente()
@@ -91,12 +157,27 @@ class Eventos():
             print('Error botón confirma: %s ' % str(error))
 
     def Anular():
+        '''
+
+        Ventana de confirmación
+
+        :return: None
+        :rtype: None
+
+        '''
         try:
             var.dlgaviso.hide()
         except Exception as error:
             print('Error botón anula: %s ' % str(error))
 
     def mostrarAvisocli():
+        '''
+
+        Ventana de aviso
+        :return: None
+        :rtype: None
+
+        '''
         try:
             var.cliente = True
             var.backup = False
@@ -106,6 +187,18 @@ class Eventos():
             print('Error mostrar aviso: %s ' % str(error))
 
     def restaurarBD(self):
+        '''
+
+        Módulo que restaura la BBDD
+
+        :return: None
+        :rtype: None
+
+        Abre ventana de diálogo para buscar el directorio donde está copia de la BBDD y la restaura haciendo suo
+        de la librería zipfile
+        Muestra mensaje de confirmación
+
+        '''
         try:
             option = QtWidgets.QFileDialog.Options()
             filename = var.filedlgabrir.getOpenFileName(None, 'Restaurar Copia de Seguridade','','*.zip;;All Files', options= option)
