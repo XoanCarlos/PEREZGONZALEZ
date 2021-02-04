@@ -1,13 +1,13 @@
 import var, conexion
 
 class Products():
-    '''
-    Eventos asociados a los artículos
-    '''
     def limpiarPro(self):
         '''
-        limpia los datos del formulario cliente
-        :return: none
+
+        Módulo que limpia los datos del formulario producto
+
+        :return: None
+        :rtype: None
         '''
         try:
             product = [var.ui.editArtic, var.ui.editPrec, var.ui.editStock]
@@ -17,12 +17,15 @@ class Products():
         except Exception as error:
             print('Error limpiar widgets: %s ' % str(error))
 
-    def altaProducto(self):  #SE EJECUTA CON EL BOTÓN ACEPTAR
+    def altaProducto(self):
         '''
-        cargará los proudctos en la tabla y en la base de datos
-        en las búsquedas mostrará los datos del cliente
-        :return: none
+
+        Módulo que insertar los proudctos en la tabla y en la base de datos
+        en las búsquedas mostrará los datos del producto
+        :return: None
+        :rtype: None
         '''
+
         #preparamos el registro
         try:
             newpro = []
@@ -48,15 +51,21 @@ class Products():
 
 
     def modifPro(self):
-        """Módulos para modificar datos de un produd con determinado código
+        """
+
+        Módulo para modificar datos de un producto con determinado código
 
         :return: None
+        :rtype: None
+
+        Además recarga la tabla de productos con los valores actualizados
+
         """
         try:
             newdata = []
             product = [var.ui.editArtic, var.ui.editPrec, var.ui.editStock]
             for i in product:
-                newdata.append(i.text())  # cargamos los valores que hay en los editline
+                newdata.append(i.text())
             cod = var.ui.lblCodPro.text()
             conexion.Conexion.modificarPro(cod, newdata)
             conexion.Conexion.mostrarProducts(self)
@@ -67,9 +76,12 @@ class Products():
 
     def cargarProd():
         '''
-        carga en widgets formulario cliente los datos
-        elegidos en la tabla
-        :return: none
+
+        Módulo que carga en widgets formulario productos la fila que se clickea en la tablaPro
+
+        :return: None
+        :type: None
+
         '''
         try:
             fila = var.ui.tableProd.selectedItems()
@@ -86,8 +98,12 @@ class Products():
 
     def bajaProd(self):
         """
-        módulos para dar de baja un producto
-        :return:
+
+        Módulo para dar de baja un producto y recarga la tabla productos y limpia el formulario productos
+
+        :return: None
+        :type: None
+
         """
         try:
             cod = var.ui.lblCodPro.text()

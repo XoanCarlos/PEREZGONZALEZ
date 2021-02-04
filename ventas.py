@@ -6,6 +6,17 @@ from PyQt5 import QtWidgets
 class Ventas:
 
     def altaFactura(self):
+        '''
+
+        Módulo que graba una factura previa al proceso de ventas.
+
+        :return: None
+        :rtype: None
+
+        Una vez grabada recarga la tabla Factura
+        Y prepara la tabla de Ventas.
+
+        '''
         try:
             dni = var.ui.editDniclifac.text()
             fecha = var.ui.editDatafac.text()
@@ -22,7 +33,12 @@ class Ventas:
 
     def abrirCalendar(self):
         '''
-        Abrir la ventana calendario
+
+        Módulo que abre la ventana calendario para cargar la fecha facura
+
+        :return: None
+        :rtype: None
+
         '''
         try:
             var.dlgcalendar.show()
@@ -31,7 +47,16 @@ class Ventas:
 
     def cargarFechafac(qDate):
         ''''
-        Este módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked de calendar
+
+        Módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked de calendar
+
+        :param qDate para formatear la fecha
+        :type: None
+        :return: None
+        :rtype: None
+
+        Cuando clickeamos en el calendario carga la fecha en editFecha
+
         '''
         try:
             if var.ui.tabWidget.currentIndex() == 1:
@@ -43,8 +68,12 @@ class Ventas:
 
     def cargarFact(self):
         '''
-        Módulo que carga los datos de la factura y cliente
-        :return:
+
+        Módulo que carga los datos de la factura y cliente al clickear en la tabla Factura
+
+        :return:None
+        :type: None
+
         '''
         try:
             var.subfac = 0.00
@@ -61,9 +90,16 @@ class Ventas:
 
     def prepararTablaventas(index):
         '''
-        Modulo que prepara tabla Ventas, carga un combo en la tabla
-        y carga dicho combo con los datos del producto
-        :return:
+
+        Modulo que prepara tabla Ventas
+
+        :param: index fila de la tabla
+        :type: int
+        :return: None
+        :type: None
+
+        Carga un combo en la tabla Ventas con los datos del producto e inserta nueva fila en la tabal
+
         '''
         try:
             var.cmbventa = QtWidgets.QComboBox()

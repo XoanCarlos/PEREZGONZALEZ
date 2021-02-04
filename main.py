@@ -11,6 +11,11 @@ locale.setlocale(locale.LC_ALL, 'es-ES')
 
 class DialogAvisos(QtWidgets.QDialog):
     def __init__(self):
+        '''
+
+        Clase que instancia la ventana avisos
+
+        '''
         super(DialogAvisos, self).__init__()
         var.dlgaviso = Ui_dlgAvisos()
         var.dlgaviso.setupUi(self)
@@ -19,15 +24,24 @@ class DialogAvisos(QtWidgets.QDialog):
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
+        '''
+
+        Clase que instanci la ventana de aviso salir
+
+        '''
         super(DialogSalir, self).__init__()
         var.dlgsalir = Ui_dlgSalir()
         var.dlgsalir.setupUi(self)
         var.dlgsalir.btnAceptar.clicked.connect(events.Eventos.Salir)
         var.dlgsalir.btnCancelar.clicked.connect(events.Eventos.closeSalir)
-        #var.dlgsalir.btnBoxSalir(var.dlgsalir.btnAceptar).clicked.connect(events.Eventos.Salir)
 
 class DialogCalendar(QtWidgets.QDialog):
     def __init__(self):
+        '''
+
+        Clase que instancia la ventana de calendario
+
+        '''
         super(DialogCalendar, self).__init__()
         var.dlgcalendar = Ui_dlgCalendar()
         var.dlgcalendar.setupUi(self)
@@ -40,22 +54,53 @@ class DialogCalendar(QtWidgets.QDialog):
 
 class FileDialogAbrir(QtWidgets.QFileDialog):
     def __init__(self):
+        '''
+
+        Clase que instancia la ventana de direcotrio
+
+        '''
         super(FileDialogAbrir, self).__init__()
         self.setWindowTitle('Archivos')
         self.setModal(True)
 
 class PrintDialogAbrir(QtPrintSupport.QPrintDialog):
     def __init__(self):
+        '''
+
+        Clase que instancia la ventana de impresión
+
+        '''
         super(PrintDialogAbrir, self).__init__()
 
 class CmbVenta(QtWidgets.QComboBox):
     def __init__(self):
+        '''
+
+        Clase que instancia el combo de artículos
+
+        '''
         super(CmbVenta, self).__init__()
         var.cmbventa = QtWidgets.QComboBox()
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
+        '''
+
+        Clase main. Instancia todas las ventanas del programa.
+        Genera y conecta todos los eventos de los botones, tablas y otros widgtes.
+        Cuando se lanza se conecta con la BBDD
+        Cuando se lanza el programa carga todos los artículos, factura y clientes de la BBDD en las
+        ventanas correspondiente.
+
+        '''
         super(Main, self).__init__()
+
+        '''
+        
+        Instancia de ventanas auxiliares
+        
+        '''
+
         var.ui = Ui_venPrincipal()
         var.ui.setupUi(self)
         var.dlgsalir = DialogSalir()
@@ -67,14 +112,18 @@ class Main(QtWidgets.QMainWindow):
         events.Eventos()
 
         '''
-        colección de datos
+        listas que contiene los valores de checkbox y radiobutton
         '''
+
         var.rbtsex = (var.ui.rbtFem, var.ui.rbtMasc)
         var.chkpago = (var.ui.chkEfec, var.ui.chkTar, var.ui.chkTrans)
+
         '''
+        
         conexion de eventos con los objetos
         estamos conectando el código con la interfaz gráfico
         botones formulario cliente
+        
         '''
         var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
         var.ui.btnSalirpro.clicked.connect(events.Eventos.Salir)
@@ -112,6 +161,12 @@ class Main(QtWidgets.QMainWindow):
         for i in var.chkpago:
             i.stateChanged.connect(clients.Clientes.selPago)
 
+        '''
+        
+        Conexión de eventos de las ventas de clientes, productos y facturas
+        
+        '''
+
         var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
@@ -120,7 +175,6 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tabFac.clicked.connect(ventas.Ventas.cargarFact)
         var.ui.tabFac.clicked.connect(ventas.Ventas.mostrarVentasfac)
         var.ui.tabFac.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-
         var.ui.tabVenta.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         events.Eventos.cargarProv(self)
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
@@ -132,24 +186,26 @@ class Main(QtWidgets.QMainWindow):
         var.ui.lblstatusdate.setText(fecha.strftime('%A %d de %B del %Y'))
 
         '''
+
         módulos de impresión
+
         '''
         var.ui.menubarReportCli.triggered.connect(printer.Printer.reportCli)
         var.ui.menubarReportPro.triggered.connect(printer.Printer.reportPro)
         var.ui.menubarReportFac.triggered.connect(printer.Printer.reportFac)
 
         '''
+
         módulos conexion base datos
+
         '''
 
         conexion.Conexion.db_connect(var.filebd)
-        # conexion.Conexion()
+        # conexion.Conexion()  el del mongodb
         conexion.Conexion.mostrarClientes(self)
         conexion.Conexion.mostrarProducts(self)
         conexion.Conexion.mostrarFacturas(self)
         var.cmbventa = QtWidgets.QComboBox()
-        #ventas.Ventas.prepararTablaventas(0)
-        #conexion.Conexion.cargarCmbventa()
         var.ui.tabWidget.setCurrentIndex(0)
 
     def closeEvent(self, event):

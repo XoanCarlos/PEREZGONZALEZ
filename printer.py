@@ -9,6 +9,14 @@ import var
 class Printer:
 
     def cabecera(self):
+        '''
+
+        Módulo que carga la cabecera de todos los informes de la empresa, datos fiscales...
+
+        :return: None
+        :rtype: None
+
+        '''
         try:
             logo = '.\\img\logo.jpg'
             var.rep.setTitle('INFORMES')
@@ -29,6 +37,17 @@ class Printer:
             print("Error cabecera informe: %s" % str(error))
 
     def pie(textlistado):
+        '''
+
+        Módulo que carga el pié del inforem. Es igual para todos excepto el nombre del informe
+        que se pasa con la variable textlistado
+
+        :param textlistado: según el contenido del informe
+        :type: string
+        :return: None
+        :rtype: None
+
+        '''
         try:
             var.rep.line(50, 50, 525, 50)
             fecha = datetime.today()
@@ -41,6 +60,15 @@ class Printer:
             print('Error en el píe de informe: %s'  % str(error))
 
     def cabeceracli(self):
+        '''
+
+        Módulo que carga la cabecera de página del informe cliente
+
+        :return: None
+        :rtype: None
+
+        '''
+
         try:
             var.rep.setFont('Helvetica-Bold', size=9)
             textlistado = 'LISTADO DE CLIENTES'
@@ -57,8 +85,21 @@ class Printer:
             print('Error en cabecera 2 de clientes : %s' % str(error))
 
     def reportCli(self):
-        try:
+        '''
 
+        Módulo que llama a la BBDD captura datos de lso clientes ordenados alfabéticamente y los va mostrando
+        en el informe.
+
+        :return: None
+        :rtype: None
+
+        la variable i represnta los valores del eje X,
+        la variable j representa los valores del eje Y
+        Los informes se guardan en la capreta informe y al mismo tiempo se muestran con el lector pdf que existe
+        por defecto en el sistema.
+
+        '''
+        try:
             textlistado = 'LISTADO DE CLIENTES'
             var.rep = canvas.Canvas('informes/listadoclientes.pdf', pagesize=A4)
             Printer.cabecera(self)
@@ -98,6 +139,14 @@ class Printer:
             print('Error reporcli %s' % str(error))
 
     def cabecerapro(self):
+        '''
+
+        Módulo que carga la cabecera de página del informe productos
+
+        :return: None
+        :rtype: None
+
+        '''
         try:
             var.rep.setFont('Helvetica-Bold', size=9)
             textlistado = 'LISTADO DE PRODUCTOS'
@@ -113,6 +162,20 @@ class Printer:
             print('Error en cabecera 2 de productos : %s' % str(error))
 
     def reportPro(self):
+        '''
+
+        Módulo que llama a la BBDD captura datos de los productos ordenados alfabéticamente y los va mostrando
+        en el informe.
+
+        :return: None
+        :rtype: None
+
+        la variable i represnta los valores del eje X,
+        la variable j representa los valores del eje Y
+        Los informes se guardan en la capreta informe y al mismo tiempo se muestran con el lector pdf que existe
+        por defecto en el sistema.
+
+        '''
         try:
             textlistado = 'LISTADO DE PRODUCTOS'
             var.rep = canvas.Canvas('informes/listadoproductos.pdf', pagesize=A4)
@@ -152,6 +215,19 @@ class Printer:
             print('Error reporcli %s' % str(error))
 
     def cabecerafac(codfac):
+        '''
+
+        Módulo que carga la cabecera de página del informe factura
+
+        :param codfac el código de la factura
+        :type: int
+        :return: None
+        :rtype: None
+
+        Toma datos de dos tablas. Los del cliente a la que está asociado el código factura y la de la tabla
+        facturas para tomar los datos de dni y fecha.
+
+        '''
         try:
             var.rep.setFont('Helvetica-Bold', size=11)
             var.rep.drawString(55, 725, 'Cliente: ')
@@ -195,6 +271,20 @@ class Printer:
             print('Error cabecfac %s' % str(error))
 
     def reportFac(self):
+        '''
+
+        Módulo que carga el cuerpo del informe de la factura
+
+        :return: None
+        :rtype: None
+
+        Selecciona todas las ventas de esa factura y las va anotando línea a línea
+        la variable i represnta los valores del eje X,
+        la variable j representa los valores del eje Y
+        Además tiene un pié de informe para mostrar los subtotales, iva y total
+
+
+        '''
         try:
             textlistado = 'FACTURA'
             var.rep = canvas.Canvas('informes/factura.pdf', pagesize=A4)
@@ -206,8 +296,8 @@ class Printer:
             query.prepare('select codventa, codarticventa, cantidad, precio from ventas where codfacventa = :codfac')
             query.bindValue(':codfac', int(codfac))
             if query.exec_():
-                i = 55  # valores del eje X
-                j = 600  # valores del eje Y
+                i = 55
+                j = 600
                 while query.next():
                     if j <= 100:
                         var.rep.drawString(440, 110, 'Página siguiente...')
@@ -239,6 +329,18 @@ class Printer:
             print('Error reporfac %s' % str(error))
 
     def artLinVenta(codigo):
+        '''
+
+        Módulo que toma el nombre del artículo a partir de su código
+
+        :param codigo código del artículo
+        :type int
+        :return: artículo
+        :rtype: string
+
+        Este módulo permite en el cuerpo de la factura que se muestre el nombre del artículo y no su código
+
+        '''
         try:
             query = QtSql.QSqlQuery()
             query.prepare('select producto from productos where codigo = :codigo')
