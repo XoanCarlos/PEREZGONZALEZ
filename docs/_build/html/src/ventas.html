@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ventas module &#8212; documentación de PRODAM2021 - V.0.0.1</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-ventas">
+<span id="ventas-module"></span><h1>ventas module<a class="headerlink" href="#module-ventas" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="ventas.Ventas">
+<em class="property">class </em><code class="sig-prename descclassname">ventas.</code><code class="sig-name descname">Ventas</code><a class="reference internal" href="../_modules/ventas.html#Ventas"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#ventas.Ventas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="ventas.Ventas.abrirCalendar">
+<code class="sig-name descname">abrirCalendar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.abrirCalendar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#ventas.Ventas.abrirCalendar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Módulo que abre la ventana calendario para cargar la fecha facura</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.altaFactura">
+<code class="sig-name descname">altaFactura</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.altaFactura"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#ventas.Ventas.altaFactura" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Módulo que graba una factura previa al proceso de ventas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Una vez grabada recarga la tabla Factura
+Y prepara la tabla de Ventas.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.anularVenta">
+<code class="sig-name descname">anularVenta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.anularVenta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#ventas.Ventas.anularVenta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.borrarFactura">
+<code class="sig-name descname">borrarFactura</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.borrarFactura"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#ventas.Ventas.borrarFactura" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.cargarFact">
+<code class="sig-name descname">cargarFact</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.cargarFact"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#ventas.Ventas.cargarFact" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Módulo que carga los datos de la factura y cliente al clickear en la tabla Factura</p>
+<p>:return:None
+:type: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.cargarFechafac">
+<code class="sig-name descname">cargarFechafac</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.cargarFechafac"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#ventas.Ventas.cargarFechafac" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>“</p>
+<p>Módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked de calendar</p>
+<p>:param qDate para formatear la fecha
+:type: None
+:return: None
+:rtype: None</p>
+<p>Cuando clickeamos en el calendario carga la fecha en editFecha</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.mostrarVentasfac">
+<code class="sig-name descname">mostrarVentasfac</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.mostrarVentasfac"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#ventas.Ventas.mostrarVentasfac" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.prepararTablaventas">
+<code class="sig-name descname">prepararTablaventas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.prepararTablaventas"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#ventas.Ventas.prepararTablaventas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo que prepara tabla Ventas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>index fila de la tabla</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Carga un combo en la tabla Ventas con los datos del producto e inserta nueva fila en la tabal</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ventas.Ventas.procesoVenta">
+<code class="sig-name descname">procesoVenta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ventas.html#Ventas.procesoVenta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#ventas.Ventas.procesoVenta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">PRODAM2021</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, JUAN CARLOS.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/src/ventas.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
