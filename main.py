@@ -193,6 +193,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.menubarReportCli.triggered.connect(printer.Printer.reportCli)
         var.ui.menubarReportPro.triggered.connect(printer.Printer.reportPro)
         var.ui.menubarReportFac.triggered.connect(printer.Printer.reportFac)
+        var.ui.menubarFacxCli.triggered.connect(printer.Printer.facporCli)
 
         '''
 

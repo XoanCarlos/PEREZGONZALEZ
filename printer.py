@@ -219,7 +219,7 @@ class Printer:
 
         Módulo que carga la cabecera de página del informe factura
 
-        :param codfac el código de la factura
+        :param codfac: el código de la factura
         :type: int
         :return: None
         :rtype: None
@@ -278,11 +278,10 @@ class Printer:
         :return: None
         :rtype: None
 
-        Selecciona todas las ventas de esa factura y las va anotando línea a línea
+        Selecciona todas las ventas de esa factura y las va anotando línea a línea:
         la variable i represnta los valores del eje X,
         la variable j representa los valores del eje Y
         Además tiene un pié de informe para mostrar los subtotales, iva y total
-
 
         '''
         try:
@@ -333,8 +332,9 @@ class Printer:
 
         Módulo que toma el nombre del artículo a partir de su código
 
-        :param codigo código del artículo
-        :type int
+        :param: codigo código del artículo
+        :type: int
+
         :return: artículo
         :rtype: string
 
@@ -352,3 +352,75 @@ class Printer:
 
         except Exception as error:
             print('Error artículo según código:  %s ' % str(error))
+
+    def facporCli(self):
+        '''
+
+        Modulo que muestras informes de facturas por cliente
+
+        :return: None
+        :rtype: None
+
+        Muestra las facturas por orden de fecha incluyendo al final el total
+
+        '''
+        try:
+            textlistado = 'FACTURAS POR CLIENTE'
+            var.rep = canvas.Canvas('informes/facturasporcliente.pdf', pagesize=A4)
+            Printer.cabecera(self)
+            Printer.pie(textlistado)
+            dni = var.ui.editDniclifac.text()
+            nombre = var.ui.editApelclifac.text()
+            var.rep.drawString(230, 720, textlistado)
+            var.rep.line(45, 710, 525, 710)
+            var.rep.drawString(45,730, 'Cliente: %s '  % str(nombre) + '       DNI: %s' % str(dni))
+            itempro = ['Nº Factura', 'FECHA FACTURA', 'Total (€)']
+            var.rep.line(45, 680, 525, 680)
+            var.rep.drawString(45, 690, itempro[0])
+            var.rep.drawString(245, 690, itempro[1])
+            var.rep.drawString(470, 690, itempro[2])
+            query = QtSql.QSqlQuery()
+            query.prepare('select codfac, fecha from facturas where dni = :dni')
+            query.bindValue(':dni', str(dni))
+            total = 0.00
+            if query.exec_():
+                i = 55
+                j = 650
+                while query.next():
+                    if j <= 100:
+                        var.rep.drawString(440, 110, 'Página siguiente...')
+                        var.rep.showPage()
+                        Printer.cabecera(self)
+                        Printer.pie(textlistado)
+                        Printer.cabecerafac(self)
+                        i = 50
+                        j = 600
+                    var.rep.setFont('Helvetica', size=10)
+                    var.rep.drawString(i, j, str(query.value(0)))
+                    var.rep.drawRightString(i + 240, j, str(query.value(1)))
+
+                    query1 = QtSql.QSqlQuery()
+                    query1.prepare('select cantidad, precio from ventas where codfacventa = :codfacventa')
+                    query1.bindValue(':codfacventa', int(query.value(0)))
+                    subtotal = 0.00
+                    if query1.exec_():
+                        while query1.next():
+                            subtotal = subtotal + float(query1.value(0))*float(query1.value(1))
+                        var.rep.drawRightString(i + 440, j, "{0:.2f}".format(float(subtotal)*1.21)+ ' €')
+                        total = total + subtotal
+                    # var.rep.drawRightString(i + 355, j, "{0:.2f}".format(float(query.value(3))))
+                    # subtotal = round(float(query.value(2)) * float(query.value(3)),2)
+                    j = j - 20
+
+            var.rep.drawRightString(i + 430, 120, 'Total Facturación Cliente:   ' + "{0:.2f}".format(float(total)*1.21) + ' €')
+
+            var.rep.save()
+            rootPath = ".\\informes"
+            cont = 0
+            for file in os.listdir(rootPath):
+                if file.endswith('facturasporcliente.pdf'):
+                    os.startfile("%s/%s" % (rootPath, file))
+                cont = cont + 1
+        except Exception as error:
+            print('Error informe facturas por cliente:  %s ' % str(error))
+

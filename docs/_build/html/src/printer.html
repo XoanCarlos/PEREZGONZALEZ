@@ -42,9 +42,15 @@
 <code class="sig-name descname">artLinVenta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.artLinVenta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.artLinVenta" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Módulo que toma el nombre del artículo a partir de su código</p>
 <p>:param codigo código del artículo
-:type int
-:return: artículo
-:rtype: string</p>
+:type int</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>artículo</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
 <p>Este módulo permite en el cuerpo de la factura que se muestre el nombre del artículo y no su código</p>
 </dd></dl>
 
@@ -100,6 +106,27 @@ facturas para tomar los datos de dni y fecha.</p>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.facporCli">
+<code class="sig-name descname">facporCli</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.facporCli"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.facporCli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo que muestras informes de facturas por cliente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>dni</strong> – dni cliente</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>string</p>
+</dd>
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Muestra las facturas por orden de fecha incluyendo al final el total</p>
 </dd></dl>
 
 <dl class="py method">
