@@ -1,6 +1,7 @@
 from PyQt5 import QtSql, QtCore
 import var, ventas
 from ventana import *
+import test
 
 
 class Conexion():
@@ -659,7 +660,7 @@ class Conexion():
         var.ui.lblIva.setText('0.00')
         var.ui.lblTotal.setText('0.00')
 
-    def listadoVentasfac(codfac):
+    def listadoVentasfac(self, codfac):
         """
 
         Módulo que lista las ventas contenidaa en una factura
@@ -724,6 +725,7 @@ class Conexion():
             var.ui.lblIva.setText("{0:.2f}".format(float(var.iva)))
             var.fac = round(float(var.iva) + float(var.subfac), 2)
             var.ui.lblTotal.setText("{0:.2f}".format(float(var.fac)))
+
         except Exception as error:
             print('Error Listado de la tabla de ventas: %s ' % str(error))
 

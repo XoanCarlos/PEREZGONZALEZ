@@ -6,6 +6,7 @@ from vencalendar import *
 from datetime import datetime, date
 import sys, var, events, clients, conexion, printer, products, ventas
 import locale
+
 # Idioma "es-ES" (código para el español de España)
 locale.setlocale(locale.LC_ALL, 'es-ES')
 

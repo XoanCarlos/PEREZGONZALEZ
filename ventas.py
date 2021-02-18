@@ -156,12 +156,12 @@ class Ventas:
         except Exception as error:
             print('Error proceso venta: %s ' % str(error))
 
-    def mostrarVentasfac():
+    def mostrarVentasfac(self):
         try:
             var.cmbventa = QtWidgets.QComboBox()
             conexion.Conexion.cargarCmbventa(var.cmbventa)
             codfac = var.ui.lblNumFac.text()
-            conexion.Conexion.listadoVentasfac(codfac)
+            conexion.Conexion.listadoVentasfac(self, codfac)
 
         except Exception as error:
             print('Error proceso mostrar ventas por factura: %s' %str(error))
