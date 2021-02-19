@@ -1,7 +1,7 @@
 from PyQt5 import QtSql, QtCore
 import var, ventas
 from ventana import *
-import test
+
 
 
 class Conexion():
