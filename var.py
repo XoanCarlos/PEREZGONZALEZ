@@ -11,7 +11,6 @@ global alta
 global baja
 global salir
 global dlgaviso
-global lblMensaviso
 global cliente
 global backup
 global filedlgsave
@@ -22,6 +21,8 @@ global subfac
 global iva
 global fac
 global articulo
+global lblMensaviso
+
 
 '''
 variables de clientes

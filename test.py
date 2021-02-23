@@ -12,11 +12,11 @@ class MyTestCase(unittest.TestCase):
     def test_dni(self):
         dni = '00000000T'
         value = clients.Clientes.validarDni(str(dni))
-        msg = 'Proba Errónea'
+        msg = 'Proba DNI Errónea'
         self.assertTrue(value, msg)
 
     def test_fact(self):
-        valor = 40.02
+        valor = 40.03
         codfac = 91
         try:
             msg = 'Cálculos incorrectos'

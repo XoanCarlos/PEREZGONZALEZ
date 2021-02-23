@@ -269,6 +269,7 @@ class Clientes():
 
         """
         try:
+            print('Baja cliente')
             dni = var.ui.editDni.text()
             conexion.Conexion.bajaCli(dni)
             Clientes.limpiarCli()

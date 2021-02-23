@@ -142,11 +142,12 @@ class Conexion():
         Muestra mensje resultado en la barra de estado
 
         '''
+        print('Baja cliente')
         query = QtSql.QSqlQuery()
         query.prepare('delete from clientes where dni = :dni')
         query.bindValue(':dni', dni)
         if query.exec_():
-            print('Baja cliente')
+
             var.ui.lblstatus.setText('Cliente con dni ' + dni + ' dado de baja')
         else:
             print("Error mostrar clientes: ", query.lastError().text())
