@@ -154,6 +154,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnFacdel.clicked.connect(ventas.Ventas.borrarFactura)
         var.ui.btnAceptarventa.clicked.connect(ventas.Ventas.procesoVenta)
         var.ui.btnAnularventa.clicked.connect(ventas.Ventas.anularVenta)
+        var.dlgaviso.btnAceptaviso(clients.Clientes.bajaCliente)
 
         clients.Clientes.valoresSpin()
 

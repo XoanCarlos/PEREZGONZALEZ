@@ -1,4 +1,4 @@
-import sys, var, clients, conexion, zipfile, os, shutil
+import sys, var, clients, events, conexion, zipfile, os, shutil
 from datetime import datetime
 from PyQt5 import QtWidgets
 
@@ -181,8 +181,9 @@ class Eventos():
         try:
             var.cliente = True
             var.backup = False
-            var.lblMensaviso.setText('¿Desea eliminar el cliente?')
             var.dlgaviso.show()
+
+
         except Exception as error:
             print('Error mostrar aviso: %s ' % str(error))
 

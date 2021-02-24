@@ -50,5 +50,5 @@ class Ui_dlgAvisos(object):
         dlgAvisos.setWindowTitle(_translate("dlgAvisos", "Aviso"))
         self.btnAceptaviso.setText(_translate("dlgAvisos", "Aceptar"))
         self.btnCancelaviso.setText(_translate("dlgAvisos", "Cancelar"))
-        self.lblMensaviso.setText(_translate("dlgAvisos", "¿Esta seguro que desea elimiinar?"))
+        self.lblMensaviso.setText(_translate("dlgAvisos", "¿Esta seguro que desea eliminar?"))
 import avisos_rc
