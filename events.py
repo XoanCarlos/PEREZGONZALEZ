@@ -1,6 +1,7 @@
 import sys, var, clients, events, conexion, zipfile, os, shutil
 from datetime import datetime
 from PyQt5 import QtWidgets
+import time
 
 class Eventos():
 
@@ -182,6 +183,8 @@ class Eventos():
             var.cliente = True
             var.backup = False
             var.dlgaviso.show()
+            #clients.Clientes.bajaCliente()
+
 
 
         except Exception as error:

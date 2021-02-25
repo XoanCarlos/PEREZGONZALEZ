@@ -20,7 +20,7 @@ class DialogAvisos(QtWidgets.QDialog):
         super(DialogAvisos, self).__init__()
         var.dlgaviso = Ui_dlgAvisos()
         var.dlgaviso.setupUi(self)
-        var.dlgaviso.btnAceptaviso.clicked.connect(events.Eventos.Confirmar)
+        var.dlgaviso.btnAceptaviso.clicked.connect(clients.Clientes.bajaCliente)
         var.dlgaviso.btnCancelaviso.clicked.connect(events.Eventos.Anular)
 
 class DialogSalir(QtWidgets.QDialog):
@@ -154,7 +154,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnFacdel.clicked.connect(ventas.Ventas.borrarFactura)
         var.ui.btnAceptarventa.clicked.connect(ventas.Ventas.procesoVenta)
         var.ui.btnAnularventa.clicked.connect(ventas.Ventas.anularVenta)
-        var.dlgaviso.btnAceptaviso(clients.Clientes.bajaCliente)
+
+
 
         clients.Clientes.valoresSpin()
 
@@ -196,6 +197,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.menubarReportPro.triggered.connect(printer.Printer.reportPro)
         var.ui.menubarReportFac.triggered.connect(printer.Printer.reportFac)
         var.ui.menubarFacxCli.triggered.connect(printer.Printer.facporCli)
+
 
         '''
 

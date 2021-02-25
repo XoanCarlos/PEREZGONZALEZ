@@ -21,7 +21,7 @@ global subfac
 global iva
 global fac
 global articulo
-global lblMensaviso
+
 
 
 '''
