@@ -686,7 +686,7 @@ class Conexion():
             var.subfac = 0.00
             query = QtSql.QSqlQuery()
             query1 = QtSql.QSqlQuery()
-            query.prepare('select codventa, codarticventa, cantidad from ventas where codfacventa = :codfac')
+            query.prepare('select codventa, codarticventa, cantidad, precio from ventas where codfacventa = :codfac')
             query.bindValue(':codfac', int(codfac))
             if query.exec_():
                 index = 0
@@ -694,14 +694,14 @@ class Conexion():
                     codventa = query.value(0)
                     codarticventa = query.value(1)
                     cantidad = query.value(2)
+                    precio = query.value(3)
                     var.ui.tabVenta.setRowCount(index + 1)
                     var.ui.tabVenta.setItem(index, 0, QtWidgets.QTableWidgetItem(str(codventa)))
-                    query1.prepare('select producto, precio from productos where codigo = :codarticventa')
+                    query1.prepare('select producto from productos where codigo = :codarticventa')
                     query1.bindValue(':codarticventa', int(codarticventa))
                     if query1.exec_():
                         while query1.next():
                             articulo = query1.value(0)
-                            precio = query1.value(1)
                             var.ui.tabVenta.setItem(index, 1, QtWidgets.QTableWidgetItem(str(articulo)))
                             var.ui.tabVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(str(cantidad)))
                             subtotal = round(float(cantidad) * float(precio), 2)

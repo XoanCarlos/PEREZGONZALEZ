@@ -77,8 +77,10 @@ class Clientes():
         try:
             if var.ui.rbtFem.isChecked():
                 var.sex = 'Mujer'
+                var.ui.rbtMasc.setChecked(False)
             if var.ui.rbtMasc.isChecked():
                 var.sex = 'Hombre'
+                var.ui.rbtFem.setChecked(False)
         except Exception as error:
             print('Error: %s' % str(error))
 

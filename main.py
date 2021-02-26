@@ -156,7 +156,6 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnAnularventa.clicked.connect(ventas.Ventas.anularVenta)
 
 
-
         clients.Clientes.valoresSpin()
 
         for i in var.rbtsex:
